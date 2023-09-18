@@ -24,25 +24,9 @@ switch ($module) {
         $title_act = Setting::$title_act[$action];
         $breadcrumb_txt = Setting::$breadcrumb_txt[$action];
         break;
-    case "errorMachine" :
-        $include_module = __DIR__ . "/module/dashboard.inc.php";
-        $action = "errorMachine";
-        $module == "errorMachine" ? $active_errorMachine = "active" : $active_errorMachine = ""; #ไฮไลท์เมนูด้านซ้าย
-        $title_site = Setting::$title_site[$action];
-        $title_act = Setting::$title_act[$action];
-        $breadcrumb_txt = Setting::$breadcrumb_txt[$action];
-        break;
-    case "MachineDetails" :
-        $include_module = __DIR__ . "/module/dashboard.inc.php";
-        $action = "MachineDetails";
-        $module == "MachineDetails" ? $active_MachineDetails = "active" : $active_MachineDetails = ""; #ไฮไลท์เมนูด้านซ้าย
-        $title_site = Setting::$title_site[$action];
-        $title_act = Setting::$title_act[$action];
-        $breadcrumb_txt = Setting::$breadcrumb_txt[$action];
-        break;
     default:
         $include_module = __DIR__ . "/module/dashboard.inc.php";
-        $action = "errorLog";
+        $action = "Dashboard";
         $module == "dashboard" || $module == "" ? $active_errorlog = "active" : $active_errorlog = ""; #ไฮไลท์เมนูด้านซ้าย
         $title_site = Setting::$title_site[$action];
         $title_act = Setting::$title_act[$action];
@@ -59,8 +43,8 @@ switch ($module) {
     <?php include( __DIR__ . "/header.php"); ?>
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
-    <!--sidebar-collapse sidebar-mini layout-fixed layout-navbar-fixed sidebar-closed sidebar-collapse layout-navbar-fixed-->
+<body class="layout-fixed layout-navbar-fixed sidebar-collapse">
+    <!--sidebar-collapse sidebar-mini layout-fixed layout-navbar-fixed sidebar-closed-->
     <div class="wrapper">
 
         <!-- Preloader -->
@@ -77,14 +61,13 @@ switch ($module) {
                 <img src="dist/img/logo_2.png" alt="JWD Logo" class="w-100 p-0 m-0">
                 <!--<img src="dist/img/logo_2.png" alt="JWD Logo" class="brand-image brand-text" >-->
                 <span class="font-weight-bold p-1 mt-2 text-pcs-ct">
-                    <?PHP echo $title_site; ?></span>
             </a>
 
             <!-- Sidebar -->
-            <div class="sidebar"><br><br>
+            <div class="sidebar "><br><br>
                 <!-- Sidebar user panel (optional) -->
-                <div class="user-panel mt-3 pb-1 mb-3 d-flex">
-                    <div class="image">
+                <!-- <div class="user-panel mt-3 pb-1 mb-3 d-flex"> -->
+                    <!-- <div class="image">
                         <img src="dist/img/user2-160x160.png" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
@@ -94,29 +77,29 @@ switch ($module) {
                             <?PHP echo "ยังไม่เสร็จ classArr[_SESSION['sess_class_user']];" ?> /
                             <?PHP echo "ยังไม่เสร็จ _SESSION['sess_dept_initialname'];" ?></span>
                         <a href="?module=profile" class="d-block text-yellow">[แก้ไขข้อมูลส่วนตัว]</a>
-                    </div>
-                </div>
+                    </div> -->
+                <!-- </div> -->
 
                 <!-- Sidebar Menu active-->
-                <nav class="mt-2">
+                <nav class="mt-4">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item">
                             <a href="./" class="nav-link <?PHP echo $active_errorlog; ?>">
                                 <i class="nav-icon fa fa-solid fa-chalkboard"></i>
-                                <p>Error Log</p>
+                                <p>Dashboard</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="?module=errorCode" class="nav-link <?PHP echo $active_errorCode;?>">
-                                <i class="nav-icon fas fa-tools"></i> 
-                                <p>Error Code</p>
+                                <i class="nav-icon fas fa-users"></i> 
+                                <p>Team A</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="?module=errorMachine" class="nav-link <?PHP echo $active_errorMachine;?>">
-                                <i class="nav-icon fas fa-tools"></i> 
-                                <p>Error Machine</p>
+                                <i class="nav-icon fas fa-users"></i> 
+                                <p>Team B</p>
                             </a>
                         </li>
                         <!-- <li class="nav-item">
@@ -126,10 +109,10 @@ switch ($module) {
                             </a>
                         </li> -->
 
-                        <li class="nav-item"><a href="?module=logout" class="nav-link"><i
+                        <!-- <li class="nav-item"><a href="?module=logout" class="nav-link"><i
                                     class="nav-icon fas fa-sign-out-alt"></i>
                                 <p>Logout</p>
-                            </a></li>
+                            </a></li> -->
                         <li>&nbsp;</li>
                         <li>&nbsp;</li>
                         <li>&nbsp;</li>
@@ -144,7 +127,7 @@ switch ($module) {
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <div class="content-header">
+            <div class="content-header p-1">
 
             </div>
             <!-- /.content-header -->
@@ -165,7 +148,7 @@ switch ($module) {
             echo print_mem();
             ?>
             <div class="float-right d-none d-sm-inline-block">
-                <b>Phase 1 / Version</b> 1.0
+                <!-- <b>Phase 1 / Version</b> 1.0 -->
             </div>
         </footer>
 

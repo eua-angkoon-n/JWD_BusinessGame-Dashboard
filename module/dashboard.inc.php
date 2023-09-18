@@ -1,238 +1,505 @@
 <?php 
 include( __DIR__ . "/include.php" );
-
-$con = connect_database();
-$obj = new CRUD($con);
-try {
-    $fetchSite = $obj -> fetchRows("SELECT * FROM asrs_error_wh WHERE 1=1 ORDER BY site_name ASC");
-    $siteSelect = '';
-    foreach($fetchSite as $key => $value){
-        if($action == "errorLog"){
-            $siteSelect.= '<li><label><input type="checkbox" name="dropdownWH[]" value="' . $value['site_name'] . '" checked> ' . $value['site_name'] . '</label></li>';
-            continue;
-        }
-        $siteSelect.= "<option value='".$value['site_name']."' ".($value['id']== 1 ? 'selected' : '').">".$value['site_name']."</option>";
-    }
-} catch( Exception $e ) {     
-    echo "Caught exception : <b>".$e->getMessage()."</b><br/>";
-} finally {
-    $con = null;
-}
-
 ?>
 
 <section class="content">
-    <div class="card">
-        <div class="card-header">
-            <h6 class="display-8 d-inline-block font-weight-bold"><i class="fas fa-chart-bar"></i>
-                <?PHP echo $title_act; ?>
-            </h6>
-            <div class="card-tools">
-                <ol class="breadcrumb float-sm-right pt-1 pb-1 m-0">
-                    <li class="breadcrumb-item"><a href="./">Home</a></li>
-                    <li class="breadcrumb-item active">
-                        <?PHP echo $breadcrumb_txt; ?>
-                    </li>
-                </ol>
-            </div>
+  <div class="card">
+    <div class="card-header pt-2 pb-1">
+      <h6 class="display-8 d-inline-block font-weight-bold"><i class="fas fa-chalkboard"></i>
+        <?PHP echo $title_act; ?>
+      </h6>
+      
+      <div class="card-tools">
+        <ol class="breadcrumb float-sm-right pt-1 pb-1 m-0">
+          <li class="breadcrumb-item"><a href="./">Home</a></li>
+          <li class="breadcrumb-item active">
+            <?PHP echo $breadcrumb_txt; ?>
+          </li>
+        </ol>
+      </div>
+    </div>
+    <div id="chart_script"></div>
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-12">
+        <div class="info-box shadow-none m-0 p-0">
+          <div class="info-box-content d-inline">
+          <!-- <h2 class="display-3 text-center mb-0">  
+          Current Time
+             </h2> -->
+      
+                <h2 class="display-3 text-center mb-0" id="clock" style="font: 900;">
+              
+                <?php echo date("H:i:s"); ?>
+
+               </h2>
+          </div>
+          <!-- /.info-box-content -->
         </div>
+        <!-- /.info-box -->
+      </div>
+    </div>
 
-        <div class="card-body">
-        <form id="needs-validation" class="addform " name="addform" method="POST" enctype="multipart/form-data"
-                autocomplete="off" novalidate="">
+    <!---- Team A / B ---->
+    <div class="row">
+      <div class="col-6">
+      <section class="TeamA">
+      <div class="card-body pt-1 pb-0 pr-0">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-12"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-info mb-1">
+              <div class="card-header pt-1 pb-1">
+                <div class="card-title">
+                  <i class="fas fa-users mr-1 fa-4x d-inline"></i>
+                  <h1 class="d-inline display-3"><strong>
 
-                <!-- <div class="card p-0">
-                    <div class="card-body p-1">
-                      <div class="row">
-                        <div class="col-sm-12 col-md-12 col-xs-12 ml-1">
-                          <label>Warehouse:</label>
-                                <?php if ($action == "errorCode") { ?>
-                                    <select class="custom-select col-sm-1 col-md-1 col-xs-12 mr-3" name="dropdownWH" id="dropdownWH"
-                                        style="width:100%; font-size:0.85rem;" required="">
-                                        <?php echo $siteSelect ?>
-                                    </select>
-                                <?php } else { ?>
-                                <div class="d-inline">
-                                    <button
-                                        class="btn btn-default dropdown-toggle col-sm-2 col-md-2 col-xs-12 mr-3 justify-content-between"
-                                        type="button" id="dropdownWH" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="true">
-                                      Warehouse
-                                    </button>
-                                    <ul class="dropdown-menu checkbox-menu allow-focus">
-                                      <?php echo $siteSelect; ?>
-                                    </ul>
-                                  </div>
-                                <?php } ?>
-                                <label>Month:</label>
-                                <div class="d-inline">
-                                    <button
-                                        class="btn btn-default dropdown-toggle col-sm-4 col-md-3 col-xs-12 mr-3 justify-content-between"
-                                        type="button" id="dropdownMonth" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="true">
-                                        Month
-                                    </button>
-                                    <ul class="dropdown-menu checkbox-menu allow-focus">
-                                        <?php echo $monthSelect; ?>
-                                    </ul>
-                                </div>
-                              <div class="d-inline">
-                                <label>Year:</label>
-                                    <button
-                                        class="btn btn-default dropdown-toggle col-sm-2 col-md-2 col-xs-12 mr-3 justify-content-between"
-                                        type="button" id="dropdownYear" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="true">
-                                        Year
-                                    </button>
-                                  <ul class="dropdown-menu checkbox-menu allow-focus">
-                                    <?php echo $yearSelect; ?>
-                                  </ul>
-                                </div>
-                                <button
-                                    class="btn btn-sm btn-secondary buttons-excel buttons-html5 btn-export mt-1 mb-1"
-                                    type="button">
-                                    <i class="fas fa-download"></i> Export PNG
-                                </button>
-                        </div>
-                      </div>
+                    <?php echo Setting::$team["A"]?>
+                  </strong>
+
+                  </h1>
+                </div>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  </button>
+                </div>
+                <!-- /.card-tools -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body pt-1 pb-0">
+                <div class="row">
+                  <div class="col-6 callout callout-info center-text justify-content-between mb-1 pt-1 pb-1">
+                  <div class="row">
+                    <div class="col-1 ">
+                      <i class="fas fa-thermometer-three-quarters fa-5x "></i>
+                    </div>
+                    <div class="col-5 center-text">
+                      <h3 class=""><strong>อุณหภูมิ</strong></h3>
+                    </div>
+                    <div class="col-6 ">
+                      <h2 class="display-4 mr-3" id="tempA"><strong>23°C</strong></h2>
+                    </div>
+                  </div>  
                   </div>
-                </div> -->
-                
-
-                <div class="card p-0">
-                    <div class="card-body p-1">
-                        <div class="row">
-                            <div class="col-sm-12 col-md-12 col-xs-12 ml-1">
-                                <label>Warehouse:</label> &nbsp;
-                                <?php if ($action == "errorLog") { ?>
-                                    <div class="d-inline">
-                                        <button
-                                            class="btn btn-default dropdown-toggle col-sm-2 col-md-2 col-xs-12 mr-3 justify-content-between"
-                                            type="button" id="dropdownWH" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="true">
-                                            Warehouse
-                                        </button>
-                                    <ul class="dropdown-menu checkbox-menu allow-focus">
-                                        <?php echo $siteSelect; ?>
-                                    </ul>
-                                </div>
-                                <?php } else { ?>
-                                    <select class="custom-select col-sm-1 col-md-1 col-xs-12 mr-3" name="dropdownWH"
-                                    id="dropdownWH" style="width:100%; font-size:0.85rem;" required="">
-                                        <?php echo $siteSelect ?>
-                                    </select>
-                                
-                                <?php } if ($action == "errorMachine") { ?>
-                                    <label>Machine:</label> &nbsp;
-                                    <div class="d-inline col-3">
-                                        sadasd       
-                                        <select class="custom-select col-sm-1 col-md-1 col-xs-12 mr-3"data-placeholder="Select Machine" >
-                                            <option selected>Alabama</option>
-                                            <option selected>Alaska</option>
-                                        </select> 
-                                    </div>
-                                                   
-                                <?php } ?> 
-
-                                <label>Date:</label> &nbsp;
-                                <div class="d-inline">
-                                    <button type="button" class="btn btn-default" id="date" name="date">
-                                        <i class="far fa-calendar-alt"></i>
-                                        Last 30 Days
-                                        <i class="fas fa-caret-down"></i>
-                                    </button>
-                                </div>
-
-                            </div>
+                  <div class="col-6 callout callout-info center-text justify-content-between mb-1 pt-1 pb-1">
+                    <i class="fas fa-tint fa-4x ml-3"></i>
+                    <h2 class="display-4 mr-3" id="humiA"><strong>5%</strong></h2>
+                  </div>
+                </div>
+                <div class="row pb-0">
+                  <div class="col-6 callout callout-info mb-0 pt-1 pb-1">
+                      <div class="row">
+                        <div class="col-1 center-text">
+                          <i class="fas fa-lightbulb fa-2x"></i>
                         </div>
+                        <div class="col text-align-center pl-0">
+                          <h2 class="mr-3 mb-0"><strong>Lucidity</strong></h2>
+                        </div>
+                        <div class="ChartSize" id="ChartASolar"></div>
+                      </div>
+                    </div>
+                    <div class="col-6 callout callout-info mb-0 pt-1 pb-1">
+                      <div class="row">
+                        <div class="col-1 center-text">
+                          <i class="fas fa-bolt fa-2x"></i>
+                        </div>
+                        <div class="col text-align-center pl-0">
+                          <h2 class="mr-3 mb-0"><strong>Volt</strong></h2>
+                        </div>
+                        <div class="ChartSize" id="ChartAVolt"></div>
+                      </div>
                     </div>
                 </div>
-                <input type="hidden" id="selectedDateRange" name="selectedDateRange" value="">
-            </form>
+              </div>
 
-            <div id="chart_script"></div>
-
-            <div class="row">
-                <div class="col p-0 pt-3">
-                <div class="ChartSize" id="Chart1"></div>
-                <div class="ChartSize" id="Chart2"></div>
-                </div>
-                <!-- /.col -->
             </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
         </div>
+      </div>
+    </section>
+      </div>
+      <div class="col-6 pl-0 pr-0">
+      <section class="TeamB">
+      <div class="card-body pt-1 pb-0 pl-0">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-12"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-success mb-1">
+              <div class="card-header pt-1 pb-1">
+                <div class="card-title">
+                  <i class="fas fa-users mr-1 fa-4x"></i>
+                  <h1 class="d-inline display-3"><strong>
+
+                    <?php echo Setting::$team["B"]?>
+                  </strong>
+                </div>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  </button>
+                </div>
+                <!-- /.card-tools -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body pt-1 pb-0">
+                <div class="row">
+                  <div class="col-6 callout callout-success center-text justify-content-between mb-1 pt-1 pb-1">
+                  <div class="row d-inline">
+                    <i class="fas fa-thermometer-three-quarters fa-5x d-inline"></i>
+                    <h3 class="d-inline"><strong>อุณหภูมิ</strong></h3>
+                  </div>  
+                    <h2 class="display-4 mr-3" id="tempB"><strong>23°C</strong></h2>
+                  </div>
+                  <div class="col-6 callout callout-success center-text justify-content-between mb-1 pt-1 pb-1">
+                    <i class="fas fa-tint fa-4x ml-3"></i>
+                    <h2 class="display-4 mr-3" id="humiB"><strong>5%</strong></h2>
+                  </div>
+                </div>
+                <div class="row pb-0">
+                  <div class="col-6 callout callout-success mb-0 pt-1 pb-1">
+                      <div class="row">
+                        <div class="col-1 center-text">
+                          <i class="fas fa-lightbulb fa-2x"></i>
+                        </div>
+                        <div class="col text-align-center pl-0">
+                          <h2 class="mr-3 mb-0"><strong>Lucidity</strong></h2>
+                        </div>
+                        <div class="ChartSize" id="ChartBSolar"></div>
+                      </div>
+                    </div>
+                    <div class="col-6 callout callout-success mb-0 pt-1 pb-1">
+                      <div class="row">
+                        <div class="col-1 center-text">
+                          <i class="fas fa-bolt fa-2x"></i>
+                        </div>
+                        <div class="col text-align-center pl-0">
+                          <h2 class="mr-3 mb-0"><strong>Volt</strong></h2>
+                        </div>
+                        <div class="ChartSize" id="ChartBVolt"></div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+      </div>
+    </section>
+      </div>
     </div>
+
+    <!---- Team C / D ---->
+    <div class="row">
+      <div class="col-6">
+      <section class="TeamC">
+      <div class="card-body pt-1 pb-0 pr-0">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-12"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-warning mb-1">
+              <div class="card-header pt-1 pb-1">
+                <div class="card-title">
+                  <i class="fas fa-users mr-1 fa-4x"></i>
+                  <h1 class="d-inline display-3"><strong>
+
+                    <?php echo Setting::$team["C"]?>
+                  </strong>
+                </div>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  </button>
+                </div>
+                <!-- /.card-tools -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body pt-1 pb-0">
+                <div class="row">
+                  <div class="col-6 callout callout-success center-text justify-content-between mb-1 pt-1 pb-1">
+                  <div class="row d-inline">
+                    <i class="fas fa-thermometer-three-quarters fa-5x d-inline"></i>
+                    <h3 class="d-inline"><strong>อุณหภูมิ</strong></h3>
+                  </div>  
+                    <h2 class="display-4 mr-3" id="tempC"><strong>23°C</strong></h2>
+                  </div>
+                  <div class="col-6 callout callout-success center-text justify-content-between mb-1 pt-1 pb-1">
+                    <i class="fas fa-tint fa-4x ml-3"></i>
+                    <h2 class="display-4 mr-3" id="humiC"><strong>5%</strong></h2>
+                  </div>
+                </div>
+                <div class="row pb-0">
+                  <div class="col-6 callout callout-success mb-0 pt-1 pb-1">
+                      <div class="row">
+                        <div class="col-1 center-text">
+                          <i class="fas fa-lightbulb fa-2x"></i>
+                        </div>
+                        <div class="col text-align-center pl-0">
+                          <h2 class="mr-3 mb-0"><strong>Lucidity</strong></h2>
+                        </div>
+                        <div class="ChartSize" id="ChartCSolar"></div>
+                      </div>
+                    </div>
+                    <div class="col-6 callout callout-success mb-0 pt-1 pb-1">
+                      <div class="row">
+                        <div class="col-1 center-text">
+                          <i class="fas fa-bolt fa-2x"></i>
+                        </div>
+                        <div class="col text-align-center pl-0">
+                          <h2 class="mr-3 mb-0"><strong>Volt</strong></h2>
+                        </div>
+                        <div class="ChartSize" id="ChartCVolt"></div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+      </div>
+    </section>
+      </div>
+      <div class="col-6 pl-0 pr-0">
+      <section class="TeamD">
+      <div class="card-body pt-1 pb-0 pl-0">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-12"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-danger mb-1">
+              <div class="card-header pt-1 pb-1">
+                <div class="card-title">
+                  <i class="fas fa-users mr-1 fa-4x"></i>
+                  <h1 class="d-inline display-3"><strong>
+
+                    <?php echo Setting::$team["D"]?>
+                  </strong>
+                </div>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                  </button>
+                </div>
+                <!-- /.card-tools -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body pt-1 pb-0">
+                <div class="row">
+                  <div class="col-6 callout callout-success center-text justify-content-between mb-1 pt-1 pb-1">
+                  <div class="row d-inline">
+                    <i class="fas fa-thermometer-three-quarters fa-5x d-inline"></i>
+                    <h3 class="d-inline"><strong>อุณหภูมิ</strong></h3>
+                  </div>  
+                    <h2 class="display-4 mr-3" id="tempD"><strong>23°C</strong></h2>
+                  </div>
+                  <div class="col-6 callout callout-success center-text justify-content-between mb-1 pt-1 pb-1">
+                    <i class="fas fa-tint fa-4x ml-3"></i>
+                    <h2 class="display-4 mr-3" id="humiD"><strong>5%</strong></h2>
+                  </div>
+                </div>
+                <div class="row pb-0">
+                  <div class="col-6 callout callout-success mb-0 pt-1 pb-1">
+                      <div class="row">
+                        <div class="col-1 center-text">
+                          <i class="fas fa-lightbulb fa-2x"></i>
+                        </div>
+                        <div class="col text-align-center pl-0">
+                          <h2 class="mr-3 mb-0"><strong>Lucidity</strong></h2>
+                        </div>
+                        <div class="ChartSize" id="ChartDSolar"></div>
+                      </div>
+                    </div>
+                    <div class="col-6 callout callout-success mb-0 pt-1 pb-1">
+                      <div class="row">
+                        <div class="col-1 center-text">
+                          <i class="fas fa-bolt fa-2x"></i>
+                        </div>
+                        <div class="col text-align-center pl-0">
+                          <h2 class="mr-3 mb-0"><strong>Volt</strong></h2>
+                        </div>
+                        <div class="ChartSize" id="ChartDVolt"></div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+      </div>
+    </section>
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <script type="text/javascript">
-$('.select2bs4').select2({
-  theme: 'bootstrap4'
-})
+google.charts.load('current', { packages: ['corechart', 'line'] });
+google.charts.setOnLoadCallback(drawCharts);
 
-function SendData() {
-    var frmData = $("form#needs-validation").serialize();
-    var action = "<?php echo $action ?>";
+function drawCharts(chartData) {  
+    // Loop through the team data
+    for (var team in chartData) {
+        if (chartData.hasOwnProperty(team)) {
+            var teamData = chartData[team];
 
-    $.ajax({
-        url: "module/ajax_action.php",
-        type: "POST",
-        data: {
-            "data": frmData,
-            "action": action
-        },
-        success: function (data) {
-            $("#chart_script").html(data);
-            console.log(data);
-            event.stopPropagation();
-        },
-        error: function (data) {
-            console.log(data);
-            sweetAlert("ผิดพลาด!", "ไม่สามารถแสดงผลข้อมูลได้", "error");
+            // Create separate DataTables and charts for 'Volt' and 'Solar'
+            for (var dataType in teamData) {
+                if (teamData.hasOwnProperty(dataType)) {
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('datetime', 'Date and Time'); // Change to datetime
+                    data.addColumn('number', dataType); // 'Volt' or 'Solar'
+                    data.addColumn('number', 'points');
+                    data.addColumn({ type: 'string', role: 'annotation' });
+
+                    // Add rows to the DataTable
+                    var rows = teamData[dataType];
+                    for (var i = 0; i < rows.length; i++) {
+                        var row = rows[i].split(', ');
+                        var dateTimeParts = row[0].split(' ');
+                        var dateParts = dateTimeParts[0].split('-');
+                        var timeParts = dateTimeParts[1].split(':');
+                        var datetime = new Date(
+                            parseInt(dateParts[0]),
+                            parseInt(dateParts[1]) - 1,
+                            parseInt(dateParts[2]),
+                            parseInt(timeParts[0]),
+                            parseInt(timeParts[1]),
+                            parseInt(timeParts[2])
+                        );
+
+                        // Determine if this is the last data point
+                        var isLastPoint = i === rows.length - 1;
+
+                        // Add annotation and point values
+                        var annotation = isLastPoint ? parseFloat(row[1]).toString() : null;
+                        var point = isLastPoint ? parseFloat(row[1]) : null;
+
+                        data.addRow([datetime, parseFloat(row[1]), point, annotation]);
+                    }
+
+                    var options = {
+                        chartArea: { width: '90%', height: '95%' },
+                        fontName: 'Arial',
+                        fontSize: '14',
+                        legend: { position: 'none' },
+                        selectionMode: 'multiple',
+                        vAxis: {
+                            gridlines: { color: 'none' },
+                            minValue: 0
+                        },
+                        hAxis: {
+                            format: 'MMM dd, yyyy HH:mm'
+                        },
+                        annotations: {
+                            textStyle: {
+                                fontName: 'Arial',
+                                fontSize: 22,
+                                color: '#000',
+                                auraColor: 'none'
+                            }
+                        },
+                        series: {
+                            1: {
+                                pointSize: 7 ,
+                                color: 'blue'
+                            }
+                        }
+                    };
+
+                    var chart = new google.visualization.LineChart(document.getElementById('Chart' + team + dataType));
+
+                    var dateFormatter = new google.visualization.DateFormat({ pattern: 'HH:mm:ss' });
+                    dateFormatter.format(data, 0);
+
+                    chart.draw(data, options);
+                }
+            }
         }
-    });
+    }
+}
+// Helper function to parse time strings into Google Visualization TimeOfDay objects
+function parseTime(timeStr) {
+    var parts = timeStr.split(':');
+    return [parseInt(parts[0]), parseInt(parts[1]), parseInt(parts[2])];
 }
 
-$('#date').daterangepicker(
-          {
-            ranges   : {
-            //   'Today'       : [moment(), moment()],
-            //   'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-              'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-              'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-              'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-              'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            },
-            startDate: moment().subtract(29, 'days'),
-            endDate  : moment()
-          },
-          function (start, end, label) {
-            $('#selectedDateRange').val(end.format('YYYY-MM-DD') + '||//' + start.format('YYYY-MM-DD'));
-            $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-            if (label === 'Custom Range') {
-            $('#date').html('<i class="far fa-calendar-alt"></i> ' + start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY') + ' <i class="fas fa-caret-down"></i>');
-        } else {
-            $('#date').html('<i class="far fa-calendar-alt"></i> ' + label + ' <i class="fas fa-caret-down"></i>');
-        }
+function SendData(log) {
+  $.ajax({
+    url: "module/ajax_action.php",
+    type: "POST",
+    data: {
+      "action": log
+    },
+    success: function (data) {
+      if (log == "Digital") {
+        var parsedData = JSON.parse(data);
+  
+        // Loop through the parsed data to update the HTML elements
+        for (var team in parsedData) {
+          var tempElementId = "temp" + team;
+          var humiElementId = "humi" + team;
+  
+          if (parsedData.hasOwnProperty(team)) {
+            var tempValue = parsedData[team].Temp;
+            var humiValue = parsedData[team].Humi;
+  
+            // Update the temperature and humidity elements
+            $("#" + tempElementId).text(tempValue);
+            $("#" + humiElementId).text(humiValue);
           }
-    )
+        }
+      } else if (log == "Chart") {
+        var chartData = JSON.parse(data); 
+        drawCharts(chartData);
+      }
+    },
+    error: function (data) {
+      console.log(data);
+    }
+  });
+}
+// Function to update the clock time
+function updateClock() {
+  var now = new Date();
+  var hours = now.getHours().toString().padStart(2, '0');
+  var minutes = now.getMinutes().toString().padStart(2, '0');
+  var seconds = now.getSeconds().toString().padStart(2, '0');
+  var timeString = hours + ':' + minutes + ':' + seconds;
+  document.getElementById('clock').textContent = timeString;
+}
 
 $(document).ready(function () {
-    var startDate = moment().subtract(29, 'days');
-    var endDate   = moment();
-    $('#selectedDateRange').val(endDate.format('YYYY-MM-DD') + '||//' + startDate.format('YYYY-MM-DD'));
 
-     $('#date').on('apply.daterangepicker', function (event, picker) {
-        SendData(); // Trigger SendData when the date range changes
-    });
-    // Listen for changes in the form elements (warehouse select, etc.)
-    $("form#needs-validation").on("change", "select, input[type='checkbox'], button", function () {
-        SendData(); // Trigger SendData when form elements change
-    });
+        // Initial call to update the clock
+        updateClock();
+        SendData('Digital');
+        SendData('Chart');
 
-    $('.dropdown-menu').on('click', function (e) {
-        e.stopPropagation();
-    });
-   
-    SendData();
-    
+        // Update the clock every second
+        setInterval(updateClock, 1000);
+
+        setInterval(function() {
+          SendData('Digital');
+        }, 5000);
+
+        setInterval(function() {
+          SendData('Chart');
+        }, 5000);
+
 });
 </script>

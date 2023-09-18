@@ -9,9 +9,6 @@
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="./" class="nav-link">หน้าหลัก</a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="?module=howto" class="nav-link">คู่มือการใช้งาน</a>
-                </li>
             </ul>
 
             <ul class="navbar-nav ml-auto">

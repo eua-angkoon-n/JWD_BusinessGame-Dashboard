@@ -58,11 +58,27 @@
     justify-content: center;
     align-items: center;
     display: flex;
-    height: 250px;
 }
 
 .center-text {
+    justify-content: center;
+    align-items: center;
+    display: flex;
     text-align: center;
+}
+
+.right-text {
+    margin-left: auto;
+    align-items: center;
+    display: flex;
+    text-align: right;
+}
+
+.left-text {
+    justify-content: flex-start;
+    align-items: center;
+    display: flex;
+    text-align: left;
 }
 
 .centered-cell {
@@ -125,8 +141,12 @@
 }
 
 .ChartSize {
-    height: 340px;
+    height: 180px;
     width: 100%;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  
 }
 
 .google-visualization-table-table tr td {
@@ -161,4 +181,36 @@
     display: inline-block !important; /* Ensure it's inline with other elements */
     /* Force it to fill the entire container */
 }
+
+.gradient-custom {
+/* fallback for old browsers */
+background: #ffffff;
+
+/* Chrome 10-25, Safari 5.1-6 */
+background: -webkit-linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 236, 210, 1));
+
+/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 236, 210, 1))
+}
+
+.carousel-indicators li {
+background-color: #282828;
+width: 7px;
+height: 7px;
+border-radius: 50%;
+}
+
+@font-face{
+ font-family:'digital-clock-font';
+ src: url('dist/fontface/Orbitron/static/Orbitron-Bold.ttf');
+}
+
+.digital {
+    font-family: 'digital-clock-font';
+}
+
+.verticalCenter {
+    text-align: center;
+}
+
 </style>

@@ -5,47 +5,43 @@ require_once __DIR__ . "/moule_errorMachine/errorMachine.php";
 
 if (isset($_POST['action'])) {
     $action = $_POST['action'];
-    // Check the value of the "action" parameter
-    $getAction = new getAction($_POST['data']);
-    $getAction->getData(
-        $wh,
-        $date,
-        $newDate,
-        $arrWH
-    );
+
     switch ($action){
-        case 'errorLog':
-            $CtResult  = new ErrorLog_WH($wh,$newDate,$arrWH);
-            $CtResult2 = new ErrorLog_WHTotal($wh,$newDate,$arrWH);
-            $result    = $CtResult->getChart(); 
-            $result   .= $CtResult2->getChart();
-            print_r($result);
+        case 'Digital':
+            $Call   = new DashboardResult($action);
+            $Result = $Call->getTempAndHumi();
+            print_r($Result);
             break;
-        case 'errorCode':
-            $CtResult  = new ErrorCode_Total($wh,$newDate);
-            $result    = $CtResult->getChart();
-            $errorCode = $CtResult->getErrorCode();
-            $Ct2Result = new ErrorCode($arrWH,$newDate,$errorCode);
-            $result   .= $Ct2Result->getChart();
-            print_r($result);
+        case 'Chart':
+            $Call   = new DashboardResult($action);
+            $Result = $Call->getChartArray();
+            print_r($Result);
             break;
-        case 'errorMachine':
-            $CtResult  = new ErrorMachine_Total($wh,$newDate);
-            $result    = $CtResult->getChart();
-            // $errorCode = $CtResult->getErrorCode();
-            // $Ct2Result = new ErrorMachine_Compare($WH,$date,$errorCode);
-            // $result   .= $Ct2Result->getChart();
-            print_r($result);
-            break;
-        case 'MachineDetails':
+        // case 'errorCode':
+        //     $CtResult  = new ErrorCode_Total($wh,$newDate);
+        //     $result    = $CtResult->getChart();
+        //     $errorCode = $CtResult->getErrorCode();
+        //     $Ct2Result = new ErrorCode($arrWH,$newDate,$errorCode);
+        //     $result   .= $Ct2Result->getChart();
+        //     print_r($result);
+        //     break;
+        // case 'errorMachine':
+        //     $CtResult  = new ErrorMachine_Total($wh,$newDate);
+        //     $result    = $CtResult->getChart();
+        //     // $errorCode = $CtResult->getErrorCode();
+        //     // $Ct2Result = new ErrorMachine_Compare($WH,$date,$errorCode);
+        //     // $result   .= $Ct2Result->getChart();
+        //     print_r($result);
+        //     break;
+        // case 'MachineDetails':
             
-            break;
-        default:
-            echo "No Action Name " . $action;
-            break;
+        //     break;
+        // default:
+        //     echo "No Action Name " . $action;
+        //     break;
     }
 } else {
-    echo "Action parameter not set";
+    echo 0;
 }
 exit;
 
@@ -151,5 +147,103 @@ Class getAction
     //     $WH = $this->wh;
     // }
    
+}
+
+Class DashboardResult 
+{
+    private $action;
+
+    public function __construct($action){
+        $this->action = $action ?? NULL;
+    }
+
+    public function getTempAndHumi() {
+        return $this->ConvertTempAndHumi();
+    }
+
+    public function getChartArray() {
+        return $this->ConvertVoltAndSolar();
+    }
+
+    public function getRecord() {
+        $action = $this->action;
+
+        $sql  = "SELECT * ";
+        $sql .= "FROM ";
+        $sql .= "( ";
+        $sql .= "SELECT *, ROW_NUMBER() OVER (PARTITION BY team ORDER BY logs_datetime DESC) AS row_num ";
+        $sql .= "FROM tb_logs_test ";
+        $sql .= ") AS ranked ";
+        $sql .= "WHERE ";
+        if($action == "Digital")
+            $sql .= "row_num = 1";
+        else {
+            $sql .= "row_num BETWEEN 1 AND 20 ";
+            $sql .= "ORDER BY row_num DESC";
+        }
+
+        try {
+            $con = connect_database();
+            $obj = new CRUD($con);
+
+            try {
+                $lastRecord = $obj -> fetchRows($sql);
+                return $lastRecord;
+            } catch (Exception $e) {
+                return "An error occurred: " . $e->getMessage();
+            }
+
+        } catch (PDOException $e) {
+            return "Database connection failed: " . $e->getMessage();
+        } catch (Exception $e) {
+            return "An error occurred: " . $e->getMessage();
+        } finally {
+            $con = null;
+        }
+        
+    }
+
+    public function ConvertTempAndHumi() {
+        $data = $this->getRecord();
+        $result = array();
+
+        foreach($data as $record) {
+            $team = $record['team'];
+            $temp = $record['logs_temp'];
+            $humi = $record['logs_humi'];
+    
+            // Check if the team already exists in the result array
+            if (!isset($result[$team])) {
+                $result[$team] = array();
+            }
+    
+            // Add temperature and humidity to the team's data
+            $result[$team]['Temp'] = $temp + rand(1,9);
+            $result[$team]['Humi'] = $humi + rand(1,9);
+        }
+
+        return json_encode($result);
+    }
+
+    public function ConvertVoltAndSolar() {
+        $data = $this->getRecord();
+        $result = array();
+
+        foreach ($data as $record) {
+            $team = $record['team'];
+            $datetime = $record['logs_datetime'];
+            $volt = $record['logs_volt'];
+            $solar = $record['logs_solar'];
+        
+            if (!isset($result[$team])) {
+                $result[$team] = array("Volt" => array(), "Solar" => array());
+            }
+            $numTest = rand(1,9);
+            $result[$team]['Volt'][] = "$datetime,  ".$volt + $numTest."";
+            $result[$team]['Solar'][] = "$datetime, ".$solar + $numTest."";
+        }
+        
+        return json_encode($result);
+    }
 }
 ?>

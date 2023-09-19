@@ -95,7 +95,7 @@ include( __DIR__ . "/include.php" );
                           <i class="fas fa-lightbulb fa-2x"></i>
                         </div>
                         <div class="col text-align-center pl-0">
-                          <h2 class="mr-3 mb-0"><strong>Lucidity</strong></h2>
+                          <h2 class="mr-3 mb-0"><strong>Lux</strong></h2>
                         </div>
                         <div class="ChartSize" id="ChartASolar"></div>
                       </div>
@@ -167,7 +167,7 @@ include( __DIR__ . "/include.php" );
                           <i class="fas fa-lightbulb fa-2x"></i>
                         </div>
                         <div class="col text-align-center pl-0">
-                          <h2 class="mr-3 mb-0"><strong>Lucidity</strong></h2>
+                          <h2 class="mr-3 mb-0"><strong>Lux</strong></h2>
                         </div>
                         <div class="ChartSize" id="ChartBSolar"></div>
                       </div>
@@ -243,7 +243,7 @@ include( __DIR__ . "/include.php" );
                           <i class="fas fa-lightbulb fa-2x"></i>
                         </div>
                         <div class="col text-align-center pl-0">
-                          <h2 class="mr-3 mb-0"><strong>Lucidity</strong></h2>
+                          <h2 class="mr-3 mb-0"><strong>Lux</strong></h2>
                         </div>
                         <div class="ChartSize" id="ChartCSolar"></div>
                       </div>
@@ -315,7 +315,7 @@ include( __DIR__ . "/include.php" );
                           <i class="fas fa-lightbulb fa-2x"></i>
                         </div>
                         <div class="col text-align-center pl-0">
-                          <h2 class="mr-3 mb-0"><strong>Lucidity</strong></h2>
+                          <h2 class="mr-3 mb-0"><strong>Lux</strong></h2>
                         </div>
                         <div class="ChartSize" id="ChartDSolar"></div>
                       </div>
@@ -495,11 +495,11 @@ $(document).ready(function () {
 
         setInterval(function() {
           SendData('Digital');
-        }, 5000);
+        }, 3000);
 
         setInterval(function() {
           SendData('Chart');
-        }, 5000);
+        }, 3000);
 
 });
 </script>

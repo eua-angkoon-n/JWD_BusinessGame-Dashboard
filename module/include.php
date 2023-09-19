@@ -149,6 +149,15 @@
   
 }
 
+.ChartSizeTeam {
+    height: 400px;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  
+}
+
 .google-visualization-table-table tr td {
     height: 40px;
     /* Adjust the desired height value */

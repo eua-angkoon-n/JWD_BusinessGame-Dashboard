@@ -16,21 +16,21 @@ $start = $Time->Start_Time();
 isset($_REQUEST['module']) ? $module = $_REQUEST['module'] : $module = '';
 
 switch ($module) {
-    case "errorCode" :
-        $include_module = __DIR__ . "/module/dashboard.inc.php";
-        $action = "errorCode";
-        $module == "errorCode" ? $active_errorCode = "active" : $active_errorCode = ""; #ไฮไลท์เมนูด้านซ้าย
-        $title_site = Setting::$title_site[$action];
-        $title_act = Setting::$title_act[$action];
-        $breadcrumb_txt = Setting::$breadcrumb_txt[$action];
+    case "A" :
+        $include_module = __DIR__ . "/module/team.inc.php";
+        $TEAM = "A";
+        $module == "A" ? $active_A = "active" : $active_A = ""; #ไฮไลท์เมนูด้านซ้าย
+        $title_site = Setting::$title_site[$module];
+        $title_act = Setting::$title_act[$module];
+        $breadcrumb_txt = Setting::$breadcrumb_txt[$module];
         break;
     default:
         $include_module = __DIR__ . "/module/dashboard.inc.php";
-        $action = "Dashboard";
-        $module == "dashboard" || $module == "" ? $active_errorlog = "active" : $active_errorlog = ""; #ไฮไลท์เมนูด้านซ้าย
-        $title_site = Setting::$title_site[$action];
-        $title_act = Setting::$title_act[$action];
-        $breadcrumb_txt = Setting::$breadcrumb_txt[$action];
+        $txt = "Dashboard";
+        $module == "dashboard" || $module == "" ? $active_Dashboard = "active" : $active_Dashboard = ""; #ไฮไลท์เมนูด้านซ้าย
+        $title_site = Setting::$title_site[$txt];
+        $title_act = Setting::$title_act[$txt];
+        $breadcrumb_txt = Setting::$breadcrumb_txt[$txt];
       break;
 }
 
@@ -85,25 +85,25 @@ switch ($module) {
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item">
-                            <a href="./" class="nav-link <?PHP echo $active_errorlog; ?>">
+                            <a href="./" class="nav-link <?PHP echo $active_Dashboard; ?>">
                                 <i class="nav-icon fa fa-solid fa-chalkboard"></i>
                                 <p>Dashboard</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="?module=errorCode" class="nav-link <?PHP echo $active_errorCode;?>">
+                            <a href="?module=A" class="nav-link <?PHP echo $active_A;?>">
                                 <i class="nav-icon fas fa-users"></i> 
                                 <p>Team A</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="?module=errorMachine" class="nav-link <?PHP echo $active_errorMachine;?>">
+                            <a href="?module=errorMachine" class="nav-link <?PHP echo $active_B;?>">
                                 <i class="nav-icon fas fa-users"></i> 
                                 <p>Team B</p>
                             </a>
                         </li>
                         <!-- <li class="nav-item">
-                            <a href="?module=MachineDetails" class="nav-link <?PHP echo $active_MachineDetails;?>">
+                            <a href="?module=MachineDetails" class="nav-link <?PHP echo $active_C;?>">
                                 <i class="nav-icon fas fa-tools"></i> 
                                 <p>Machine Details</p>
                             </a>

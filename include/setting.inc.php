@@ -85,7 +85,7 @@ class Setting
     public static $team = array(
         "A" => "เย็นเฉียบ",
         "B" => "Empire Cold Storage",
-        "C" => "Team C",
-        "D" => "Team D"
+        "C" => "F&C Team",
+        "D" => "Idea Team"
     ); 
 }

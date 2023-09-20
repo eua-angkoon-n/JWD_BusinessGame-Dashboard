@@ -10,30 +10,6 @@ class Setting
 
     public static $SiteList = array('PCS', 'JPK', 'JPAC', 'PACM', 'PLP', 'PACS', 'PACA', 'PACT');
     public static $BG_Command = 'bg';
-    public static $title_site = array
-    (
-        "Dashboard" => "Dashboard", 
-        "A" => "Team A",
-        "B" => "Team B",
-        "C" => "Team C",
-        "D" => "Team D",
-    );
-    public static $title_act = array
-    (
-        "Dashboard" => "Dashboard", 
-        "A" => "Team A",
-        "B" => "Team B",
-        "C" => "Team C",
-        "D" => "Team D",
-    );
-    public static $breadcrumb_txt = array
-    (
-        "Dashboard" => "Dashboard", 
-        "A" => "Team A",
-        "B" => "Team B",
-        "C" => "Team C",
-        "D" => "Team D",
-    );
 
     public static $arr_day_of_week = array('','จันทร์','อังคาร','พุธ','พฤหัสบดี','ศุกร์','เสาร์','อาทิตย์');	
     public static $arr_mouth = array('มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม');	
@@ -83,9 +59,35 @@ class Setting
     public static $SQLSET = "SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));";
     
     public static $team = array(
+        "Dashboard" => "Dashboard", 
         "A" => "เย็นเฉียบ",
         "B" => "Empire Cold Storage",
         "C" => "F&C Team",
         "D" => "Idea Team"
     ); 
+
+    public static $title_site = array
+    (
+        "Dashboard" => "Dashboard", 
+        "A" => "เย็นเฉียบ",
+        "B" => "Empire Cold Storage",
+        "C" => "F&C Team",
+        "D" => "Idea Team"
+    );
+    public static $title_act = array
+    (
+        "Dashboard" => "Dashboard", 
+        "A" => "เย็นเฉียบ",
+        "B" => "Empire Cold Storage",
+        "C" => "F&C Team",
+        "D" => "Idea Team"
+    );
+    public static $breadcrumb_txt = array
+    (
+        "Dashboard" => "Dashboard", 
+        "A" => "เย็นเฉียบ",
+        "B" => "Empire Cold Storage",
+        "C" => "F&C Team",
+        "D" => "Idea Team"
+    );
 }

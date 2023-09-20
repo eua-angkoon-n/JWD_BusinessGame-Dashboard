@@ -495,9 +495,6 @@ $(document).ready(function () {
 
         setInterval(function() {
           SendData('Digital');
-        }, 3000);
-
-        setInterval(function() {
           SendData('Chart');
         }, 3000);
 

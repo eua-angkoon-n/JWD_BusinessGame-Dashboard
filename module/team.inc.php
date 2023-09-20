@@ -35,7 +35,7 @@ include( __DIR__ . "/include.php" );
                             <h2 class="card-title pl-2" style="font-size:2rem"><strong>ผลิตไฟฟ้าได้</strong></h2>
                         </div>
                         <div class="card-body text-right"> 
-                            <h1 class="d-inline" style="font-size:4.0rem">00</h1>
+                            <h1 class="d-inline" id="LuxPerMin" style="font-size:4.0rem">00</h1>
                             <h1 class="d-inline">&nbsp;นาที</h1>
                         </div>
                     </div>
@@ -50,7 +50,7 @@ include( __DIR__ . "/include.php" );
                             <h2 class="card-title pl-2" style="font-size:2rem"><strong>กำลังไฟสูงสุด</strong></h2>
                         </div>
                         <div class="card-body text-right"> 
-                            <h1 class="d-inline" style="font-size:4.0rem">00</h1>
+                            <h1 class="d-inline" id="MaxVolt" style="font-size:4.0rem">00</h1>
                             <h1 class="d-inline">&nbsp;V.</h1>
                         </div>
                     </div>
@@ -65,7 +65,7 @@ include( __DIR__ . "/include.php" );
                             <h2 class="card-title pl-2" style="font-size:2rem"><strong>อุณหภูมิที่ทำได้</strong></h2>
                         </div>
                         <div class="card-body text-right"> 
-                            <h1 class="d-inline" style="font-size:4.0rem">00</h1>
+                            <h1 class="d-inline" id="MinTemp" style="font-size:4.0rem">00</h1>
                             <h1 class="d-inline">&nbsp;°C</h1>
                         </div>
                     </div>
@@ -77,20 +77,17 @@ include( __DIR__ . "/include.php" );
                     <div class="card card-outline card-primary">
                         <div class="card-header row ">
                         <i class="fas fa-tint fa-2x align-middle pt-2"></i>
-                            <h2 class="card-title pl-2" style="font-size:2rem"><strong>ความชื้นต่ำสุด</strong></h2>
+                            <h2 class="card-title pl-2" style="font-size:2rem"><strong>ความชื้นสูงสุด/ต่ำสุด</strong></h2>
                         </div>
-                        <div class="card-body text-right"> 
-                            <h1 class="d-inline" style="font-size:4.0rem">00</h1>
+                        <div class="card-body text-right">
+                            <h1 class="d-inline" id="MaxHumi" style="font-size:4.0rem">00</h1>
+                            <h1 class="d-inline"style="font-size:3.5rem">/</h1> 
+                            <h1 class="d-inline" id="MinHumi" style="font-size:4.0rem">00</h1>
                             <h1 class="d-inline">&nbsp;%</h1>
                         </div>
                     </div>
                 </div>
             </div>
-
-           
-
-          
-      
           <!-- /.card -->
         </div>
       </div>
@@ -98,7 +95,7 @@ include( __DIR__ . "/include.php" );
       </div>
     </div>
 
-    <div class="row">
+    <div class="row pt-2">
         <div class="col-12">
             <section class="2">
                 <div class="row">
@@ -118,51 +115,261 @@ include( __DIR__ . "/include.php" );
         </div>
     </div>
 
-
-
-  
-
+    <div class="row">
+      <div class="col-12 p-3 m-0 ">
+        <table id="dataTable" class="table table-bordered dataTable dtr-inline display  " >
+            <thead>
+              <tr class="bg-light">
+                <th class="text-center" scope="col" class="sorting_disabled">No.</th>
+                <th class="text-center" scope="col">Date Time</th>
+                <th class="text-center" scope="col">Temperature</th>
+                <th class="text-center" scope="col">Humidity</th>
+                <th class="text-center" scope="col">Volt</th>
+                <th class="text-center" scope="col">Lux</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Table data will be added here -->
+            </tbody>
+          </table>
+      </div>
+    </div>
   </div>
 
 </section>
 
 <script type="text/javascript">
-google.charts.load('current', {packages: ['corechart', 'line']});
-google.charts.setOnLoadCallback(drawChart);
+var TEAM = "<?php echo $TEAM ?>";
+var jsonData;
+var table;
+var currentPage = 1;
 
-function drawChart() {
-      var data = new google.visualization.DataTable();
-      data.addColumn('number', 'X');
-      data.addColumn('number', 'Dogs');
-      data.addColumn('number', 'Cats');
-
-      data.addRows([
-        [0, 0, 0],    [1, 10, 5],   [2, 23, 15],  [3, 17, 9],   [4, 18, 10],  [5, 9, 5],
-        [6, 11, 3],   [7, 27, 19],  [8, 33, 25],  [9, 40, 32],  [10, 32, 24], [11, 35, 27],
-        [12, 30, 22], [13, 40, 32], [14, 42, 34], [15, 47, 39], [16, 44, 36], [17, 48, 40],
-        [18, 52, 44], [19, 54, 46],
-      ]);
-
-      var options = {
-        chartArea: { width: '90%', height: '85%' },
-        hAxis: {
+$(document).ready(function () {
+  table = $('#dataTable').DataTable({
+    "order": [0, 'desc'],
+    "aoColumnDefs": [{
+            "bSortable": false,
+            "aTargets": [0, 1, 2, 3, 4, 5]
+        },
+      ],
+    "searching": false,
+    "pageLength": 50,
+    "lengthChange": true,
+    "info": true,
+    "scrollX": true,
+    columns: [
+      { width: '3%' }, // Adjust the width as needed for each column
+      { width: '10%' },
+      { width: '15%' },
+      { width: '15%' },
+      { width: '15%' },
+      { width: '15%' },
+    ],
+  });
   
-        },
-        vAxis: {
+  SendData(TEAM);
+  setInterval(function() {
+    currentPage = table.page.info().page + 1;
+    SendData(TEAM);
+  }, 3000);
+  table.page(currentPage - 1).draw('page');
+});
 
-        },
-        series: {
-          1: {curveType: 'function'}
-        }
-      };
+function SendData(TEAM) {
+  $.ajax({
+    url: "module/ajax_action.php",
+    type: "POST",
+    data: {
+      "action": "Team",
+      "team": TEAM
+    },
+    success: function (data) {
+      var jsonData = JSON.parse(data);
 
-      var TempHumiChart = new google.visualization.LineChart(document.getElementById('TempHumiChart'));
-      var VoltChart = new google.visualization.LineChart(document.getElementById('VoltChart'));
-      var SolarChart = new google.visualization.LineChart(document.getElementById('SolarChart'));
+      updateCardData(jsonData);
+      drawCharts(jsonData);
 
-
-      TempHumiChart.draw(data, options);
-      VoltChart.draw(data, options);
-      SolarChart.draw(data, options);
+      updateDataTable(jsonData);
+      
+      console.log(data);
+    },
+    error: function (data) {
+      console.log(data);
     }
+  });
+}
+
+function updateCardData(jsonData) {
+  // Update card data with jsonData
+  $("#LuxPerMin").text(jsonData.Card.LuxPerMinute);
+  $("#MaxVolt").text(jsonData.Card.MaxVolt);
+  $("#MinTemp").text(jsonData.Card.MinTemp);
+  $("#MaxHumi").text(jsonData.Card.MaxHumi);
+  $("#MinHumi").text(jsonData.Card.MinHumi);
+}
+
+function drawCharts(jsonData) {
+  // Now you can access jsonData here to draw charts
+  google.charts.load('current', { packages: ['corechart', 'line'] });
+  google.charts.setOnLoadCallback(function () {
+    // Draw your charts using the jsonData.ChartData object
+    drawTempHumiChart(jsonData.ChartData.TempHumiData);
+    drawVoltChart(jsonData.ChartData.VoltData);
+    drawSolarChart(jsonData.ChartData.SolarData);
+  });
+}
+
+function drawTempHumiChart(tempHumiData) {
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'Time');
+  data.addColumn('number', 'Temperature');
+  data.addColumn('number', 'Humidity');
+  data.addColumn('number', 'Temperature');
+  data.addColumn({ type: 'string', role: 'annotation' });
+  data.addColumn('number', 'Humidity');
+  data.addColumn({ type: 'string', role: 'annotation' });
+
+  // Populate the data table with TempHumiData
+  data.addRows(tempHumiData);
+
+  var options = {
+    title: 'Temperature and Humidity',
+    titleTextStyle: {
+        fontName: 'Arial', // i.e. 'Times New Roman'
+        fontSize: 28, // 12, 18 whatever you want (don't specify px)
+        bold: true,    // true or false
+    },
+    chartArea: { width: '85%', height: '85%' },
+    hAxis: {
+      slantedText: false, // Prevent slanted (rotated) text on the horizontal axis
+      textPosition: 'none' // Place labels outside the chart area
+    },
+    vAxis: {},
+    legend: 'none',
+    annotations: {
+        textStyle: {
+            fontName: 'Arial',
+            fontSize: 18,
+            color: '#000',
+            auraColor: 'none'
+        }
+    },
+    series: {
+      0: {pointSize: 5 ,color: 'blue' }, // Temperature
+      1: {pointSize: 5 ,color: 'red' },  // Humidity
+      2: {color: 'blue' }, // Temperature
+      3: {color: 'red' }  // Humidity
+    }
+  };
+
+  var chart = new google.visualization.LineChart(document.getElementById('TempHumiChart'));
+  chart.draw(data, options);
+}
+
+function drawVoltChart(voltData) {
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'Time');
+  data.addColumn('number', 'Voltage');
+  data.addColumn('number', 'Voltage');
+  data.addColumn({ type: 'string', role: 'annotation' });
+
+  // Populate the data table with VoltData
+  data.addRows(voltData);
+
+  var options = {
+    title: 'Volt',
+    titleTextStyle: {
+        fontName: 'Arial', // i.e. 'Times New Roman'
+        fontSize: 28, // 12, 18 whatever you want (don't specify px)
+        bold: true,    // true or false
+    },
+    chartArea: { width: '90%', height: '85%' },
+    hAxis: {
+      slantedText: false, // Prevent slanted (rotated) text on the horizontal axis
+      textPosition: 'none' // Place labels outside the chart area
+    },
+    vAxis: {},
+    legend: 'none',
+    annotations: {
+        textStyle: {
+            fontName: 'Arial',
+            fontSize: 18,
+            color: '#000',
+            auraColor: 'none'
+        }
+    },
+    series: {
+      0: {pointSize: 5 ,color: 'green' }, // Voltage
+      1: {color: 'green' } // Voltage
+    }
+  };
+
+  var chart = new google.visualization.LineChart(document.getElementById('VoltChart'));
+  chart.draw(data, options);
+}
+
+function drawSolarChart(solarData) {
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'Time');
+  data.addColumn('number', 'Solar');
+  data.addColumn('number', 'Solar');
+  data.addColumn({ type: 'string', role: 'annotation' });
+
+  // Populate the data table with SolarData
+  data.addRows(solarData);
+
+  var options = {
+    title: 'Lux',
+    titleTextStyle: {
+        fontName: 'Arial', // i.e. 'Times New Roman'
+        fontSize: 28, // 12, 18 whatever you want (don't specify px)
+        bold: true,    // true or false
+    },
+    chartArea: { width: '90%', height: '85%' },
+    hAxis: {
+      slantedText: false, // Prevent slanted (rotated) text on the horizontal axis
+      textPosition: 'none' // Place labels outside the chart area
+    },
+    vAxis: {},
+    legend: 'none',
+    annotations: {
+        textStyle: {
+            fontName: 'Arial',
+            fontSize: 18,
+            color: '#000',
+            auraColor: 'none'
+        }
+    },
+    series: {
+      0: {pointSize: 5 ,color: 'orange' }, // Solar
+      1: {color: 'orange' } // Solar
+    }
+  };
+
+  var chart = new google.visualization.LineChart(document.getElementById('SolarChart'));
+  chart.draw(data, options);
+}
+
+function updateDataTable(data) {
+    // Clear existing table data
+    table.clear().draw();
+
+    if (data && data.Fetch) {
+        var fetchArray = data.Fetch;
+
+        for (var i = 0; i < fetchArray.length; i++) {
+            var rowData = fetchArray[i];
+            var number = i + 1;
+            var date = rowData.Date;
+            var temp = rowData.temp;
+            var humi = rowData.humi;
+            var volt = rowData.volt;
+            var solar = rowData.solar;
+
+            // Add data to the table
+            table.row.add([number, date, temp, humi, volt, solar]).draw();
+        }
+    }
+}
+
 </script>

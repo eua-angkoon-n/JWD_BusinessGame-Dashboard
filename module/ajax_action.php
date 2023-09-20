@@ -17,6 +17,11 @@ if (isset($_POST['action'])) {
             $Result = $Call->getChartArray();
             print_r($Result);
             break;
+        case 'Team':
+            $Call   = new TeamBoard($_POST['team']);
+            $Result = $Call->processLogData();
+            print_r($Result);
+            break;
     }
 } else {
     echo 0;
@@ -118,6 +123,186 @@ Class DashboardResult
             $result[$team]['Solar'][] = "$datetime, ".$solar + $numTest."";
         }
         
+        return json_encode($result);
+    }
+}
+
+Class TeamBoard {
+    private $team;
+    private $fetchData;
+    public function __construct($action){
+        $this->team = $action ?? NULL;
+        $this->fetchData = $this->QueryDB();
+    }
+
+    public function getCardArray(){
+
+    }
+
+    public function QueryDB(){
+        $sql  = "SELECT * ";
+        $sql .= "FROM ";
+        $sql .= "( ";
+        $sql .= "SELECT *, ROW_NUMBER() OVER (PARTITION BY team ORDER BY logs_datetime DESC) AS row_num ";
+        $sql .= "FROM tb_logs_test ";
+        $sql .= ") AS ranked ";
+        $sql .= "WHERE ";
+        $sql .= "team = '$this->team' ";
+        $sql .= "ORDER BY row_num DESC ";
+
+        try {
+            $con = connect_database();
+            $obj = new CRUD($con);
+            $Row = $obj->fetchRows($sql);
+        } catch (PDOException $e){
+            return "Database connection failed: " . $e->getMessage();
+        } catch (Exception $e) {
+            return "An error occurred: " . $e->getMessage();
+        } finally {
+            $con = null;
+        }
+        return $Row;
+    }
+
+    // Function to get the last 20 data points for logs_temp and logs_humi
+    public function getLast20TempHumiData($logData) {
+        $tempHumiData = array();
+        $dataCount = count($logData);
+
+        for ($i = max(0, $dataCount - 20); $i < $dataCount; $i++) {
+            $log = $logData[$i];
+            $formattedDatetime = date('H:i:s', strtotime($log['logs_datetime']));
+
+            if ($i === $dataCount - 1) {
+                // If it's the last data, set the third value to logs_solar
+                $tempHumiData[] = [$formattedDatetime, $log['logs_temp'], $log['logs_humi'], $log['logs_temp'], $log['logs_temp']."°C", $log['logs_humi'], $log['logs_humi']."%"];
+            } else {
+                $tempHumiData[] = [$formattedDatetime, $log['logs_temp'], $log['logs_humi'], NULL,NULL,NULL,NULL];
+            }
+        }
+
+        return $tempHumiData;
+    }
+
+    // Function to get the last 20 data points for logs_volt
+    public function getLast20VoltData($logData) {
+        $voltData = array();
+        $dataCount = count($logData);
+
+        for ($i = max(0, $dataCount - 20); $i < $dataCount; $i++) {
+            $log = $logData[$i];
+            $formattedDatetime = date("H:i:s", strtotime($log['logs_datetime']));
+
+            if ($i === $dataCount - 1) {
+                $voltData[] = [$formattedDatetime, $log['logs_volt'], $log['logs_volt'], $log['logs_volt']."v."];
+            } else {
+                $voltData[] = [$formattedDatetime, $log['logs_volt'], NULL, NULL];
+            }
+        }
+
+        return $voltData;
+    }
+
+    // Function to get the last 20 data points for logs_solar
+    public function getLast20SolarData($logData) {
+        $solarData = array();
+        $dataCount = count($logData);
+
+        for ($i = max(0, $dataCount - 20); $i < $dataCount; $i++) {
+            $log = $logData[$i];
+            $formattedDatetime = date("H:i:s", strtotime($log['logs_datetime']));
+
+            if ($i === $dataCount - 1) {
+                $solarData[] = [$formattedDatetime, $log['logs_solar'], $log['logs_solar'], $log['logs_solar']."Lux"];
+            } else {
+                $solarData[] = [$formattedDatetime, $log['logs_solar'], NULL, NULL];
+            }
+        }
+
+        return $solarData;
+    }
+
+    public function getLast300Data($logData) {
+        $Data = array();
+        $dataCount = count($logData);
+
+        for ($i = max(0, $dataCount - 20); $i < $dataCount; $i++) {
+            $log = $logData[$i];
+            $formattedDatetime = date("d/m/Y H:i:s", strtotime($log['logs_datetime']));
+
+            $Data[] = [
+                "Date" => $formattedDatetime, 
+                "temp" => $log['logs_temp'], 
+                "humi" => $log['logs_humi'], 
+                "volt" => $log['logs_volt'], 
+                "solar"=> $log['logs_solar']
+            ];
+            
+        }
+
+        return $Data;
+    }
+
+    public function processLogData() {
+        $logData = $this->fetchData;
+        $countLux = 0;
+        $MaxVolt = null;
+        $MinTemp = null;
+        $MaxHumi = null;
+        $MinHumi = null;
+    
+        // Get the last 20 data points for each chart
+        $tempHumiData = $this->getLast20TempHumiData($logData);
+        $voltData     = $this->getLast20VoltData($logData);
+        $solarData    = $this->getLast20SolarData($logData);
+        $Data300      = $this->getLast300Data($logData); 
+    
+        // Calculate LuxPerMinute
+        foreach ($logData as $log) {
+            // Calculate LuxPerMinute
+            if ($log['logs_solar'] >= 3000) {
+                $countLux += 1;
+            }
+    
+            // Update MaxVolt
+            if ($MaxVolt === null || $log['logs_volt'] > $MaxVolt) {
+                $MaxVolt = $log['logs_volt'];
+            }
+    
+            // Update MinTemp
+            if ($MinTemp === null || $log['logs_temp'] < $MinTemp) {
+                $MinTemp = $log['logs_temp'];
+            }
+    
+            // Update MaxHumi and MinHumi
+            if ($MaxHumi === null || $log['logs_humi'] > $MaxHumi) {
+                $MaxHumi = $log['logs_humi'];
+            }
+            if ($MinHumi === null || $log['logs_humi'] < $MinHumi) {
+                $MinHumi = $log['logs_humi'];
+            }
+        }
+    
+        // Calculate LuxPerMinute as per your updated formula
+        $LuxPerMinute = ($countLux * 5) / 60;
+
+        // Store the results in an associative array
+        $result = array(
+            'Card' => array(
+                'LuxPerMinute' => round($LuxPerMinute, 2)+rand(1,9),
+                'MaxVolt' => $MaxVolt+rand(1,9),
+                'MinTemp' => $MinTemp+rand(1,9),
+                'MaxHumi' => $MaxHumi+rand(1,9),
+                'MinHumi' => $MinHumi+rand(1,9)
+            ),
+            'ChartData' => array(
+                'TempHumiData' => $tempHumiData,
+                'VoltData' => $voltData,
+                'SolarData' => $solarData
+            ),
+            'Fetch' => $Data300
+        );
+        // return $result;
         return json_encode($result);
     }
 }

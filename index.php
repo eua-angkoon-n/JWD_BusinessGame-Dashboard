@@ -24,6 +24,30 @@ switch ($module) {
         $title_act = Setting::$title_act[$module];
         $breadcrumb_txt = Setting::$breadcrumb_txt[$module];
         break;
+    case "B" :
+        $include_module = __DIR__ . "/module/team.inc.php";
+        $TEAM = "B";
+        $module == "B" ? $active_B = "active" : $active_B = ""; 
+        $title_site = Setting::$title_site[$module];
+        $title_act = Setting::$title_act[$module];
+        $breadcrumb_txt = Setting::$breadcrumb_txt[$module];
+        break;
+    case "C" :
+        $include_module = __DIR__ . "/module/team.inc.php";
+        $TEAM = "C";
+        $module == "C" ? $active_C = "active" : $active_C = ""; 
+        $title_site = Setting::$title_site[$module];
+        $title_act = Setting::$title_act[$module];
+        $breadcrumb_txt = Setting::$breadcrumb_txt[$module];
+        break;
+    case "D" :
+        $include_module = __DIR__ . "/module/team.inc.php";
+        $TEAM = "D";
+        $module == "D" ? $active_D = "active" : $active_D = "";
+        $title_site = Setting::$title_site[$module];
+        $title_act = Setting::$title_act[$module];
+        $breadcrumb_txt = Setting::$breadcrumb_txt[$module];
+        break;
     default:
         $include_module = __DIR__ . "/module/dashboard.inc.php";
         $txt = "Dashboard";
@@ -93,13 +117,25 @@ switch ($module) {
                         <li class="nav-item">
                             <a href="?module=A" class="nav-link <?PHP echo $active_A;?>">
                                 <i class="nav-icon fas fa-users"></i> 
-                                <p>Team A</p>
+                                <p><?php echo Setting::$team['A']?></p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="?module=errorMachine" class="nav-link <?PHP echo $active_B;?>">
+                            <a href="?module=B" class="nav-link <?PHP echo $active_B;?>">
                                 <i class="nav-icon fas fa-users"></i> 
-                                <p>Team B</p>
+                                <p><?php echo Setting::$team['B']?></p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="?module=C" class="nav-link <?PHP echo $active_C;?>">
+                                <i class="nav-icon fas fa-users"></i> 
+                                <p><?php echo Setting::$team['C']?></p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="?module=D" class="nav-link <?PHP echo $active_D;?>">
+                                <i class="nav-icon fas fa-users"></i> 
+                                <p><?php echo Setting::$team['D']?></p>
                             </a>
                         </li>
                         <!-- <li class="nav-item">

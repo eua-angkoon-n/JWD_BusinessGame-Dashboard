@@ -18,7 +18,13 @@ if (isset($_POST['action'])) {
             print_r($Result);
             break;
         case 'Team':
-            $Call   = new TeamBoard($_POST['team']);
+            if(isset($_POST['date'])) {
+                $Call = new TeamBoard($_POST['team'],$_POST['date']);
+                $Result = $Call->getOnlyChart();
+                print_r($Result);
+                break;
+            }
+            $Call   = new TeamBoard($_POST['team'],NULL);
             $Result = $Call->processLogData();
             print_r($Result);
             break;
@@ -130,9 +136,16 @@ Class DashboardResult
 Class TeamBoard {
     private $team;
     private $fetchData;
-    public function __construct($action){
+    private $date;
+    public function __construct($action,?string $date){
         $this->team = $action ?? NULL;
+        if($date)
+            $this->date = parseDateString($date);
         $this->fetchData = $this->QueryDB();
+    }
+
+    public function test(){
+        return $this->date;
     }
 
     public function getCardArray(){
@@ -148,8 +161,13 @@ Class TeamBoard {
         $sql .= ") AS ranked ";
         $sql .= "WHERE ";
         $sql .= "team = '$this->team' ";
+        if(!empty($this->date)){
+            $date = $this->date;
+            $sql .= "AND ";
+            $sql .= "logs_datetime BETWEEN '".$date['start']."' AND '".$date['end']."' ";
+        }
         $sql .= "ORDER BY row_num DESC ";
-
+        
         try {
             $con = connect_database();
             $obj = new CRUD($con);
@@ -243,6 +261,21 @@ Class TeamBoard {
         return $Data;
     }
 
+    public function getOnlyChart() {
+        $logData = $this->fetchData;
+        $tempHumiData = $this->getLast20TempHumiData($logData);
+        $voltData     = $this->getLast20VoltData($logData);
+        $solarData    = $this->getLast20SolarData($logData);
+        $result = array(
+            'ChartData' => array(
+                'TempHumiData' => $tempHumiData,
+                'VoltData' => $voltData,
+                'SolarData' => $solarData
+            ),
+        );
+        return json_encode($result);
+    }
+
     public function processLogData() {
         $logData = $this->fetchData;
         $countLux = 0;
@@ -252,9 +285,9 @@ Class TeamBoard {
         $MinHumi = null;
     
         // Get the last 20 data points for each chart
-        $tempHumiData = $this->getLast20TempHumiData($logData);
-        $voltData     = $this->getLast20VoltData($logData);
-        $solarData    = $this->getLast20SolarData($logData);
+        // $tempHumiData = $this->getLast20TempHumiData($logData);
+        // $voltData     = $this->getLast20VoltData($logData);
+        // $solarData    = $this->getLast20SolarData($logData);
         $Data300      = $this->getLast300Data($logData); 
     
         // Calculate LuxPerMinute
@@ -295,11 +328,11 @@ Class TeamBoard {
                 'MaxHumi' => $MaxHumi+rand(1,9),
                 'MinHumi' => $MinHumi+rand(1,9)
             ),
-            'ChartData' => array(
-                'TempHumiData' => $tempHumiData,
-                'VoltData' => $voltData,
-                'SolarData' => $solarData
-            ),
+            // 'ChartData' => array(
+            //     'TempHumiData' => $tempHumiData,
+            //     'VoltData' => $voltData,
+            //     'SolarData' => $solarData
+            // ),
             'Fetch' => $Data300
         );
         // return $result;

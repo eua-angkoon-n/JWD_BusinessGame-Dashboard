@@ -95,27 +95,39 @@ include( __DIR__ . "/include.php" );
       </div>
     </div>
 
-    <div class="row pt-2">
-        <div class="col-12">
-            <section class="2">
-                <div class="row">
+    
 
-                    <div class="col-4">
-                        <div class="ChartSizeTeam" id="TempHumiChart"></div>
-                    </div>
-                    <div class="col-4">
-                        <div class="ChartSizeTeam" id="VoltChart"></div>
-                    </div>
-                    <div class="col-4">
-                        <div class="ChartSizeTeam" id="SolarChart"></div>
-                    </div>
-
+    <div class="row pt-1">
+      <div class="col-12">
+        <section class="2">
+          <div class="row pl-4">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="far fa-clock"></i></span>
                 </div>
-            </section>
-        </div>
+                <input type="text" class="form-control float-right" id="reservationtime">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+
+            <div class="col-4">
+              <div class="ChartSizeTeam" id="TempHumiChart"></div>
+            </div>
+            <div class="col-4">
+              <div class="ChartSizeTeam" id="VoltChart"></div>
+            </div>
+            <div class="col-4">
+              <div class="ChartSizeTeam" id="SolarChart"></div>
+            </div>
+
+          </div>
+        </section>
+      </div>
     </div>
 
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-12 p-3 m-0 ">
         <table id="dataTable" class="table table-bordered dataTable dtr-inline display  " >
             <thead>
@@ -130,10 +142,30 @@ include( __DIR__ . "/include.php" );
             </thead>
             <tbody>
               <!-- Table data will be added here -->
-            </tbody>
+            <!-- </tbody>
           </table>
       </div>
-    </div>
+    </div>  -->
+
+    <div class="row pt-3 p-2">
+                <div class="col-sm-12 p-0 m-0">
+                    <table id="dataTableB" class="table table-bordered table-hover dataTable dtr-inline display nowrap"
+                        style="width:1000px">
+                        <thead>
+                            <tr class="bg-light">
+                                <th scope="col" class="sorting_disabled">No</th>
+                                <th scope="col">Date Time</th>
+                                <th scope="col">Temperature</th>
+                                <th scope="col">Humidity</th>
+                                <th scope="col">Volt</th>
+                                <th scope="col">Lux</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div><!-- /.row -->
   </div>
 
 </section>
@@ -143,37 +175,71 @@ var TEAM = "<?php echo $TEAM ?>";
 var jsonData;
 var table;
 var currentPage = 1;
+var date;
 
 $(document).ready(function () {
-  table = $('#dataTable').DataTable({
-    "order": [0, 'desc'],
-    "aoColumnDefs": [{
-            "bSortable": false,
-            "aTargets": [0, 1, 2, 3, 4, 5]
-        },
-      ],
-    "searching": false,
-    "pageLength": 50,
-    "lengthChange": true,
-    "info": true,
-    "scrollX": true,
-    columns: [
-      { width: '3%' }, // Adjust the width as needed for each column
-      { width: '10%' },
-      { width: '15%' },
-      { width: '15%' },
-      { width: '15%' },
-      { width: '15%' },
-    ],
-  });
-  
-  SendData(TEAM);
+
   setInterval(function() {
-    currentPage = table.page.info().page + 1;
     SendData(TEAM);
   }, 3000);
-  table.page(currentPage - 1).draw('page');
+
+function initializeDateRangePicker() {
+  var today = moment().startOf('day'); // Get today's date at the start of the day
+    var startOfDay = today.clone();
+    var endOfDay = today.clone().endOf('day');
+  
+  $('#reservationtime').daterangepicker({
+      startDate: startOfDay,
+      endDate: endOfDay,
+      timePicker: true,
+      timePickerIncrement: 15,
+      timePicker24Hour: true, // Display time in 24-hour format
+      timePickerMin: moment().startOf('day'), // Set minimum time to start of the day
+      timePickerMax: moment().endOf('day'), // Set maximum time to end of the day
+      locale: {
+        format: 'MM/DD/YYYY HH:mm' // Adjust the time format as needed
+      },
+      // minDate: startOfDay, // Set minimum date to today
+      // maxDate: endOfDay, // Set maximum date to today
+  });
+
+  // Add a change event handler to #reservationtime
+  $('#reservationtime').on('change', function() {
+    var date = $('#reservationtime').val();
+    GetChart(TEAM,date); // Call the GetChart function when the value changes
+    $('#dataTableB').DataTable().ajax.reload();  
+  });
+}
+
+initializeDateRangePicker();
+var date = $('#reservationtime').val();
+GetChart(TEAM,date);
+$('#date').on('apply.daterangepicker', function (event, picker) {
+    $('#dataTableB').DataTable().ajax.reload();  
+    });
+
 });
+
+function GetChart(TEAM,date) {
+  $.ajax({
+    url: "module/ajax_action.php",
+    type: "POST",
+    data: {
+      "action": "Team",
+      "team": TEAM,
+      "date": date
+    },
+    success: function (data) {
+      
+      var jsonData = JSON.parse(data);
+      drawCharts(jsonData);
+      console.log(data);
+    },
+    error: function (data) {
+      console.log(data);
+    }
+  });
+}
 
 function SendData(TEAM) {
   $.ajax({
@@ -185,19 +251,60 @@ function SendData(TEAM) {
     },
     success: function (data) {
       var jsonData = JSON.parse(data);
-
       updateCardData(jsonData);
-      drawCharts(jsonData);
-
-      updateDataTable(jsonData);
-      
-      console.log(data);
     },
     error: function (data) {
       console.log(data);
     }
   });
 }
+
+
+$('#dataTableB').DataTable({
+    "scrollX": true,
+    "processing": true,
+    "serverSide": true,
+    "order": [0, 'desc'], //ถ้าโหลดครั้งแรกจะให้เรียงตามคอลัมน์ไหนก็ใส่เลขคอลัมน์ 0,'desc'
+    "aoColumnDefs": [{
+            "bSortable": false,
+            "aTargets": [0]
+        }, //คอลัมน์ที่จะไม่ให้ฟังก์ชั่นเรียง
+        {
+            "bSearchable": false,
+            "aTargets": [0]
+        } //คอลัมน์ที่จะไม่ให้เสริท
+    ],
+    ajax: {
+        beforeSend: function () {
+            //จะให้ทำอะไรก่อนส่งค่าไปหรือไม่
+        },
+        url: 'module/datatable_processing.php', 
+        type: 'POST',
+        data: function (data) {
+            data.action = "TEAM";
+            data.team   = TEAM;
+            data.date   = $('#reservationtime').val();
+        },
+        error: function (xhr, error, code) {
+            console.log(xhr, code);
+        },
+        async: false,
+        cache: false,
+    },
+    "lengthMenu": [
+        [10, 25, 50, 100, -1],
+        [10, 25, 50, 100, "ทั้งหมด"]
+    ],
+    "paging": true,
+    "lengthChange": true, //ออฟชั่นแสดงผลต่อหน้า
+    "pagingType": "simple_numbers",
+    "pageLength": 10,
+    "searching": false,
+    "ordering": true,
+    "info": true,
+    "autoWidth": false,
+    //"responsive": true,
+});
 
 function updateCardData(jsonData) {
   // Update card data with jsonData
@@ -352,7 +459,7 @@ function drawSolarChart(solarData) {
 
 function updateDataTable(data) {
     // Clear existing table data
-    table.clear().draw();
+    // table.clear().draw();
 
     if (data && data.Fetch) {
         var fetchArray = data.Fetch;

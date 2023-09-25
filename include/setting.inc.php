@@ -90,4 +90,17 @@ class Setting
         "C" => "F&C Team",
         "D" => "Idea Team"
     );
+
+    public static $DataTableCol = array( 
+        0 => "id_logs",
+        1 => "id_logs",
+        2 => "logs_datetime",
+        3 => "logs_temp",
+        4 => "logs_humi",
+        5 => "logs_volt",
+        6 => "logs_solar",
+    );
+    public static $DataTableSearch = array(
+        "logs_datetime"
+    );
 }

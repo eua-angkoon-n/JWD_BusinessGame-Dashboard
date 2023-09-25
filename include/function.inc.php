@@ -761,4 +761,46 @@ function getDateDay($date,&$start,&$end) {
     return true;
 }
 
+function parseDateString($dateString) {
+    // Split the date string into start and end parts
+    list($start, $end) = explode(" - ", $dateString);
+
+    // Parse start date and time
+    $startTimestamp = strtotime($start);
+
+    // Parse end date and time
+    $endTimestamp = strtotime($end);
+
+    // Convert timestamps to the desired format (YYYY-MM-DD HH:mm:ss)
+    $startDate = date("Y-m-d H:i:s", $startTimestamp);
+    $endDate = date("Y-m-d H:i:s", $endTimestamp);
+
+    // Create an associative array
+    $date = array(
+        'start' => $startDate,
+        'end' => $endDate
+    );
+
+    return $date;
+}
+
+function getLast1Day(){
+    // Get the current date as a DateTime object
+    $currentDate = new DateTime();
+
+    // Subtract 30 days from the current date
+    $startDate = clone $currentDate;
+    $startDate->modify('-1 days');
+
+    // Format the start and end dates as strings
+    $startDateStr = $startDate->format('Y-m-d'); // Format: YYYY-MM-DD
+    $currentDateStr = $currentDate->format('Y-m-d');
+
+    $dateRange = array(
+        0 => $startDateStr,
+        1 => $currentDateStr
+    );
+    return $dateRange;
+}
+
 ?>

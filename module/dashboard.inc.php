@@ -283,7 +283,6 @@ include( __DIR__ . "/include.php" );
                 <div class="card-title">
                   <i class="fas fa-users mr-1 fa-4x"></i>
                   <h1 class="d-inline display-3"><strong>
-
                     <?php echo Setting::$team["D"]?>
                   </strong>
                 </div>

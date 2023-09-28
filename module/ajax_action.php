@@ -192,9 +192,9 @@ Class TeamBoard {
 
             if ($i === $dataCount - 1) {
                 // If it's the last data, set the third value to logs_solar
-                $tempHumiData[] = [$formattedDatetime, $log['logs_temp'], $log['logs_humi'], $log['logs_temp'], $log['logs_temp']."°C", $log['logs_humi'], $log['logs_humi']."%"];
+                $tempHumiData[] = [$formattedDatetime, floatval($log['logs_temp']),  intval($log['logs_humi']), floatval($log['logs_temp']), floatval($log['logs_temp'])."°C", intval($log['logs_humi']), intval($log['logs_humi'])."%"];
             } else {
-                $tempHumiData[] = [$formattedDatetime, $log['logs_temp'], $log['logs_humi'], NULL,NULL,NULL,NULL];
+                $tempHumiData[] = [$formattedDatetime, floatval($log['logs_temp']), intval($log['logs_humi']), NULL,NULL,NULL,NULL];
             }
         }
 
@@ -211,9 +211,9 @@ Class TeamBoard {
             $formattedDatetime = date("H:i:s", strtotime($log['logs_datetime']));
 
             if ($i === $dataCount - 1) {
-                $voltData[] = [$formattedDatetime, $log['logs_volt'], $log['logs_volt'], $log['logs_volt']."v."];
+                $voltData[] = [$formattedDatetime, floatval($log['logs_volt']), floatval($log['logs_volt']), floatval($log['logs_volt'])."v."];
             } else {
-                $voltData[] = [$formattedDatetime, $log['logs_volt'], NULL, NULL];
+                $voltData[] = [$formattedDatetime, floatval($log['logs_volt']), NULL, NULL];
             }
         }
 
@@ -230,9 +230,9 @@ Class TeamBoard {
             $formattedDatetime = date("H:i:s", strtotime($log['logs_datetime']));
 
             if ($i === $dataCount - 1) {
-                $solarData[] = [$formattedDatetime, $log['logs_solar'], $log['logs_solar'], $log['logs_solar']."Lux"];
+                $solarData[] = [$formattedDatetime, intval($log['logs_solar']), intval($log['logs_solar']), intval($log['logs_solar'])."Lux"];
             } else {
-                $solarData[] = [$formattedDatetime, $log['logs_solar'], NULL, NULL];
+                $solarData[] = [$formattedDatetime, intval($log['logs_solar']), NULL, NULL];
             }
         }
 

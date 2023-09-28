@@ -27,63 +27,63 @@ include( __DIR__ . "/include.php" );
     
         <div class="row">
     
-            <div class="col-3">
+            <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="col-12 mb-0 pt-1">
                     <div class="card card-outline card-primary">
                         <div class="card-header row ">
                         <i class="fas fa-charging-station fa-2x align-middle pt-2"></i>
-                            <h2 class="card-title pl-2" style="font-size:2rem"><strong>ผลิตไฟฟ้าได้</strong></h2>
+                            <h2 class="card-title pl-2" style="font-size:2rem"><strong><?php echo Setting::$TitleBoard["TeamTitle"]["ETProd"]?></strong></h2>
                         </div>
                         <div class="card-body text-right"> 
-                            <h1 class="d-inline" id="LuxPerMin" style="font-size:4.0rem">00</h1>
-                            <h1 class="d-inline">&nbsp;นาที</h1>
+                            <h1 class="d-inline" id="LuxPerMin" style="font-size:4.0rem">0</h1>
+                            <h1 class="d-inline">&nbsp;<?php echo Setting::$TitleBoard["Unit"]["minute"]?></h1>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-3">
+            <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="col-12 mb-0 pt-1">
                     <div class="card card-outline card-primary">
                         <div class="card-header row ">
                         <i class="fas fa-bolt fa-2x align-middle pt-2"></i>
-                            <h2 class="card-title pl-2" style="font-size:2rem"><strong>กำลังไฟสูงสุด</strong></h2>
+                            <h2 class="card-title pl-2" style="font-size:2rem"><strong><?php echo Setting::$TitleBoard["TeamTitle"]["MXVolt"]?></strong></h2>
                         </div>
                         <div class="card-body text-right"> 
-                            <h1 class="d-inline" id="MaxVolt" style="font-size:4.0rem">00</h1>
-                            <h1 class="d-inline">&nbsp;V.</h1>
+                            <h1 class="d-inline" id="MaxVolt" style="font-size:4.0rem">0</h1>
+                            <h1 class="d-inline">&nbsp;<?php echo Setting::$TitleBoard["Unit"]["volt"]?></h1>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-3">
+            <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="col-12 mb-0 pt-1">
                     <div class="card card-outline card-primary">
                         <div class="card-header row ">
                         <i class="fas fa-snowflake fa-2x align-middle pt-2"></i>
-                            <h2 class="card-title pl-2" style="font-size:2rem"><strong>อุณหภูมิที่ทำได้</strong></h2>
+                            <h2 class="card-title pl-2" style="font-size:2rem"><strong><?php echo Setting::$TitleBoard["TeamTitle"]["tempCan"]?></strong></h2>
                         </div>
                         <div class="card-body text-right"> 
-                            <h1 class="d-inline" id="MinTemp" style="font-size:4.0rem">00</h1>
-                            <h1 class="d-inline">&nbsp;°C</h1>
+                            <h1 class="d-inline" id="MinTemp" style="font-size:4.0rem">0</h1>
+                            <h1 class="d-inline">&nbsp;<?php echo Setting::$TitleBoard["Unit"]["temp"]?></h1>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-3">
+            <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="col-12 mb-0 pt-1">
                     <div class="card card-outline card-primary">
                         <div class="card-header row ">
                         <i class="fas fa-tint fa-2x align-middle pt-2"></i>
-                            <h2 class="card-title pl-2" style="font-size:2rem"><strong>ความชื้นสูงสุด/ต่ำสุด</strong></h2>
+                            <h2 class="card-title pl-2" style="font-size:2rem"><strong><?php echo Setting::$TitleBoard["TeamTitle"]["MXHumi"]?></strong></h2>
                         </div>
                         <div class="card-body text-right">
-                            <h1 class="d-inline" id="MaxHumi" style="font-size:4.0rem">00</h1>
+                            <h1 class="d-inline" id="MaxHumi" style="font-size:4.0rem">0</h1>
                             <h1 class="d-inline"style="font-size:3.5rem">/</h1> 
-                            <h1 class="d-inline" id="MinHumi" style="font-size:4.0rem">00</h1>
-                            <h1 class="d-inline">&nbsp;%</h1>
+                            <h1 class="d-inline" id="MinHumi" style="font-size:4.0rem">0</h1>
+                            <h1 class="d-inline">&nbsp;<?php echo Setting::$TitleBoard["Unit"]["humi"]?></h1>
                         </div>
                     </div>
                 </div>
@@ -112,13 +112,13 @@ include( __DIR__ . "/include.php" );
           </div>
           <div class="row">
 
-            <div class="col-4">
+            <div class="col-lg-4 col-md-12">
               <div class="ChartSizeTeam" id="TempHumiChart"></div>
             </div>
-            <div class="col-4">
+            <div class="col-lg-4 col-md-12">
               <div class="ChartSizeTeam" id="VoltChart"></div>
             </div>
-            <div class="col-4">
+            <div class="col-lg-4 col-md-12">
               <div class="ChartSizeTeam" id="SolarChart"></div>
             </div>
 
@@ -127,45 +127,24 @@ include( __DIR__ . "/include.php" );
       </div>
     </div>
 
-    <!-- <div class="row">
-      <div class="col-12 p-3 m-0 ">
-        <table id="dataTable" class="table table-bordered dataTable dtr-inline display  " >
-            <thead>
-              <tr class="bg-light">
-                <th class="text-center" scope="col" class="sorting_disabled">No.</th>
-                <th class="text-center" scope="col">Date Time</th>
-                <th class="text-center" scope="col">Temperature</th>
-                <th class="text-center" scope="col">Humidity</th>
-                <th class="text-center" scope="col">Volt</th>
-                <th class="text-center" scope="col">Lux</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- Table data will be added here -->
-            <!-- </tbody>
-          </table>
-      </div>
-    </div>  -->
-
     <div class="row pt-3 p-2">
-                <div class="col-sm-12 p-0 m-0">
-                    <table id="dataTableB" class="table table-bordered table-hover dataTable dtr-inline display nowrap"
-                        style="width:1000px">
-                        <thead>
-                            <tr class="bg-light">
-                                <th scope="col" class="sorting_disabled">No</th>
-                                <th scope="col">Date Time</th>
-                                <th scope="col">Temperature</th>
-                                <th scope="col">Humidity</th>
-                                <th scope="col">Volt</th>
-                                <th scope="col">Lux</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-            </div><!-- /.row -->
+      <div class="col-sm-12 p-1 m-0">
+        <table id="dataTableB" class="table table-bordered table-hover dataTable dtr-inline display nowrap">
+          <thead>
+            <tr class="bg-light">
+              <th scope="col" class="sorting_disabled">No</th>
+              <th scope="col">Date Time</th>
+              <th scope="col">Temperature</th>
+              <th scope="col">Humidity</th>
+              <th scope="col">Volt</th>
+              <th scope="col">Lux</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div><!-- /.row -->
   </div>
 
 </section>
@@ -178,10 +157,21 @@ var currentPage = 1;
 var date;
 
 $(document).ready(function () {
-
+  
+  initializeDateRangePicker();
+  var date = $('#reservationtime').val();
+  GetChart(TEAM,date);
+  SendData(TEAM);
+  
   setInterval(function() {
+    var date = $('#reservationtime').val();
+    GetChart(TEAM,date);
     SendData(TEAM);
   }, 3000);
+
+  setInterval(function() {
+    $('#dataTableB').DataTable().ajax.reload(NULL, false);  
+  }, 15000);
 
 function initializeDateRangePicker() {
   var today = moment().startOf('day'); // Get today's date at the start of the day
@@ -211,13 +201,6 @@ function initializeDateRangePicker() {
   });
 }
 
-initializeDateRangePicker();
-var date = $('#reservationtime').val();
-GetChart(TEAM,date);
-$('#date').on('apply.daterangepicker', function (event, picker) {
-    $('#dataTableB').DataTable().ajax.reload();  
-    });
-
 });
 
 function GetChart(TEAM,date) {
@@ -233,7 +216,7 @@ function GetChart(TEAM,date) {
       
       var jsonData = JSON.parse(data);
       drawCharts(jsonData);
-      console.log(data);
+      // console.log(data);
     },
     error: function (data) {
       console.log(data);
@@ -298,7 +281,7 @@ $('#dataTableB').DataTable({
     "paging": true,
     "lengthChange": true, //ออฟชั่นแสดงผลต่อหน้า
     "pagingType": "simple_numbers",
-    "pageLength": 10,
+    "pageLength": 25,
     "searching": false,
     "ordering": true,
     "info": true,
@@ -346,7 +329,7 @@ function drawTempHumiChart(tempHumiData) {
         fontSize: 28, // 12, 18 whatever you want (don't specify px)
         bold: true,    // true or false
     },
-    chartArea: { width: '85%', height: '85%' },
+    chartArea: { width: '90%', height: '85%' },
     hAxis: {
       slantedText: false, // Prevent slanted (rotated) text on the horizontal axis
       textPosition: 'none' // Place labels outside the chart area

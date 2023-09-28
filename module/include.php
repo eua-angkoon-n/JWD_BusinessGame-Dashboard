@@ -45,6 +45,12 @@
 <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="dist\fontface\Digital-7\stylesheet.css">
+
 <style type="text/css">
 .a.disabled {
     pointer-events: none;
@@ -259,6 +265,67 @@ div.dataTables_wrapper {
   padding: 0.35rem 0.50rem;
   margin: 0;
 }
+
+.time-font {
+    font-family: 'Digital-7';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 112px;
+    font-weight: 500;
+}
+
+.background 
+{
+    background: #eee;
+  background: linear-gradient(120deg, rgba(50, 150, 100, 0.2) , rgba(0, 0, 100, 0) );
+}
+
+.cardBackground {
+    background: linear-gradient(to bottom left, #6d7fae, #e6e7e8, #6d7fae,white);
+}
+
+.card-DB{
+    border-top:3px solid #000043;
+   
+}
+.gradient {
+  background: linear-gradient(to right, #0054FF, #000043, #6d7fae, #f15c22, #ffca05);
+  width: 100%;
+  height: 100px; /* Set an appropriate height for your element */
+}
+.jWText {
+    color:white
+}
+.thermometer {
+    display: inline-block;
+    background: linear-gradient(to bottom, #007BFF, #0099CC, #00AEEF, #00C2FF, #00D5FF);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.dropWater {
+    display: inline-block;
+    background: linear-gradient(to bottom, #00FFFF, #00E6E6, #00CCCC, #00B3B3, #009999, #008080);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.thunder{
+    display: inline-block;
+    background: linear-gradient(to bottom, #FFD700, #FFC600, #FFB500, #FFA300, #FF9200, #FF8100);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.lightBulb {
+    display: inline-block;
+    background: linear-gradient(to bottom, #FF5722, #FF6633, #FF7744, #FF8855, #FF9966, #FFAA77);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
 
 
 </style>

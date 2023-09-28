@@ -72,12 +72,7 @@
       $('.text-pcs-ct').html() == "<?PHP echo $title_site; ?>" ? $('.text-pcs-ct').html('') : $('.text-pcs-ct').html('<?PHP echo $title_site; ?>');
     });
 
-    <?PHP if ($_SESSION['sess_popup_howto'] == 0) {?>
-      //$('#Modalhowto').modal('show');
-    <?PHP
-$_SESSION['sess_popup_howto'] = 1;
-}
-?>
+    
 
     /*สกอร์บาร์*/
     $(window).scroll(function(){

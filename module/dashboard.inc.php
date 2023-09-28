@@ -3,8 +3,8 @@ include( __DIR__ . "/include.php" );
 ?>
 
 <section class="content">
-  <div class="card">
-    <div class="card-header pt-2 pb-1">
+  <div class="card cardBackground">  <!--style="background-color:#adb5bd" -->
+    <div class="card-header pt-2 pb-1" style="background-color:white">
       <h6 class="display-8 d-inline-block font-weight-bold"><i class="fas fa-chalkboard"></i>
         <?PHP echo $title_act; ?>
       </h6>
@@ -22,91 +22,88 @@ include( __DIR__ . "/include.php" );
 
     <div class="row">
       <div class="col-md-12 col-sm-12 col-12">
-        <div class="info-box shadow-none m-0 p-0">
-          <div class="info-box-content d-inline">
-          <!-- <h2 class="display-3 text-center mb-0">  
-          Current Time
-             </h2> -->
-      
-                <h2 class="display-3 text-center mb-0" id="clock" style="font: 900;">
-              
-                <?php echo date("H:i:s"); ?>
+       
+          <div class="d-flex justify-content-center" >
+                <div class="w-25">  <!--  style="background-color:#000043" -->
 
-               </h2>
+                  <h2 class="display-3 text-center mb-0 time-font" id="clock" style="font: 900;color:#000043">  
+                    <?php echo date("H:i:s"); ?> 
+                  </h2>
+
+              </div>
           </div>
-          <!-- /.info-box-content -->
-        </div>
-        <!-- /.info-box -->
+      
       </div>
     </div>
 
     <!---- Team A / B ---->
     <div class="row">
-      <div class="col-6">
+      <div class="col-md-6 col-sm-12">
       <section class="TeamA">
-      <div class="card-body pt-1 pb-0 pr-0">
+      <div class="card-body pt-1 pb-0 ">
         <div class="row">
           <div class="col-md-12 col-sm-12 col-12"></div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <div class="card card-info mb-1">
-              <div class="card-header pt-1 pb-1">
+            <div class="card mb-1 ">
+              <div class="card-header pt-1 pb-1 gradient" >
                 <div class="card-title">
-                  <i class="fas fa-users mr-1 fa-4x d-inline"></i>
-                  <h1 class="d-inline display-3"><strong>
+                  <i class="fas fa-users mr-1 fa-4x d-inline jWText"></i>
+                  <h1 class="d-inline display-3 jWText"><strong>
 
                     <?php echo Setting::$team["A"]?>
                   </strong>
 
                   </h1>
                 </div>
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                </div>
                 <!-- /.card-tools -->
               </div>
               <!-- /.card-header -->
               <div class="card-body pt-1 pb-0">
                 <div class="row">
-                  <div class="col-6 callout callout-info center-text justify-content-between mb-1 pt-1 pb-1">
-                  <div class="row">
+                  <div class="col-md-6 col-sm-12 center-text justify-content-between mb-1 pt-1 pb-1 card-header shadow-sm">
                     <div class="col-1 ">
-                      <i class="fas fa-thermometer-three-quarters fa-5x "></i>
+                      <i class="fas fa-thermometer-three-quarters fa-5x thermometer"></i>
                     </div>
-                    <div class="col-5 center-text">
-                      <h3 class=""><strong>อุณหภูมิ</strong></h3>
+                    <div class="col-4 left-text ml-2">
+                      <h3 class=""><strong><?php echo Setting::$TitleBoard["DB"]["temp"];?></strong></h3>
                     </div>
-                    <div class="col-6 ">
-                      <h2 class="display-4 mr-3" id="tempA"><strong>23°C</strong></h2>
+                    <div class="col-7 right-left">
+                      <h2 class="display-4 mr-3" id="tempA"><strong>0<?php echo Setting::$TitleBoard["Unit"]["temp"]?></strong></h2>
                     </div>
-                  </div>  
                   </div>
-                  <div class="col-6 callout callout-info center-text justify-content-between mb-1 pt-1 pb-1">
-                    <i class="fas fa-tint fa-4x ml-3"></i>
-                    <h2 class="display-4 mr-3" id="humiA"><strong>5%</strong></h2>
+                  <div class="col-md-6 col-sm-12 center-text justify-content-between mb-1 pt-1 pb-1 card-header shadow-sm">
+                    <div class="col-1 ">
+                      <i class="fas fa-tint fa-4x ml-2 dropWater"></i>
+                    </div>
+                    <div class="col-5 left-text ml-4">
+                      <h3 class=""><strong><?php echo Setting::$TitleBoard["DB"]["humi"];?></strong></h3>
+                    </div>
+                    <div class="col-6 right-left">
+                      <h2 class="display-4 mr-3" id="humiA"><strong>0<?php echo Setting::$TitleBoard["Unit"]["humi"]?></strong></h2>
+                    </div>
                   </div>
                 </div>
                 <div class="row pb-0">
-                  <div class="col-6 callout callout-info mb-0 pt-1 pb-1">
+                  <div class="col-md-6 col-sm-12 card-header shadow-sm mb-0 pt-1 pb-1">
                       <div class="row">
-                        <div class="col-1 center-text">
-                          <i class="fas fa-lightbulb fa-2x"></i>
+                        <div class="col-1 center-text ml-3">
+                          <i class="fas fa-lightbulb fa-2x lightBulb"></i>
                         </div>
-                        <div class="col text-align-center pl-0">
-                          <h2 class="mr-3 mb-0"><strong>Lux</strong></h2>
+                        <div class="col text-align-center pl-0 ml-2">
+                          <h2 class="mr-3 mb-0"><strong><?php echo Setting::$TitleBoard["DB"]["lux"];?></strong></h2>
                         </div>
                         <div class="ChartSize" id="ChartASolar"></div>
                       </div>
                     </div>
-                    <div class="col-6 callout callout-info mb-0 pt-1 pb-1">
+                    <div class="col-md-6 col-sm-12 card-header shadow-sm mb-0 pt-1 pb-1">
                       <div class="row">
-                        <div class="col-1 center-text">
-                          <i class="fas fa-bolt fa-2x"></i>
+                        <div class="col-1 center-text ml-4">
+                          <i class="fas fa-bolt fa-2x thunder"></i>
                         </div>
-                        <div class="col text-align-center pl-0">
-                          <h2 class="mr-3 mb-0"><strong>Volt</strong></h2>
+                        <div class="col text-align-center pl-0 ml-2">
+                          <h2 class="mr-3 mb-0"><strong><?php echo Setting::$TitleBoard["DB"]["volt"];?></strong></h2>
                         </div>
                         <div class="ChartSize" id="ChartAVolt"></div>
                       </div>
@@ -122,63 +119,70 @@ include( __DIR__ . "/include.php" );
       </div>
     </section>
       </div>
-      <div class="col-6 pl-0 pr-0">
+      <div class="col-md-6 col-sm-12">
       <section class="TeamB">
-      <div class="card-body pt-1 pb-0 pl-0">
+      <div class="card-body pt-1 pb-0 ">
         <div class="row">
           <div class="col-md-12 col-sm-12 col-12"></div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <div class="card card-success mb-1">
-              <div class="card-header pt-1 pb-1">
+            <div class="card mb-1">
+              <div class="card-header pt-1 pb-1 gradient">
                 <div class="card-title">
-                  <i class="fas fa-users mr-1 fa-4x"></i>
-                  <h1 class="d-inline display-3"><strong>
+                  <i class="fas fa-users mr-1 fa-4x jWText"></i>
+                  <h1 class="d-inline display-3 jWText"><strong>
 
                     <?php echo Setting::$team["B"]?>
                   </strong>
-                </div>
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
                 </div>
                 <!-- /.card-tools -->
               </div>
               <!-- /.card-header -->
               <div class="card-body pt-1 pb-0">
                 <div class="row">
-                  <div class="col-6 callout callout-success center-text justify-content-between mb-1 pt-1 pb-1">
-                  <div class="row d-inline">
-                    <i class="fas fa-thermometer-three-quarters fa-5x d-inline"></i>
-                    <h3 class="d-inline"><strong>อุณหภูมิ</strong></h3>
-                  </div>  
-                    <h2 class="display-4 mr-3" id="tempB"><strong>23°C</strong></h2>
+                  <div class="col-md-6 col-sm-12 center-text justify-content-between mb-1 pt-1 pb-1 card-header shadow-sm" >
+                  <div class="col-1 ">
+                      <i class="fas fa-thermometer-three-quarters fa-5x thermometer"></i>
+                    </div>
+                    <div class="col-4 left-text ml-2">
+                      <h3 class=""><strong><?php echo Setting::$TitleBoard["DB"]["temp"];?></strong></h3>
+                    </div>
+                    <div class="col-7 right-left">
+                      <h2 class="display-4 mr-3" id="tempB"><strong>0<?php echo Setting::$TitleBoard["Unit"]["temp"]?></strong></h2>
+                    </div>
                   </div>
-                  <div class="col-6 callout callout-success center-text justify-content-between mb-1 pt-1 pb-1">
-                    <i class="fas fa-tint fa-4x ml-3"></i>
-                    <h2 class="display-4 mr-3" id="humiB"><strong>5%</strong></h2>
+                  <div class="col-md-6 col-sm-12  center-text justify-content-between mb-1 pt-1 pb-1 card-header shadow-sm" >
+                  <div class="col-1 ">
+                      <i class="fas fa-tint fa-4x ml-2 dropWater"></i>
+                    </div>
+                    <div class="col-5 left-text ml-4">
+                      <h3 class=""><strong><?php echo Setting::$TitleBoard["DB"]["humi"];?></strong></h3>
+                    </div>
+                    <div class="col-6 right-left">
+                      <h2 class="display-4 mr-3" id="humiB"><strong>0<?php echo Setting::$TitleBoard["Unit"]["humi"]?></strong></h2>
+                    </div>
                   </div>
                 </div>
                 <div class="row pb-0">
-                  <div class="col-6 callout callout-success mb-0 pt-1 pb-1">
+                  <div class="col-md-6 col-sm-12 mb-0 pt-1 pb-1 shadow-sm card-header">
                       <div class="row">
-                        <div class="col-1 center-text">
-                          <i class="fas fa-lightbulb fa-2x"></i>
+                        <div class="col-1 center-text ml-3">
+                          <i class="fas fa-lightbulb fa-2x lightBulb"></i>
                         </div>
-                        <div class="col text-align-center pl-0">
-                          <h2 class="mr-3 mb-0"><strong>Lux</strong></h2>
+                        <div class="col text-align-center pl-0 ml-2">
+                          <h2 class="mr-3 mb-0"><strong><?php echo Setting::$TitleBoard["DB"]["lux"];?></strong></h2>
                         </div>
                         <div class="ChartSize" id="ChartBSolar"></div>
                       </div>
                     </div>
-                    <div class="col-6 callout callout-success mb-0 pt-1 pb-1">
+                    <div class="col-md-6 col-sm-12 mb-0 pt-1 pb-1 shadow-sm card-header" >
                       <div class="row">
-                        <div class="col-1 center-text">
-                          <i class="fas fa-bolt fa-2x"></i>
+                        <div class="col-1 center-text ml-4">
+                          <i class="fas fa-bolt fa-2x thunder"></i>
                         </div>
-                        <div class="col text-align-center pl-0">
-                          <h2 class="mr-3 mb-0"><strong>Volt</strong></h2>
+                        <div class="col text-align-center pl-0 ml-2">
+                          <h2 class="mr-3 mb-0"><strong><?php echo Setting::$TitleBoard["DB"]["volt"];?></strong></h2>
                         </div>
                         <div class="ChartSize" id="ChartBVolt"></div>
                       </div>
@@ -198,63 +202,70 @@ include( __DIR__ . "/include.php" );
 
     <!---- Team C / D ---->
     <div class="row">
-      <div class="col-6">
+      <div class="col-md-6 col-sm-12">
       <section class="TeamC">
-      <div class="card-body pt-1 pb-0 pr-0">
+      <div class="card-body pt-1 pb-0">
         <div class="row">
           <div class="col-md-12 col-sm-12 col-12"></div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <div class="card card-warning mb-1">
-              <div class="card-header pt-1 pb-1">
+            <div class="card mb-1">
+              <div class="card-header pt-1 pb-1 gradient">
                 <div class="card-title">
-                  <i class="fas fa-users mr-1 fa-4x"></i>
-                  <h1 class="d-inline display-3"><strong>
+                  <i class="fas fa-users mr-1 fa-4x jWText"></i>
+                  <h1 class="d-inline display-3 jWText"><strong>
 
                     <?php echo Setting::$team["C"]?>
                   </strong>
-                </div>
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
                 </div>
                 <!-- /.card-tools -->
               </div>
               <!-- /.card-header -->
               <div class="card-body pt-1 pb-0">
                 <div class="row">
-                  <div class="col-6 callout callout-success center-text justify-content-between mb-1 pt-1 pb-1">
-                  <div class="row d-inline">
-                    <i class="fas fa-thermometer-three-quarters fa-5x d-inline"></i>
-                    <h3 class="d-inline"><strong>อุณหภูมิ</strong></h3>
-                  </div>  
-                    <h2 class="display-4 mr-3" id="tempC"><strong>23°C</strong></h2>
+                  <div class="col-md-6 col-sm-12 card-header shadow-sm center-text justify-content-between mb-1 pt-1 pb-1">
+                  <div class="col-1 ">
+                      <i class="fas fa-thermometer-three-quarters fa-5x thermometer"></i>
+                    </div>
+                    <div class="col-4 left-text ml-2">
+                      <h3 class=""><strong><?php echo Setting::$TitleBoard["DB"]["temp"];?></strong></h3>
+                    </div>
+                    <div class="col-7 right-left">
+                      <h2 class="display-4 mr-3" id="tempC"><strong>0<?php echo Setting::$TitleBoard["Unit"]["temp"]?></strong></h2>
+                    </div>
                   </div>
-                  <div class="col-6 callout callout-success center-text justify-content-between mb-1 pt-1 pb-1">
-                    <i class="fas fa-tint fa-4x ml-3"></i>
-                    <h2 class="display-4 mr-3" id="humiC"><strong>5%</strong></h2>
+                  <div class="col-md-6 col-sm-12 card-header shadow-sm center-text justify-content-between mb-1 pt-1 pb-1">
+                  <div class="col-1 ">
+                      <i class="fas fa-tint fa-4x ml-2 dropWater"></i>
+                    </div>
+                    <div class="col-5 left-text ml-4">
+                      <h3 class=""><strong><?php echo Setting::$TitleBoard["DB"]["humi"];?></strong></h3>
+                    </div>
+                    <div class="col-6 right-left">
+                      <h2 class="display-4 mr-3" id="humiC"><strong>0<?php echo Setting::$TitleBoard["Unit"]["humi"]?></strong></h2>
+                    </div>
                   </div>
                 </div>
                 <div class="row pb-0">
-                  <div class="col-6 callout callout-success mb-0 pt-1 pb-1">
+                  <div class="col-md-6 col-sm-12 card-header shadow-sm mb-0 pt-1 pb-1">
                       <div class="row">
-                        <div class="col-1 center-text">
-                          <i class="fas fa-lightbulb fa-2x"></i>
+                        <div class="col-1 center-text ml-3">
+                          <i class="fas fa-lightbulb fa-2x lightBulb"></i>
                         </div>
                         <div class="col text-align-center pl-0">
-                          <h2 class="mr-3 mb-0"><strong>Lux</strong></h2>
+                          <h2 class="mr-3 mb-0"><strong><?php echo Setting::$TitleBoard["DB"]["lux"];?></strong></h2>
                         </div>
                         <div class="ChartSize" id="ChartCSolar"></div>
                       </div>
                     </div>
-                    <div class="col-6 callout callout-success mb-0 pt-1 pb-1">
+                    <div class="col-md-6 col-sm-12 card-header shadow-sm mb-0 pt-1 pb-1">
                       <div class="row">
-                        <div class="col-1 center-text">
-                          <i class="fas fa-bolt fa-2x"></i>
+                        <div class="col-1 center-text ml-4">
+                          <i class="fas fa-bolt fa-2x thunder"></i>
                         </div>
                         <div class="col text-align-center pl-0">
-                          <h2 class="mr-3 mb-0"><strong>Volt</strong></h2>
+                          <h2 class="mr-3 mb-0"><strong><?php echo Setting::$TitleBoard["DB"]["volt"];?></strong></h2>
                         </div>
                         <div class="ChartSize" id="ChartCVolt"></div>
                       </div>
@@ -270,62 +281,69 @@ include( __DIR__ . "/include.php" );
       </div>
     </section>
       </div>
-      <div class="col-6 pl-0 pr-0">
+      <div class="col-md-6 col-sm-12 ">
       <section class="TeamD">
-      <div class="card-body pt-1 pb-0 pl-0">
+      <div class="card-body pt-1 pb-0 ">
         <div class="row">
           <div class="col-md-12 col-sm-12 col-12"></div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <div class="card card-danger mb-1">
-              <div class="card-header pt-1 pb-1">
+            <div class="card mb-1">
+              <div class="card-header pt-1 pb-1 gradient">
                 <div class="card-title">
-                  <i class="fas fa-users mr-1 fa-4x"></i>
-                  <h1 class="d-inline display-3"><strong>
+                  <i class="fas fa-users mr-1 fa-4x jWText"></i>
+                  <h1 class="d-inline display-3 jWText"><strong>
                     <?php echo Setting::$team["D"]?>
                   </strong>
-                </div>
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
                 </div>
                 <!-- /.card-tools -->
               </div>
               <!-- /.card-header -->
               <div class="card-body pt-1 pb-0">
                 <div class="row">
-                  <div class="col-6 callout callout-success center-text justify-content-between mb-1 pt-1 pb-1">
-                  <div class="row d-inline">
-                    <i class="fas fa-thermometer-three-quarters fa-5x d-inline"></i>
-                    <h3 class="d-inline"><strong>อุณหภูมิ</strong></h3>
-                  </div>  
-                    <h2 class="display-4 mr-3" id="tempD"><strong>23°C</strong></h2>
+                  <div class="col-md-6 col-sm-12 card-header shadow-sm center-text justify-content-between mb-1 pt-1 pb-1">
+                  <div class="col-1 ">
+                      <i class="fas fa-thermometer-three-quarters fa-5x thermometer"></i>
+                    </div>
+                    <div class="col-4 left-text ml-2">
+                      <h3 class=""><strong><?php echo Setting::$TitleBoard["DB"]["temp"];?></strong></h3>
+                    </div>
+                    <div class="col-7 right-left">
+                      <h2 class="display-4 mr-3" id="tempD"><strong>0<?php echo Setting::$TitleBoard["Unit"]["temp"]?></strong></h2>
+                    </div>
                   </div>
-                  <div class="col-6 callout callout-success center-text justify-content-between mb-1 pt-1 pb-1">
-                    <i class="fas fa-tint fa-4x ml-3"></i>
-                    <h2 class="display-4 mr-3" id="humiD"><strong>5%</strong></h2>
+                  <div class="col-md-6 col-sm-12 card-header shadow-sm center-text justify-content-between mb-1 pt-1 pb-1">
+                  <div class="col-1 ">
+                      <i class="fas fa-tint fa-4x ml-2 dropWater"></i>
+                    </div>
+                    <div class="col-5 left-text ml-4">
+                      <h3 class=""><strong><?php echo Setting::$TitleBoard["DB"]["humi"];?></strong></h3>
+                    </div>
+                    <div class="col-6 right-left">
+                      <h2 class="display-4 mr-3" id="humiD"><strong>0<?php echo Setting::$TitleBoard["Unit"]["humi"]?></strong></h2>
+                    </div>
                   </div>
                 </div>
                 <div class="row pb-0">
-                  <div class="col-6 callout callout-success mb-0 pt-1 pb-1">
+                  <div class="col-md-6 col-sm-12 card-header shadow-sm mb-0 pt-1 pb-1">
                       <div class="row">
-                        <div class="col-1 center-text">
-                          <i class="fas fa-lightbulb fa-2x"></i>
+                        <div class="col-1 center-text ml-3">
+                          <i class="fas fa-lightbulb fa-2x lightBulb"></i>
                         </div>
-                        <div class="col text-align-center pl-0">
-                          <h2 class="mr-3 mb-0"><strong>Lux</strong></h2>
+                        <div class="col text-align-center pl-0 ml-2">
+                          <h2 class="mr-3 mb-0"><strong><?php echo Setting::$TitleBoard["DB"]["lux"];?></strong></h2>
                         </div>
                         <div class="ChartSize" id="ChartDSolar"></div>
                       </div>
                     </div>
-                    <div class="col-6 callout callout-success mb-0 pt-1 pb-1">
+                    <div class="col-md-6 col-sm-12 card-header shadow-sm mb-0 pt-1 pb-1">
                       <div class="row">
-                        <div class="col-1 center-text">
-                          <i class="fas fa-bolt fa-2x"></i>
+                        <div class="col-1 center-text ml-4">
+                          <i class="fas fa-bolt fa-2x thunder"></i>
                         </div>
-                        <div class="col text-align-center pl-0">
-                          <h2 class="mr-3 mb-0"><strong>Volt</strong></h2>
+                        <div class="col text-align-center pl-0 ml-2">
+                          <h2 class="mr-3 mb-0"><strong><?php echo Setting::$TitleBoard["DB"]["volt"];?></strong></h2>
                         </div>
                         <div class="ChartSize" id="ChartDVolt"></div>
                       </div>
@@ -391,12 +409,20 @@ function drawCharts(chartData) {
                         data.addRow([datetime, parseFloat(row[1]), point, annotation]);
                     }
 
+                    if (dataType == 'Volt') {
+                      var color = '#ffca05';
+                    } else if (dataType == 'Solar') {
+                      var color = '#f15c22';
+                    }
+
                     var options = {
-                        chartArea: { width: '90%', height: '95%' },
+                        chartArea: { width: '85%', height: '95%' },
+                        colors: [color],
                         fontName: 'Arial',
                         fontSize: '14',
                         legend: { position: 'none' },
                         selectionMode: 'multiple',
+                        lineWidth: 3,
                         vAxis: {
                             gridlines: { color: 'none' },
                             minValue: 0
@@ -415,7 +441,7 @@ function drawCharts(chartData) {
                         series: {
                             1: {
                                 pointSize: 7 ,
-                                color: 'blue'
+                                color: color
                             }
                         }
                     };
@@ -458,8 +484,8 @@ function SendData(log) {
             var humiValue = parsedData[team].Humi;
   
             // Update the temperature and humidity elements
-            $("#" + tempElementId).text(tempValue);
-            $("#" + humiElementId).text(humiValue);
+            $("#" + tempElementId).text(tempValue + "<?php echo Setting::$TitleBoard["Unit"]["temp"]?>");
+            $("#" + humiElementId).text(humiValue + "<?php echo Setting::$TitleBoard["Unit"]["humi"]?>");
           }
         }
       } else if (log == "Chart") {

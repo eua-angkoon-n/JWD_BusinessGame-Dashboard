@@ -79,12 +79,12 @@ switch ($module) {
        <?php include( __DIR__ . "/navbar.php"); ?>
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color:#00387c;">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color:#000043;">
             <!-- Brand Logo -->
             <a href="./" class="brand-link">
-                <img src="dist/img/logo_2.png" alt="JWD Logo" class="w-100 p-0 m-0">
+                <img src="dist/img/SCGJWDLogo.png" alt="JWD Logo" class="w-100 p-0 m-0">
                 <!--<img src="dist/img/logo_2.png" alt="JWD Logo" class="brand-image brand-text" >-->
-                <span class="font-weight-bold p-1 mt-2 text-pcs-ct">
+                <span class="font-weight-bold p-1 mt-2 text-pcs-ct" style="background-color:#f15c22;color:white">
             </a>
 
             <!-- Sidebar -->
@@ -114,30 +114,45 @@ switch ($module) {
                                 <p>Dashboard</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="?module=A" class="nav-link <?PHP echo $active_A;?>">
-                                <i class="nav-icon fas fa-users"></i> 
-                                <p><?php echo Setting::$team['A']?></p>
+                        <!-- <li class="nav-item">
+                            <a href="./" class="nav-link <?PHP echo $active_Score; ?>">
+                                <i class="nav-icon fa far fa-star"></i>
+                                <p>Score</p>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="?module=B" class="nav-link <?PHP echo $active_B;?>">
-                                <i class="nav-icon fas fa-users"></i> 
-                                <p><?php echo Setting::$team['B']?></p>
+                        </li> -->
+                        <li class="nav-item menu-open">
+                            <!--ถ้าจะให้เปิดใส่คลาส menu-open-->
+                            <a href="#" class="nav-link"><i class="nav-icon fas fa-users"></i>
+                                <p>Team<i class="right fas fa-angle-left"></i></p>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item ml-2">
+                                    <a href="?module=A" class="nav-link <?PHP echo $active_A;?>">
+                                        <i class="fas fa-user-friends"></i>
+                                        <p><?php echo Setting::$team['A']?></p>
+                                    </a>
+                                </li>
+                                <li class="nav-item ml-2">
+                                    <a href="?module=B" class="nav-link <?PHP echo $active_B;?>">
+                                        <i class="fas fa-user-friends"></i>
+                                        <p><?php echo Setting::$team['B']?></p>
+                                    </a>
+                                </li>
+                                <li class="nav-item ml-2">
+                                    <a href="?module=C" class="nav-link <?PHP echo $active_C;?>">
+                                        <i class="fas fa-user-friends"></i>
+                                        <p><?php echo Setting::$team['C']?></p>
+                                    </a>
+                                </li>
+                                <li class="nav-item ml-2">
+                                    <a href="?module=D" class="nav-link <?PHP echo $active_D;?>">
+                                        <i class="fas fa-user-friends"></i>
+                                        <p><?php echo Setting::$team['D']?></p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="?module=C" class="nav-link <?PHP echo $active_C;?>">
-                                <i class="nav-icon fas fa-users"></i> 
-                                <p><?php echo Setting::$team['C']?></p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="?module=D" class="nav-link <?PHP echo $active_D;?>">
-                                <i class="nav-icon fas fa-users"></i> 
-                                <p><?php echo Setting::$team['D']?></p>
-                            </a>
-                        </li>
+                        
                         <!-- <li class="nav-item">
                             <a href="?module=MachineDetails" class="nav-link <?PHP echo $active_C;?>">
                                 <i class="nav-icon fas fa-tools"></i> 

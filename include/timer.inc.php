@@ -17,12 +17,4 @@ class Processing{
    echo "ใช้เวลาในการประมวลผลหน้านี้: $time วินาที.";
   }
 }
-
-/*
-        //$startTime = microtime(true); //float(1559370720.4323)
-        //$usedTime = microtime(true) - $startTime; //12.67
-        echo time();
-        echo "<hr />";
-        echo microtime();
-*/
 ?>

@@ -104,8 +104,8 @@ Class DashboardResult
             }
     
             // Add temperature and humidity to the team's data
-            $result[$team]['Temp'] = $temp + rand(1,9);
-            $result[$team]['Humi'] = $humi + rand(1,9);
+            $result[$team]['Temp'] = $temp;
+            $result[$team]['Humi'] = $humi;
         }
 
         return json_encode($result);
@@ -124,9 +124,8 @@ Class DashboardResult
             if (!isset($result[$team])) {
                 $result[$team] = array("Volt" => array(), "Solar" => array());
             }
-            $numTest = rand(1,9);
-            $result[$team]['Volt'][] = "$datetime,  ".$volt + $numTest."";
-            $result[$team]['Solar'][] = "$datetime, ".$solar + $numTest."";
+            $result[$team]['Volt'][] = "$datetime,  ".$volt."";
+            $result[$team]['Solar'][] = "$datetime, ".$solar."";
         }
         
         return json_encode($result);
@@ -187,7 +186,7 @@ Class TeamBoard {
         $tempHumiData = array();
         $dataCount = count($logData);
 
-        for ($i = max(0, $dataCount - 20); $i < $dataCount; $i++) {
+        for ($i = max(0, $dataCount - 30); $i < $dataCount; $i++) {
             $log = $logData[$i];
             $formattedDatetime = date('H:i:s', strtotime($log['logs_datetime']));
 
@@ -207,7 +206,7 @@ Class TeamBoard {
         $voltData = array();
         $dataCount = count($logData);
 
-        for ($i = max(0, $dataCount - 20); $i < $dataCount; $i++) {
+        for ($i = max(0, $dataCount - 30); $i < $dataCount; $i++) {
             $log = $logData[$i];
             $formattedDatetime = date("H:i:s", strtotime($log['logs_datetime']));
 
@@ -226,7 +225,7 @@ Class TeamBoard {
         $solarData = array();
         $dataCount = count($logData);
 
-        for ($i = max(0, $dataCount - 20); $i < $dataCount; $i++) {
+        for ($i = max(0, $dataCount - 30); $i < $dataCount; $i++) {
             $log = $logData[$i];
             $formattedDatetime = date("H:i:s", strtotime($log['logs_datetime']));
 
@@ -244,7 +243,7 @@ Class TeamBoard {
         $Data = array();
         $dataCount = count($logData);
 
-        for ($i = max(0, $dataCount - 20); $i < $dataCount; $i++) {
+        for ($i = max(0, $dataCount - 30); $i < $dataCount; $i++) {
             $log = $logData[$i];
             $formattedDatetime = date("d/m/Y H:i:s", strtotime($log['logs_datetime']));
 
@@ -322,11 +321,11 @@ Class TeamBoard {
         // Store the results in an associative array
         $result = array(
             'Card' => array(
-                'LuxPerMinute' => round($LuxPerMinute, 2)+rand(1,9),
-                'MaxVolt' => $MaxVolt+rand(1,9),
-                'MinTemp' => $MinTemp+rand(1,9),
-                'MaxHumi' => $MaxHumi+rand(1,9),
-                'MinHumi' => $MinHumi+rand(1,9)
+                'LuxPerMinute' => round($LuxPerMinute, 2),
+                'MaxVolt' => $MaxVolt ?? 0,
+                'MinTemp' => $MinTemp ?? 0,
+                'MaxHumi' => $MaxHumi ?? 0,
+                'MinHumi' => $MinHumi ?? 0
             ),
             // 'ChartData' => array(
             //     'TempHumiData' => $tempHumiData,

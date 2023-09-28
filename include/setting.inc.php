@@ -103,4 +103,25 @@ class Setting
     public static $DataTableSearch = array(
         "logs_datetime"
     );
+
+    public static $TitleBoard = array(
+        "DB" => array(
+            "temp" => "Temp.",
+            "humi" => "Humidity",
+            "lux"  => "Lux",
+            "volt" => "Volt",
+        ),
+        "TeamTitle" => array(
+            "ETProd" => "ผลิตไฟฟ้าได้",
+            "MXVolt" => "กำลังไฟสูงสุด",
+            "tempCan" => "อุณหภูมิที่ทำได้",
+            "MXHumi" => "ความชื้นสูงสุด/ต่ำสุด",
+        ),
+        "Unit" => array(
+            "minute" => "นาที",
+            "volt" => "V.",
+            "temp" => "°C",
+            "humi" => "%"
+        )
+    );
 }

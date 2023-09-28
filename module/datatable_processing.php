@@ -144,7 +144,7 @@ class TeamTable extends TableProcessing {
         parent::__construct($TableSET);
 
         $this->team = $team ?? NULL;
-        $this->date = $this->splitDateRange($date) ?? getLast1Day();
+        $this->date = !IsNullOrEmptyString($date) ? $this->splitDateRange($date) : getLast1Day();
     }
 
     public function getTable(){
@@ -166,7 +166,6 @@ class TeamTable extends TableProcessing {
     
             return [$startDate, $endDate];
         } else {
-            // If there aren't exactly two parts, return an empty array or handle the error as needed
             return [];
         }
     }

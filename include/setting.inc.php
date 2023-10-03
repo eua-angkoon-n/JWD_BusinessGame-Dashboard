@@ -68,7 +68,8 @@ class Setting
 
     public static $title_site = array
     (
-        "Dashboard" => "Dashboard", 
+        "Dashboard" => "Dashboard",
+        "Score" => "Score", 
         "A" => "เย็นเฉียบ",
         "B" => "Empire Cold Storage",
         "C" => "F&C Team",
@@ -76,7 +77,8 @@ class Setting
     );
     public static $title_act = array
     (
-        "Dashboard" => "Dashboard", 
+        "Dashboard" => "Dashboard",
+        "Score" => "Score", 
         "A" => "เย็นเฉียบ",
         "B" => "Empire Cold Storage",
         "C" => "F&C Team",
@@ -84,7 +86,8 @@ class Setting
     );
     public static $breadcrumb_txt = array
     (
-        "Dashboard" => "Dashboard", 
+        "Dashboard" => "Dashboard",
+        "Score" => "Score", 
         "A" => "เย็นเฉียบ",
         "B" => "Empire Cold Storage",
         "C" => "F&C Team",

@@ -48,6 +48,13 @@ switch ($module) {
         $title_act = Setting::$title_act[$module];
         $breadcrumb_txt = Setting::$breadcrumb_txt[$module];
         break;
+    case "Score":
+        $include_module = __DIR__ . "/module/score.inc.php";
+        $module == "Score" ? $active_Score = "active" : $active_Score = "";
+        $title_site = Setting::$title_site[$module];
+        $title_act = Setting::$title_act[$module];
+        $breadcrumb_txt = Setting::$breadcrumb_txt[$module];
+        break;
     default:
         $include_module = __DIR__ . "/module/dashboard.inc.php";
         $txt = "Dashboard";
@@ -114,12 +121,12 @@ switch ($module) {
                                 <p>Dashboard</p>
                             </a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a href="./" class="nav-link <?PHP echo $active_Score; ?>">
+                        <li class="nav-item">
+                            <a href="?module=Score" class="nav-link <?PHP echo $active_Score; ?>">
                                 <i class="nav-icon fa far fa-star"></i>
                                 <p>Score</p>
                             </a>
-                        </li> -->
+                        </li>
                         <li class="nav-item menu-open">
                             <!--ถ้าจะให้เปิดใส่คลาส menu-open-->
                             <a href="#" class="nav-link"><i class="nav-icon fas fa-users"></i>

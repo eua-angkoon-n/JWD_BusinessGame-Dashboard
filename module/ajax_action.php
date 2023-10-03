@@ -186,7 +186,7 @@ Class TeamBoard {
         $tempHumiData = array();
         $dataCount = count($logData);
 
-        for ($i = max(0, $dataCount - 30); $i < $dataCount; $i++) {
+        for ($i = 0; $i < $dataCount; $i++) {
             $log = $logData[$i];
             $formattedDatetime = date('H:i:s', strtotime($log['logs_datetime']));
 
@@ -206,7 +206,7 @@ Class TeamBoard {
         $voltData = array();
         $dataCount = count($logData);
 
-        for ($i = max(0, $dataCount - 30); $i < $dataCount; $i++) {
+        for ($i = 0; $i < $dataCount; $i++) {
             $log = $logData[$i];
             $formattedDatetime = date("H:i:s", strtotime($log['logs_datetime']));
 
@@ -225,7 +225,7 @@ Class TeamBoard {
         $solarData = array();
         $dataCount = count($logData);
 
-        for ($i = max(0, $dataCount - 30); $i < $dataCount; $i++) {
+        for ($i = 0; $i < $dataCount; $i++) {
             $log = $logData[$i];
             $formattedDatetime = date("H:i:s", strtotime($log['logs_datetime']));
 
@@ -243,7 +243,7 @@ Class TeamBoard {
         $Data = array();
         $dataCount = count($logData);
 
-        for ($i = max(0, $dataCount - 30); $i < $dataCount; $i++) {
+        for ($i = 0; $i < $dataCount; $i++) {
             $log = $logData[$i];
             $formattedDatetime = date("d/m/Y H:i:s", strtotime($log['logs_datetime']));
 

@@ -109,7 +109,7 @@ include( __DIR__ . "/include.php" );
                 <input type="text" class="form-control float-right" id="reservationtime">
               </div>
             </div>
-          </div>
+                      </div>
           <div class="row">
 
             <div class="col-lg-4 col-md-12">
@@ -153,7 +153,6 @@ include( __DIR__ . "/include.php" );
 var TEAM = "<?php echo $TEAM ?>";
 var jsonData;
 var table;
-var currentPage = 1;
 var date;
 
 $(document).ready(function () {
@@ -174,10 +173,10 @@ $(document).ready(function () {
   }, 15000);
 
 function initializeDateRangePicker() {
-  var today = moment().startOf('day'); // Get today's date at the start of the day
+    var today = moment().startOf('day'); // Get today's date at the start of the day
     var startOfDay = today.clone();
     var endOfDay = today.clone().endOf('day');
-  
+      
   $('#reservationtime').daterangepicker({
       startDate: startOfDay,
       endDate: endOfDay,
@@ -189,14 +188,14 @@ function initializeDateRangePicker() {
       locale: {
         format: 'MM/DD/YYYY HH:mm' // Adjust the time format as needed
       },
-      // minDate: startOfDay, // Set minimum date to today
-      // maxDate: endOfDay, // Set maximum date to today
+      minDate: startOfDay, // Set minimum date to today
+      maxDate: endOfDay, // Set maximum date to today
   });
 
   // Add a change event handler to #reservationtime
   $('#reservationtime').on('change', function() {
     var date = $('#reservationtime').val();
-    GetChart(TEAM,date); // Call the GetChart function when the value changes
+    GetChart(TEAM,date); // Call the GetChart function when the value changes 
     $('#dataTableB').DataTable().ajax.reload();  
   });
 }
@@ -242,7 +241,7 @@ function SendData(TEAM) {
   });
 }
 
-
+////////////////////////////////////////////////////////////////////////////////////
 $('#dataTableB').DataTable({
     "scrollX": true,
     "processing": true,
@@ -345,8 +344,8 @@ function drawTempHumiChart(tempHumiData) {
         }
     },
     series: {
-      0: {pointSize: 5 ,color: 'blue' }, // Temperature
-      1: {pointSize: 5 ,color: 'red' },  // Humidity
+      0: {pointSize: 0 ,color: 'blue' }, // Temperature
+      1: {pointSize: 0 ,color: 'red' },  // Humidity
       2: {color: 'blue' }, // Temperature
       3: {color: 'red' }  // Humidity
     }
@@ -389,7 +388,7 @@ function drawVoltChart(voltData) {
         }
     },
     series: {
-      0: {pointSize: 5 ,color: 'green' }, // Voltage
+      0: {pointSize: 0 ,color: 'green' }, // Voltage
       1: {color: 'green' } // Voltage
     }
   };
@@ -431,35 +430,13 @@ function drawSolarChart(solarData) {
         }
     },
     series: {
-      0: {pointSize: 5 ,color: 'orange' }, // Solar
+      0: {pointSize: 0 ,color: 'orange' }, // Solar
       1: {color: 'orange' } // Solar
     }
   };
 
   var chart = new google.visualization.LineChart(document.getElementById('SolarChart'));
   chart.draw(data, options);
-}
-
-function updateDataTable(data) {
-    // Clear existing table data
-    // table.clear().draw();
-
-    if (data && data.Fetch) {
-        var fetchArray = data.Fetch;
-
-        for (var i = 0; i < fetchArray.length; i++) {
-            var rowData = fetchArray[i];
-            var number = i + 1;
-            var date = rowData.Date;
-            var temp = rowData.temp;
-            var humi = rowData.humi;
-            var volt = rowData.volt;
-            var solar = rowData.solar;
-
-            // Add data to the table
-            table.row.add([number, date, temp, humi, volt, solar]).draw();
-        }
-    }
 }
 
 </script>

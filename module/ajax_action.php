@@ -28,6 +28,11 @@ if (isset($_POST['action'])) {
             $Result = $Call->processLogData();
             print_r($Result);
             break;
+        case 'Score':
+            $Call   = new ScoreBoard(); 
+            $Result = $Call->getData();
+            print_r($Result);
+            break;
     }
 } else {
     echo 0;
@@ -147,7 +152,7 @@ Class TeamBoard {
         return $this->date;
     }
 
-    public function getCardArray(){
+    public function getData(){
 
     }
 
@@ -334,6 +339,100 @@ Class TeamBoard {
             // ),
             'Fetch' => $Data300
         );
+        // return $result;
+        return json_encode($result);
+    }
+}
+
+Class ScoreBoard {
+    
+    private $fetchData;
+
+    public function __construct() {
+    
+    }
+    public function getData(){
+        return 0;
+    }
+
+    public function SQLQuery($team){
+        $sql  = "SELECT * ";
+        $sql .= "FROM ";
+        $sql .= "( ";
+        $sql .= "SELECT *, ROW_NUMBER() OVER (PARTITION BY team ORDER BY logs_datetime DESC) AS row_num ";
+        $sql .= "FROM tb_logs_test ";
+        $sql .= ") AS ranked ";
+        $sql .= "WHERE ";
+        $sql .= "team = '$team'";
+
+        try {
+            $con = connect_database();
+            $obj = new CRUD($con);
+            $Row = $obj->fetchRows($sql);
+        } catch (PDOException $e){
+            return "Database connection failed: " . $e->getMessage();
+        } catch (Exception $e) {
+            return "An error occurred: " . $e->getMessage();
+        } finally {
+            $con = null;
+        }
+        return $Row;
+    }
+
+    public function processLogData() {
+        $Team = Setting::$team;
+
+        foreach ($Team as $name) {
+            $logData = $this->SQLQuery($name);
+            $countLux = 0;
+            $MaxVolt = null;
+            $MinTemp = null;
+            $MaxHumi = null;
+            $MinHumi = null;
+        
+            // Calculate LuxPerMinute
+            foreach ($logData as $log) {
+                // Calculate LuxPerMinute
+                if ($log['logs_solar'] >= 3000) {
+                    $countLux += 1;
+                }
+        
+                // Update MaxVolt
+                if ($MaxVolt === null || $log['logs_volt'] > $MaxVolt) {
+                    $MaxVolt = $log['logs_volt'];
+                }
+        
+                // Update MinTemp
+                if ($MinTemp === null || $log['logs_temp'] < $MinTemp) {
+                    $MinTemp = $log['logs_temp'];
+                }
+                
+                // Update MaxHumi and MinHumi
+                if ($MaxHumi === null || $log['logs_humi'] > $MaxHumi) {
+                    $MaxHumi = $log['logs_humi'];
+                }
+                if ($MinHumi === null || $log['logs_humi'] < $MinHumi) {
+                    $MinHumi = $log['logs_humi'];
+                }
+            }
+            
+            // Calculate LuxPerMinute as per your updated formula
+            $LuxPerMinute = ($countLux * 5) / 60;
+    
+            // Store the results in an associative array
+            $result = array(
+                $name => array(
+                    'LuxPerMinute' => round($LuxPerMinute, 2),
+                    'MaxVolt' => $MaxVolt ?? 0,
+                    'MinTemp' => $MinTemp ?? 0,
+                    'MaxHumi' => $MaxHumi ?? 0,
+                    'MinHumi' => $MinHumi ?? 0
+                ),
+            );
+        }
+
+  
+        
         // return $result;
         return json_encode($result);
     }

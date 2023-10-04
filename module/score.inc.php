@@ -458,7 +458,7 @@ $(document).ready(function () {
 // Initial call to update the clock
 updateClock();
 // SendData('Digital');
-// SendData('Chart');
+SendData();
 
 // Update the clock every second
 setInterval(updateClock, 1000);
@@ -470,19 +470,17 @@ setInterval(updateClock, 1000);
 
 });
 
-function SendData(TEAM) {
+function SendData() {
   $.ajax({
     url: "module/ajax_action.php",
     type: "POST",
     data: {
-      "action": "Team",
-      "team": TEAM
+      "action": "Score",
     },
     success: function (data) {
     //   var jsonData = JSON.parse(data);
     //   updateCardData(jsonData);
     console.log(data);
-
     },
     error: function (data) {
     }

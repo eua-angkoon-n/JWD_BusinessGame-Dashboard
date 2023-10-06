@@ -352,7 +352,7 @@ Class ScoreBoard {
     
     }
     public function getData(){
-        return 0;
+        return $this->processLogData();
     }
 
     public function SQLQuery($team){
@@ -364,7 +364,7 @@ Class ScoreBoard {
         $sql .= ") AS ranked ";
         $sql .= "WHERE ";
         $sql .= "team = '$team'";
-
+        // return $sql;
         try {
             $con = connect_database();
             $obj = new CRUD($con);
@@ -381,9 +381,13 @@ Class ScoreBoard {
 
     public function processLogData() {
         $Team = Setting::$team;
+        $result = array();
 
-        foreach ($Team as $name) {
-            $logData = $this->SQLQuery($name);
+        foreach ($Team as $key => $name) {
+            if($key == 'Dashboard')
+                continue;
+            $logData = $this->SQLQuery($key);
+            
             $countLux = 0;
             $MaxVolt = null;
             $MinTemp = null;
@@ -420,15 +424,16 @@ Class ScoreBoard {
             $LuxPerMinute = ($countLux * 5) / 60;
     
             // Store the results in an associative array
-            $result = array(
-                $name => array(
+            $result[$key] = array(
                     'LuxPerMinute' => round($LuxPerMinute, 2),
                     'MaxVolt' => $MaxVolt ?? 0,
                     'MinTemp' => $MinTemp ?? 0,
                     'MaxHumi' => $MaxHumi ?? 0,
                     'MinHumi' => $MinHumi ?? 0
-                ),
-            );
+                )
+            ;
+            
+        
         }
 
   

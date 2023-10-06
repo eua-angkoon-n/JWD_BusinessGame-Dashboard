@@ -454,20 +454,15 @@ include( __DIR__ . "/include.php" );
 
 <script type="text/javascript">
 $(document).ready(function () {
-
-// Initial call to update the clock
-updateClock();
-// SendData('Digital');
-SendData();
-
-// Update the clock every second
-setInterval(updateClock, 1000);
-
-// setInterval(function() {
-//   SendData('Digital');
-//   SendData('Chart');
-// }, 3000);
-
+    // Initial call to update the clock
+    updateClock();
+    // Update the clock every second
+    setInterval(updateClock, 1000);
+    
+    SendData();
+    setInterval(function() {
+      SendData();
+    }, 3000);
 });
 
 function SendData() {
@@ -478,13 +473,38 @@ function SendData() {
       "action": "Score",
     },
     success: function (data) {
-    //   var jsonData = JSON.parse(data);
-    //   updateCardData(jsonData);
-    console.log(data);
+      var jsonData = JSON.parse(data);
+      updateData(jsonData);
+    // console.log(data);
     },
     error: function (data) {
     }
   });
+}
+
+function updateData(parsedData) {
+    for (var team in parsedData) {
+        var LuxPerMinuteID = "ETProd" + team;
+        var MaxVoltID = "MXVolt" + team;
+        var MinTempID = "tempCan" + team;
+        var MaxHumiID = "MaxHumi" + team;
+        var MinHumiID = "MinHumi" + team;
+
+        if (parsedData.hasOwnProperty(team)) {
+            var LuxPerMinuteValue = parsedData[team].LuxPerMinute;
+            var MaxVoltValue = parsedData[team].MaxVolt;
+            var MinTempValue = parsedData[team].MinTemp;
+            var MaxHumiValue = parsedData[team].MaxHumi;
+            var MinHumiValue = parsedData[team].MinHumi;
+
+          // Update the temperature and humidity elements
+          $("#" + LuxPerMinuteID).text(LuxPerMinuteValue);
+          $("#" + MaxVoltID).text(MaxVoltValue);
+          $("#" + MinTempID).text(MinTempValue);
+          $("#" + MaxHumiID).text(MaxHumiValue);
+          $("#" + MinHumiID).text(MinHumiValue);
+        }
+    }
 }
 
 function updateClock() {

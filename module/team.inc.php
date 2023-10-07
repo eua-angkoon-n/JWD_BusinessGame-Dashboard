@@ -102,9 +102,7 @@ include( __DIR__ . "/include.php" );
       </div>
     </section>
       </div>
-    </div>
-
-    
+    </div>    
 
     <div class="row pt-1">
       <div class="col-12">

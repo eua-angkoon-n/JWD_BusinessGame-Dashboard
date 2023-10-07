@@ -3,8 +3,8 @@ include( __DIR__ . "/include.php" );
 ?>
 
 <section class="content">
-  <div class="card">
-    <div class="card-header pt-2 pb-1">
+  <div class="card cardBackground">
+    <div class="card-header pt-2 pb-1" style="background-color:white">
       <h6 class="display-8 d-inline-block font-weight-bold"><i class="fas fa-chalkboard"></i>
         <?PHP echo $title_act; ?>
       </h6>
@@ -29,10 +29,13 @@ include( __DIR__ . "/include.php" );
     
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="col-12 mb-0 pt-1">
-                    <div class="card card-outline card-primary">
-                        <div class="card-header row ">
-                        <i class="fas fa-charging-station fa-2x align-middle pt-2"></i>
-                            <h2 class="card-title pl-2" style="font-size:2rem"><strong><?php echo Setting::$TitleBoard["TeamTitle"]["ETProd"]?></strong></h2>
+                    <div class="card shadow-lg">
+                        <div class="card-header gradient">
+                        <div class="card-title">
+                          <i class="fas fa-charging-station fa-2x d-inline jWText lightBulb"></i>
+                              <h2 class="d-inline jWText" style="font-size:2rem"><strong><?php echo Setting::$TitleBoard["TeamTitle"]["ETProd"]?></strong></h2>
+
+                        </div>
                         </div>
                         <div class="card-body text-right"> 
                             <h1 class="d-inline" id="LuxPerMin" style="font-size:4.0rem">0</h1>
@@ -44,10 +47,12 @@ include( __DIR__ . "/include.php" );
 
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="col-12 mb-0 pt-1">
-                    <div class="card card-outline card-primary">
-                        <div class="card-header row ">
-                        <i class="fas fa-bolt fa-2x align-middle pt-2"></i>
-                            <h2 class="card-title pl-2" style="font-size:2rem"><strong><?php echo Setting::$TitleBoard["TeamTitle"]["MXVolt"]?></strong></h2>
+                    <div class="card shadow-lg">
+                        <div class="card-header gradient">
+                        <div class="card-title">
+                          <i class="fas fa-bolt fa-2x d-inline jWText thunder"></i>
+                              <h2 class="d-inline jWText" style="font-size:2rem"><strong><?php echo Setting::$TitleBoard["TeamTitle"]["MXVolt"]?></strong></h2>
+                        </div>
                         </div>
                         <div class="card-body text-right"> 
                             <h1 class="d-inline" id="MaxVolt" style="font-size:4.0rem">0</h1>
@@ -59,10 +64,12 @@ include( __DIR__ . "/include.php" );
 
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="col-12 mb-0 pt-1">
-                    <div class="card card-outline card-primary">
-                        <div class="card-header row ">
-                        <i class="fas fa-snowflake fa-2x align-middle pt-2"></i>
-                            <h2 class="card-title pl-2" style="font-size:2rem"><strong><?php echo Setting::$TitleBoard["TeamTitle"]["tempCan"]?></strong></h2>
+                    <div class="card shadow-lg">
+                        <div class="card-header gradient">
+                        <div class="card-title">
+                          <i class="fas fa-snowflake fa-2x d-inline jWText thermometer"></i>
+                              <h2 class="d-inline jWText" style="font-size:2rem"><strong><?php echo Setting::$TitleBoard["TeamTitle"]["tempCan"]?></strong></h2>
+                        </div>
                         </div>
                         <div class="card-body text-right"> 
                             <h1 class="d-inline" id="MinTemp" style="font-size:4.0rem">0</h1>
@@ -74,10 +81,12 @@ include( __DIR__ . "/include.php" );
 
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="col-12 mb-0 pt-1">
-                    <div class="card card-outline card-primary">
-                        <div class="card-header row ">
-                        <i class="fas fa-tint fa-2x align-middle pt-2"></i>
-                            <h2 class="card-title pl-2" style="font-size:2rem"><strong><?php echo Setting::$TitleBoard["TeamTitle"]["MXHumi"]?></strong></h2>
+                    <div class="card shadow-lg">
+                        <div class="card-header gradient">
+                        <div class="card-title">
+                          <i class="fas fa-tint fa-2x d-inline jWText dropWater"></i>
+                              <h2 class="d-inline jWText" style="font-size:2rem"><strong><?php echo Setting::$TitleBoard["TeamTitle"]["MXHumi"]?></strong></h2>
+                        </div>
                         </div>
                         <div class="card-body text-right">
                             <h1 class="d-inline" id="MaxHumi" style="font-size:4.0rem">0</h1>
@@ -103,10 +112,10 @@ include( __DIR__ . "/include.php" );
           <div class="row pl-4">
             <div class="form-group">
               <div class="input-group">
-                <div class="input-group-prepend">
+                <div class="input-group-prepend" >
                   <span class="input-group-text"><i class="far fa-clock"></i></span>
                 </div>
-                <input type="text" class="form-control float-right" id="reservationtime">
+                <input type="text" class="form-control float-right " id="reservationtime">
               </div>
             </div>
                       </div>
@@ -129,7 +138,7 @@ include( __DIR__ . "/include.php" );
 
     <div class="row pt-3 p-2">
       <div class="col-sm-12 p-1 m-0">
-        <table id="dataTableB" class="table table-bordered table-hover dataTable dtr-inline display nowrap">
+        <table id="dataTableB" class="table table-bordered table-hover dataTable dtr-inline display nowrap shadow-lg" style="background-color:white">
           <thead>
             <tr class="bg-light">
               <th scope="col" class="sorting_disabled">No</th>
@@ -343,6 +352,9 @@ function drawTempHumiChart(tempHumiData) {
             auraColor: 'none'
         }
     },
+    backgroundColor: {
+      fillOpacity: 0
+    },
     series: {
       0: {pointSize: 0 ,color: 'blue' }, // Temperature
       1: {pointSize: 0 ,color: 'red' },  // Humidity
@@ -387,6 +399,9 @@ function drawVoltChart(voltData) {
             auraColor: 'none'
         }
     },
+    backgroundColor: {
+      fillOpacity: 0
+    },
     series: {
       0: {pointSize: 0 ,color: 'green' }, // Voltage
       1: {color: 'green' } // Voltage
@@ -428,6 +443,9 @@ function drawSolarChart(solarData) {
             color: '#000',
             auraColor: 'none'
         }
+    },
+    backgroundColor: {
+      fillOpacity: 0
     },
     series: {
       0: {pointSize: 0 ,color: 'orange' }, // Solar

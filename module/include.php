@@ -289,10 +289,15 @@ div.dataTables_wrapper {
    
 }
 .gradient {
-  background: linear-gradient(to right, #0054FF, #000043, #6d7fae, #f15c22, #ffca05);
-  width: 100%;
-  height: 100px; /* Set an appropriate height for your element */
+    background: linear-gradient(to right, #0054FF, #000043, #6d7fae, #f15c22, #ffca05);
+    width: 100%;
+    <?php if($module == ''){ 
+        echo "height:100px;";
+        } else {
+        echo "height:auto;";    
+    }?>
 }
+
 .jWText {
     color:white
 }

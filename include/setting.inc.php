@@ -59,7 +59,6 @@ class Setting
     public static $SQLSET = "SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));";
     
     public static $team = array(
-        "Dashboard" => "Dashboard", 
         "A" => "เย็นเฉียบ",
         "B" => "Empire Cold Storage",
         "C" => "F&C Team",
@@ -121,7 +120,7 @@ class Setting
             "MXHumi" => "ความชื้นสูงสุด/ต่ำสุด",
         ),
         "Unit" => array(
-            "minute" => "นาที",
+            "minute" => "min.",
             "volt" => "V.",
             "temp" => "°C",
             "humi" => "%"

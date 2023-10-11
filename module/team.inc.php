@@ -1,5 +1,5 @@
 <?php 
-include( __DIR__ . "/include.php" );
+include( __DIR__ . "/include_score.php" );
 ?>
 
 <section class="content">
@@ -27,7 +27,7 @@ include( __DIR__ . "/include.php" );
     
         <div class="row">
     
-            <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
                 <div class="col-12 mb-0 pt-1">
                     <div class="card shadow-lg">
                         <div class="card-header gradient">
@@ -37,7 +37,7 @@ include( __DIR__ . "/include.php" );
 
                         </div>
                         </div>
-                        <div class="card-body text-right"> 
+                        <div class="card-body text-right prevent-overflow"> 
                             <h1 class="d-inline" id="LuxPerMin" style="font-size:4.0rem">0</h1>
                             <h1 class="d-inline">&nbsp;<?php echo Setting::$TitleBoard["Unit"]["minute"]?></h1>
                         </div>
@@ -45,7 +45,7 @@ include( __DIR__ . "/include.php" );
                 </div>
             </div>
 
-            <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
                 <div class="col-12 mb-0 pt-1">
                     <div class="card shadow-lg">
                         <div class="card-header gradient">
@@ -62,7 +62,7 @@ include( __DIR__ . "/include.php" );
                 </div>
             </div>
 
-            <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
                 <div class="col-12 mb-0 pt-1">
                     <div class="card shadow-lg">
                         <div class="card-header gradient">
@@ -79,11 +79,11 @@ include( __DIR__ . "/include.php" );
                 </div>
             </div>
 
-            <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
                 <div class="col-12 mb-0 pt-1">
                     <div class="card shadow-lg">
                         <div class="card-header gradient">
-                        <div class="card-title">
+                        <div class="card-title ">
                           <i class="fas fa-tint fa-2x d-inline jWText dropWater"></i>
                               <h2 class="d-inline jWText" style="font-size:2rem"><strong><?php echo Setting::$TitleBoard["TeamTitle"]["MXHumi"]?></strong></h2>
                         </div>
@@ -116,7 +116,7 @@ include( __DIR__ . "/include.php" );
                 <input type="text" class="form-control float-right " id="reservationtime">
               </div>
             </div>
-                      </div>
+          </div>
           <div class="row">
 
             <div class="col-lg-4 col-md-12">
@@ -202,7 +202,7 @@ function initializeDateRangePicker() {
   // Add a change event handler to #reservationtime
   $('#reservationtime').on('change', function() {
     var date = $('#reservationtime').val();
-    GetChart(TEAM,date); // Call the GetChart function when the value changes 
+    GetChart(TEAM,date); // Call the GetChart function when the value changes
     $('#dataTableB').DataTable().ajax.reload();  
   });
 }

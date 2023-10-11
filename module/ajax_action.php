@@ -303,34 +303,47 @@ Class TeamBoard {
     
             // Update MaxVolt
             if ($MaxVolt === null || $log['logs_volt'] > $MaxVolt) {
-                $MaxVolt = $log['logs_volt'];
+                if($log['logs_volt'] != 0){
+                    $MaxVolt = $log['logs_volt'];
+                }
             }
     
             // Update MinTemp
             if ($MinTemp === null || $log['logs_temp'] < $MinTemp) {
-                $MinTemp = $log['logs_temp'];
+                if($log['logs_temp'] != 0){
+                    $MinTemp = $log['logs_temp'];
+                }
             }
     
             // Update MaxHumi and MinHumi
             if ($MaxHumi === null || $log['logs_humi'] > $MaxHumi) {
-                $MaxHumi = $log['logs_humi'];
+                if($log['logs_humi'] != 0){
+                    $MaxHumi = $log['logs_humi'];
+                }
             }
             if ($MinHumi === null || $log['logs_humi'] < $MinHumi) {
-                $MinHumi = $log['logs_humi'];
+                if($log['logs_humi'] != 0){
+                    $MinHumi = $log['logs_humi'];
+                }
             }
         }
     
+        $MinTemp == 0 ? $MinTemp = "-" : '';
+        $MaxHumi == 0 ? $MaxHumi = "-" : '';
+        $MinHumi == 0 ? $MinHumi = "-" : '';
+
         // Calculate LuxPerMinute as per your updated formula
         $LuxPerMinute = ($countLux * 5) / 60;
+            $LuxPerMinute != 0 ? $LuxPerMinute = round($LuxPerMinute, 2) : $LuxPerMinute = '-';
 
         // Store the results in an associative array
         $result = array(
             'Card' => array(
-                'LuxPerMinute' => round($LuxPerMinute, 2),
-                'MaxVolt' => $MaxVolt ?? 0,
-                'MinTemp' => $MinTemp ?? 0,
-                'MaxHumi' => $MaxHumi ?? 0,
-                'MinHumi' => $MinHumi ?? 0
+                'LuxPerMinute' => $LuxPerMinute ?? "-",
+                'MaxVolt' => $MaxVolt ?? "-",
+                'MinTemp' => $MinTemp ?? "-",
+                'MaxHumi' => $MaxHumi ?? "-",
+                'MinHumi' => $MinHumi ?? "-"
             ),
             // 'ChartData' => array(
             //     'TempHumiData' => $tempHumiData,
@@ -403,33 +416,46 @@ Class ScoreBoard {
         
                 // Update MaxVolt
                 if ($MaxVolt === null || $log['logs_volt'] > $MaxVolt) {
-                    $MaxVolt = $log['logs_volt'];
+                    if($log['logs_volt'] != 0){
+                        $MaxVolt = $log['logs_volt'];
+                    }
                 }
         
                 // Update MinTemp
                 if ($MinTemp === null || $log['logs_temp'] < $MinTemp) {
-                    $MinTemp = $log['logs_temp'];
+                    if($log['logs_temp'] != 0){
+                        $MinTemp = $log['logs_temp'];
+                    }
                 }
                 
                 // Update MaxHumi and MinHumi
                 if ($MaxHumi === null || $log['logs_humi'] > $MaxHumi) {
-                    $MaxHumi = $log['logs_humi'];
+                    if($log['logs_humi'] != 0){
+                        $MaxHumi = $log['logs_humi'];
+                    }
                 }
                 if ($MinHumi === null || $log['logs_humi'] < $MinHumi) {
-                    $MinHumi = $log['logs_humi'];
+                    if($log['logs_humi'] != 0){
+                        $MinHumi = $log['logs_humi'];
+                    }
                 }
             }
             
+            $MinTemp == 0 ? $MinTemp = "-" : '';
+            $MaxHumi == 0 ? $MaxHumi = "-" : '';
+            $MinHumi == 0 ? $MinHumi = "-" : '';
+            
             // Calculate LuxPerMinute as per your updated formula
             $LuxPerMinute = ($countLux * 5) / 60;
+            $LuxPerMinute != 0 ? $LuxPerMinute = round($LuxPerMinute, 2) : $LuxPerMinute = '-';
     
             // Store the results in an associative array
             $result[$key] = array(
-                    'LuxPerMinute' => round($LuxPerMinute, 2),
-                    'MaxVolt' => $MaxVolt ?? 0,
-                    'MinTemp' => $MinTemp ?? 0,
-                    'MaxHumi' => $MaxHumi ?? 0,
-                    'MinHumi' => $MinHumi ?? 0
+                    'LuxPerMinute' => $LuxPerMinute ?? "-",
+                    'MaxVolt' => $MaxVolt ?? "-",
+                    'MinTemp' => $MinTemp ?? "-",
+                    'MaxHumi' => $MaxHumi ?? "-",
+                    'MinHumi' => $MinHumi ?? "-"
                 )
             ;
             

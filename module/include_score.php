@@ -201,142 +201,12 @@
     margin-right: 10px;
 }
 
-.time-font {
-    font-family: 'Digital-7';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 112px;
-    font-weight: 500;
-}
-
-.team-font {
-    font-size:4.5rem;
-    font-weight:300;
-    line-height:1.2;
-}
-
-.icon-team {
-    font-size: 4em; 
-}
-.thermometer {
-    display: inline-block;
-    background: linear-gradient(to bottom, #007BFF, #0099CC, #00AEEF, #00C2FF, #00D5FF);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    font-size: 5em;
-}
-.text-team{
-    font-size:1.8rem;
-    font-weight:500;
-}
-.valuetext-team {
-    font-size:3.5rem;
-    font-weight:300;
-    line-height:1.2
-}
-
-.prevent-overflow{
-    white-space: nowrap; 
-    overflow: hidden;  
-    width: 100%;
-}
-
-@media screen and (max-width: 1199px) {
-    .time-font {
-    font-family: 'Digital-7';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 102px;
-    font-weight: 500;
-    }
-    .team-font {
-    font-size:4.0rem;
-    font-weight:250;
-    line-height:1.2
-    }
-    .icon-team {
-    font-size: 3em; 
-    }
-    .thermometer {
-    display: inline-block;
-    background: linear-gradient(to bottom, #007BFF, #0099CC, #00AEEF, #00C2FF, #00D5FF);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    font-size: 4em;
-    }
-    .valuetext-team {
-    font-size:3.0rem;
-    font-weight:300;
-    line-height:1.2
-    }
-}
-
-@media screen and (max-width: 991px) {
-    .time-font {
-    font-family: 'Digital-7';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 96px;
-    font-weight: 500;
-    }
-    .team-font {
-    font-size:3.0rem;
-    font-weight:250;
-    line-height:1.2
-    }
-    .valuetext-team {
-    font-size:2.5rem;
-    font-weight:300;
-    line-height:1.2
-    }
-}
 @media screen and (max-width: 767px) {
     div.dt-buttons {
         float: none;
         width: 100%;
         text-align: left;
         margin-bottom: .5em;
-    }
-    .time-font {
-    font-family: 'Digital-7';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 86px;
-    font-weight: 500;
-    }
-    .team-font {
-    font-size:2.5rem;
-    font-weight:250;
-    line-height:1.2
-    }
-    .icon-team {
-    font-size: 2em; 
-    }
-}
-
-
-@media screen and (max-width: 575px) {
-    .time-font {
-    font-family: 'Digital-7';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 72px;
-    font-weight: 500;
-    }
-    .team-font {
-    font-size:2.5rem;
-    font-weight:250;
-    line-height:1.2
-    }
-    .icon-team {
-    font-size: 3em; 
-    }
-    .valuetext-team {
-    font-size:2rem;
-    font-weight:300;
-    line-height:1.2
     }
 }
 
@@ -396,7 +266,19 @@ div.dataTables_wrapper {
   margin: 0;
 }
 
+.time-font {
+    font-family: 'Digital-7';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 112px;
+    font-weight: 500;
+}
 
+.prevent-overflow{
+    white-space: nowrap; 
+    overflow: hidden;  
+    width: 100%;
+}
 
 .background 
 {
@@ -420,6 +302,13 @@ div.dataTables_wrapper {
 
 .jWText {
     color:white
+}
+.thermometer {
+    display: inline-block;
+    background: linear-gradient(to bottom, #007BFF, #0099CC, #00AEEF, #00C2FF, #00D5FF);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 .dropWater {

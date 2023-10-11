@@ -24,9 +24,9 @@ include( __DIR__ . "/include.php" );
       <div class="col-md-12 col-sm-12 col-12">
        
           <div class="d-flex justify-content-center" >
-                <div class="w-25">  <!--  style="background-color:#000043" -->
+                <div class="w-100">  <!--  style="background-color:#000043" -->
 
-                  <h2 class="display-3 text-center mb-0 time-font" id="clock" style="font: 900;color:#000043">  
+                  <h2 class="text-center mb-0 time-font" id="clock" style="font: 900;color:#000043">  
                     <?php echo date("H:i:s"); ?> 
                   </h2>
 
@@ -38,7 +38,7 @@ include( __DIR__ . "/include.php" );
 
     <!---- Team A / B ---->
     <div class="row">
-      <div class="col-md-6 col-sm-12">
+      <div class="col-lg-6 col-md-6 col-sm-12">
       <section class="TeamA">
       <div class="card-body pt-1 pb-0 ">
         <div class="row">
@@ -48,9 +48,9 @@ include( __DIR__ . "/include.php" );
           <div class="col-md-12">
             <div class="card mb-1 ">
               <div class="card-header pt-1 pb-1 gradient" >
-                <div class="card-title">
-                  <i class="fas fa-users mr-1 fa-4x d-inline jWText"></i>
-                  <h1 class="d-inline display-3 jWText"><strong>
+                <div class="card-title prevent-overflow">
+                  <i class="fas fa-users mr-1 icon-team d-inline jWText"></i>
+                  <h1 class="d-inline team-font jWText"><strong>
 
                     <?php echo Setting::$team["A"]?>
                   </strong>
@@ -62,26 +62,26 @@ include( __DIR__ . "/include.php" );
               <!-- /.card-header -->
               <div class="card-body pt-1 pb-0">
                 <div class="row">
-                  <div class="col-md-6 col-sm-12 center-text justify-content-between mb-1 pt-1 pb-1 card-header shadow-sm">
+                  <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 center-text justify-content-between mb-1 pt-1 pb-1 card-header shadow-sm">
                     <div class="col-1 ">
-                      <i class="fas fa-thermometer-three-quarters fa-5x thermometer"></i>
+                      <i class="fas fa-thermometer-three-quarters thermometer"></i>
                     </div>
                     <div class="col-4 left-text ml-2">
-                      <h3 class=""><strong><?php echo Setting::$TitleBoard["DB"]["temp"];?></strong></h3>
+                      <h3 class="text-team"><strong><?php echo Setting::$TitleBoard["DB"]["temp"];?></strong></h3>
                     </div>
-                    <div class="col-7 right-left">
-                      <h2 class="display-4 mr-3" id="tempA"><strong>0<?php echo Setting::$TitleBoard["Unit"]["temp"]?></strong></h2>
+                    <div class="col-7 right-left prevent-overflow">
+                      <h2 class="valuetext-team mr-3" id="tempA"><strong>0<?php echo Setting::$TitleBoard["Unit"]["temp"]?></strong></h2>
                     </div>
                   </div>
-                  <div class="col-md-6 col-sm-12 center-text justify-content-between mb-1 pt-1 pb-1 card-header shadow-sm">
+                  <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 center-text justify-content-between mb-1 pt-1 pb-1 card-header shadow-sm pl-0">
                     <div class="col-1 ">
                       <i class="fas fa-tint fa-4x ml-2 dropWater"></i>
                     </div>
                     <div class="col-5 left-text ml-4">
-                      <h3 class=""><strong><?php echo Setting::$TitleBoard["DB"]["humi"];?></strong></h3>
+                      <h3 class="text-team"><strong><?php echo Setting::$TitleBoard["DB"]["humi"];?></strong></h3>
                     </div>
-                    <div class="col-6 right-left">
-                      <h2 class="display-4 mr-3" id="humiA"><strong>0<?php echo Setting::$TitleBoard["Unit"]["humi"]?></strong></h2>
+                    <div class="col-6 right-left prevent-overflow">
+                      <h2 class="valuetext-team mr-3" id="humiA"><strong>0<?php echo Setting::$TitleBoard["Unit"]["humi"]?></strong></h2>
                     </div>
                   </div>
                 </div>
@@ -129,9 +129,9 @@ include( __DIR__ . "/include.php" );
           <div class="col-md-12">
             <div class="card mb-1">
               <div class="card-header pt-1 pb-1 gradient">
-                <div class="card-title">
-                  <i class="fas fa-users mr-1 fa-4x jWText"></i>
-                  <h1 class="d-inline display-3 jWText"><strong>
+                <div class="card-title prevent-overflow">
+                  <i class="fas fa-users mr-1 icon-team jWText"></i>
+                  <h1 class="d-inline team-font team2-font jWText"><strong>
 
                     <?php echo Setting::$team["B"]?>
                   </strong>
@@ -141,26 +141,26 @@ include( __DIR__ . "/include.php" );
               <!-- /.card-header -->
               <div class="card-body pt-1 pb-0">
                 <div class="row">
-                  <div class="col-md-6 col-sm-12 center-text justify-content-between mb-1 pt-1 pb-1 card-header shadow-sm" >
+                  <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 center-text justify-content-between mb-1 pt-1 pb-1 card-header shadow-sm" >
                   <div class="col-1 ">
-                      <i class="fas fa-thermometer-three-quarters fa-5x thermometer"></i>
+                      <i class="fas fa-thermometer-three-quarters thermometer"></i>
                     </div>
                     <div class="col-4 left-text ml-2">
-                      <h3 class=""><strong><?php echo Setting::$TitleBoard["DB"]["temp"];?></strong></h3>
+                      <h3 class="text-team"><strong><?php echo Setting::$TitleBoard["DB"]["temp"];?></strong></h3>
                     </div>
-                    <div class="col-7 right-left">
-                      <h2 class="display-4 mr-3" id="tempB"><strong>0<?php echo Setting::$TitleBoard["Unit"]["temp"]?></strong></h2>
+                    <div class="col-7 right-left prevent-overflow">
+                      <h2 class="valuetext-team mr-3" id="tempB"><strong>0<?php echo Setting::$TitleBoard["Unit"]["temp"]?></strong></h2>
                     </div>
                   </div>
-                  <div class="col-md-6 col-sm-12  center-text justify-content-between mb-1 pt-1 pb-1 card-header shadow-sm" >
+                  <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12  center-text justify-content-between mb-1 pt-1 pb-1 pl-0 card-header shadow-sm" >
                   <div class="col-1 ">
                       <i class="fas fa-tint fa-4x ml-2 dropWater"></i>
                     </div>
                     <div class="col-5 left-text ml-4">
-                      <h3 class=""><strong><?php echo Setting::$TitleBoard["DB"]["humi"];?></strong></h3>
+                      <h3 class="text-team"><strong><?php echo Setting::$TitleBoard["DB"]["humi"];?></strong></h3>
                     </div>
-                    <div class="col-6 right-left">
-                      <h2 class="display-4 mr-3" id="humiB"><strong>0<?php echo Setting::$TitleBoard["Unit"]["humi"]?></strong></h2>
+                    <div class="col-6 right-left prevent-overflow">
+                      <h2 class="valuetext-team mr-3" id="humiB"><strong>0<?php echo Setting::$TitleBoard["Unit"]["humi"]?></strong></h2>
                     </div>
                   </div>
                 </div>
@@ -212,9 +212,9 @@ include( __DIR__ . "/include.php" );
           <div class="col-md-12">
             <div class="card mb-1">
               <div class="card-header pt-1 pb-1 gradient">
-                <div class="card-title">
-                  <i class="fas fa-users mr-1 fa-4x jWText"></i>
-                  <h1 class="d-inline display-3 jWText"><strong>
+                <div class="card-title prevent-overflow">
+                  <i class="fas fa-users mr-1 icon-team jWText"></i>
+                  <h1 class="d-inline team-font jWText"><strong>
 
                     <?php echo Setting::$team["C"]?>
                   </strong>
@@ -224,26 +224,26 @@ include( __DIR__ . "/include.php" );
               <!-- /.card-header -->
               <div class="card-body pt-1 pb-0">
                 <div class="row">
-                  <div class="col-md-6 col-sm-12 card-header shadow-sm center-text justify-content-between mb-1 pt-1 pb-1">
+                  <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 card-header shadow-sm center-text justify-content-between mb-1 pt-1 pb-1">
                   <div class="col-1 ">
-                      <i class="fas fa-thermometer-three-quarters fa-5x thermometer"></i>
+                      <i class="fas fa-thermometer-three-quarters thermometer"></i>
                     </div>
                     <div class="col-4 left-text ml-2">
-                      <h3 class=""><strong><?php echo Setting::$TitleBoard["DB"]["temp"];?></strong></h3>
+                      <h3 class="text-team"><strong><?php echo Setting::$TitleBoard["DB"]["temp"];?></strong></h3>
                     </div>
                     <div class="col-7 right-left">
-                      <h2 class="display-4 mr-3" id="tempC"><strong>0<?php echo Setting::$TitleBoard["Unit"]["temp"]?></strong></h2>
+                      <h2 class="valuetext-team mr-3" id="tempC"><strong>0<?php echo Setting::$TitleBoard["Unit"]["temp"]?></strong></h2>
                     </div>
                   </div>
-                  <div class="col-md-6 col-sm-12 card-header shadow-sm center-text justify-content-between mb-1 pt-1 pb-1">
+                  <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 pl-0 card-header shadow-sm center-text justify-content-between mb-1 pt-1 pb-1">
                   <div class="col-1 ">
                       <i class="fas fa-tint fa-4x ml-2 dropWater"></i>
                     </div>
                     <div class="col-5 left-text ml-4">
-                      <h3 class=""><strong><?php echo Setting::$TitleBoard["DB"]["humi"];?></strong></h3>
+                      <h3 class="text-team"><strong><?php echo Setting::$TitleBoard["DB"]["humi"];?></strong></h3>
                     </div>
-                    <div class="col-6 right-left">
-                      <h2 class="display-4 mr-3" id="humiC"><strong>0<?php echo Setting::$TitleBoard["Unit"]["humi"]?></strong></h2>
+                    <div class="col-6 right-left prevent-overflow">
+                      <h2 class="valuetext-team mr-3" id="humiC"><strong>0<?php echo Setting::$TitleBoard["Unit"]["humi"]?></strong></h2>
                     </div>
                   </div>
                 </div>
@@ -291,9 +291,9 @@ include( __DIR__ . "/include.php" );
           <div class="col-md-12">
             <div class="card mb-1">
               <div class="card-header pt-1 pb-1 gradient">
-                <div class="card-title">
-                  <i class="fas fa-users mr-1 fa-4x jWText"></i>
-                  <h1 class="d-inline display-3 jWText"><strong>
+                <div class="card-title prevent-overflow">
+                  <i class="fas fa-users mr-1 icon-team jWText"></i>
+                  <h1 class="d-inline team-font jWText"><strong>
                     <?php echo Setting::$team["D"]?>
                   </strong>
                 </div>
@@ -302,26 +302,26 @@ include( __DIR__ . "/include.php" );
               <!-- /.card-header -->
               <div class="card-body pt-1 pb-0">
                 <div class="row">
-                  <div class="col-md-6 col-sm-12 card-header shadow-sm center-text justify-content-between mb-1 pt-1 pb-1">
+                  <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 card-header shadow-sm center-text justify-content-between mb-1 pt-1 pb-1">
                   <div class="col-1 ">
-                      <i class="fas fa-thermometer-three-quarters fa-5x thermometer"></i>
+                      <i class="fas fa-thermometer-three-quarters thermometer"></i>
                     </div>
                     <div class="col-4 left-text ml-2">
-                      <h3 class=""><strong><?php echo Setting::$TitleBoard["DB"]["temp"];?></strong></h3>
+                      <h3 class="text-team"><strong><?php echo Setting::$TitleBoard["DB"]["temp"];?></strong></h3>
                     </div>
                     <div class="col-7 right-left">
-                      <h2 class="display-4 mr-3" id="tempD"><strong>0<?php echo Setting::$TitleBoard["Unit"]["temp"]?></strong></h2>
+                      <h2 class="valuetext-team mr-3" id="tempD"><strong>0<?php echo Setting::$TitleBoard["Unit"]["temp"]?></strong></h2>
                     </div>
                   </div>
-                  <div class="col-md-6 col-sm-12 card-header shadow-sm center-text justify-content-between mb-1 pt-1 pb-1">
+                  <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 pl-0 card-header shadow-sm center-text justify-content-between mb-1 pt-1 pb-1">
                   <div class="col-1 ">
                       <i class="fas fa-tint fa-4x ml-2 dropWater"></i>
                     </div>
                     <div class="col-5 left-text ml-4">
-                      <h3 class=""><strong><?php echo Setting::$TitleBoard["DB"]["humi"];?></strong></h3>
+                      <h3 class="text-team"><strong><?php echo Setting::$TitleBoard["DB"]["humi"];?></strong></h3>
                     </div>
-                    <div class="col-6 right-left">
-                      <h2 class="display-4 mr-3" id="humiD"><strong>0<?php echo Setting::$TitleBoard["Unit"]["humi"]?></strong></h2>
+                    <div class="col-6 right-left prevent-overflow">
+                      <h2 class="valuetext-team mr-3" id="humiD"><strong>0<?php echo Setting::$TitleBoard["Unit"]["humi"]?></strong></h2>
                     </div>
                   </div>
                 </div>

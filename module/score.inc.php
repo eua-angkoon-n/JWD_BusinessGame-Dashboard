@@ -1,5 +1,5 @@
 <?php 
-include( __DIR__ . "/include.php" );
+include( __DIR__ . "/include_score.php" );
 ?>
 
 <style>
@@ -73,7 +73,7 @@ include( __DIR__ . "/include.php" );
                             <!-- /.card-header -->
                             <div class="card-body pt-1 pb-0">
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
                                         <div class="col-12 mb-0 pt-1">
                                             <div class="row ">
                                                 <i class="fas fa-charging-station fa-3x align-middle pt-2 lightBulb"></i>
@@ -88,7 +88,7 @@ include( __DIR__ . "/include.php" );
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
                                         <div class="col-12 mb-0 pt-1">
                                             <div class="row ">
                                                 <i class="fas fa-bolt fa-3x align-middle pt-2 thunder"></i>
@@ -103,7 +103,7 @@ include( __DIR__ . "/include.php" );
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
                                         <div class="col-12 mb-0 pt-1">
                                             <div class="row ">
                                                 <i class="fas fa-snowflake fa-3x align-middle pt-2 thermometer"></i>
@@ -118,7 +118,7 @@ include( __DIR__ . "/include.php" );
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
                                         <div class="col-12 mb-0 pt-1">
                                             <div class="row ">
                                                 <i class="fas fa-tint fa-3x align-middle pt-2 dropWater"></i>
@@ -167,7 +167,7 @@ include( __DIR__ . "/include.php" );
                             <!-- /.card-header -->
                             <div class="card-body pt-1 pb-0">
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
                                         <div class="col-12 mb-0 pt-1">
                                             <div class="row ">
                                                 <i class="fas fa-charging-station fa-3x align-middle pt-2 lightBulb"></i>
@@ -183,7 +183,7 @@ include( __DIR__ . "/include.php" );
                                         </div>
                                     </div>
                                     <div
-                                        class="col-lg-3 col-md-3 col-sm-12">
+                                        class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
                                         <div class="col-12 mb-0 pt-1">
                                             <div class="row ">
                                                 <i class="fas fa-bolt fa-3x align-middle pt-2 thunder"></i>
@@ -198,7 +198,7 @@ include( __DIR__ . "/include.php" );
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
                                         <div class="col-12 mb-0 pt-1">
                                             <div class="row ">
                                                 <i class="fas fa-snowflake fa-3x align-middle pt-2 thermometer"></i>
@@ -214,7 +214,7 @@ include( __DIR__ . "/include.php" );
                                         </div>
                                     </div>
                                     <div
-                                        class="col-lg-3 col-md-6 col-sm-12">
+                                        class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
                                         <div class="col-12 mb-0 pt-1">
                                             <div class="row ">
                                                 <i class="fas fa-tint fa-3x align-middle pt-2 dropWater"></i>
@@ -268,7 +268,7 @@ include( __DIR__ . "/include.php" );
                             <!-- /.card-header -->
                             <div class="card-body pt-1 pb-0">
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
                                         <div class="col-12 mb-0 pt-1">
                                             <div class="row ">
                                                 <i class="fas fa-charging-station fa-3x align-middle pt-2 lightBulb"></i>
@@ -284,7 +284,7 @@ include( __DIR__ . "/include.php" );
                                         </div>
                                     </div>
                                     <div
-                                        class="col-lg-3 col-md-3 col-sm-12">
+                                        class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
                                         <div class="col-12 mb-0 pt-1">
                                             <div class="row ">
                                                 <i class="fas fa-bolt fa-3x align-middle pt-2 thunder"></i>
@@ -299,7 +299,7 @@ include( __DIR__ . "/include.php" );
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
                                         <div class="col-12 mb-0 pt-1">
                                             <div class="row ">
                                                 <i class="fas fa-snowflake fa-3x align-middle pt-2 thermometer"></i>
@@ -315,7 +315,7 @@ include( __DIR__ . "/include.php" );
                                         </div>
                                     </div>
                                     <div
-                                        class="col-lg-3 col-md-3 col-sm-12">
+                                        class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
                                         <div class="col-12 mb-0 pt-1">
                                             <div class="row ">
                                                 <i class="fas fa-tint fa-3x align-middle pt-2 dropWater"></i>
@@ -364,7 +364,7 @@ include( __DIR__ . "/include.php" );
                             <!-- /.card-header -->
                             <div class="card-body pt-1 pb-0">
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
                                         <div class="col-12 mb-0 pt-1">
                                             <div class="row ">
                                                 <i class="fas fa-charging-station fa-3x align-middle pt-2 lightBulb"></i>
@@ -380,7 +380,7 @@ include( __DIR__ . "/include.php" );
                                         </div>
                                     </div>
                                     <div
-                                        class="col-lg-3 col-md-3 col-sm-12">
+                                        class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
                                         <div class="col-12 mb-0 pt-1">
                                             <div class="row ">
                                                 <i class="fas fa-bolt fa-3x align-middle pt-2 thunder"></i>
@@ -395,7 +395,7 @@ include( __DIR__ . "/include.php" );
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
                                         <div class="col-12 mb-0 pt-1">
                                             <div class="row ">
                                                 <i class="fas fa-snowflake fa-3x align-middle pt-2 thermometer"></i>
@@ -411,7 +411,7 @@ include( __DIR__ . "/include.php" );
                                         </div>
                                     </div>
                                     <div
-                                        class="col-lg-3 col-md-3 col-sm-12">
+                                        class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
                                         <div class="col-12 mb-0 pt-1">
                                             <div class="row ">
                                                 <i class="fas fa-tint fa-3x align-middle pt-2 dropWater"></i>

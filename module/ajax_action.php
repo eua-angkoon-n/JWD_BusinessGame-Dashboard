@@ -297,7 +297,7 @@ Class TeamBoard {
         // Calculate LuxPerMinute
         foreach ($logData as $log) {
             // Calculate LuxPerMinute
-            if ($log['logs_solar'] > 30 && $log['logs_solar'] <= 3000) {
+            if ($log['logs_solar'] > 1000) {
                 $countLux += 1;
             }
     
@@ -410,7 +410,7 @@ Class ScoreBoard {
             // Calculate LuxPerMinute
             foreach ($logData as $log) {
                 // Calculate LuxPerMinute
-                if ($log['logs_solar'] > 30 && $log['logs_solar'] <= 3000) {
+                if ($log['logs_solar'] > 1000) {
                     $countLux += 1;
                 }
         

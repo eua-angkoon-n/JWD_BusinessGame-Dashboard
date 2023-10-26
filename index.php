@@ -14,6 +14,19 @@ $Time = new Processing;
 $start = $Time->Start_Time();
 
 isset($_REQUEST['module']) ? $module = $_REQUEST['module'] : $module = '';
+isset($_REQUEST['idT']) ? $idT = $_REQUEST['idT'] : $idT = '';
+
+// switch ($idT) {
+//     case 'a889ca3ebe0fb1abf13d4e72a2de5d4a3afcf525':
+//         $include_module = __DIR__ . "/module/team.inc.php";
+//         $TEAM = "A";
+//         $module == "A" ? $active_A = "active" : $active_A = ""; #ไฮไลท์เมนูด้านซ้าย
+//         $title_site = Setting::$title_site[$module];
+//         $title_act = Setting::$title_act[$module];
+//         $breadcrumb_txt = Setting::$breadcrumb_txt[$module];
+//         break;
+    
+// }
 
 switch ($module) {
     case "A" :

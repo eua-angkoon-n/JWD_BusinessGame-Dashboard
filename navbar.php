@@ -1,6 +1,7 @@
  <!-- Navbar -->
  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
+            <?php if(empty($idT)) {?>
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" id="pushmenu" data-widget="pushmenu" href="#" role="button"><i
@@ -13,6 +14,7 @@
                     <a href="?module=linkTable" class="nav-link">Link</a>
                 </li>
             </ul>
+            <?php } ?>
 
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">

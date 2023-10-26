@@ -11,7 +11,9 @@ include( __DIR__ . "/include_score.php" );
       
       <div class="card-tools">
         <ol class="breadcrumb float-sm-right pt-1 pb-1 m-0">
-          <li class="breadcrumb-item"><a href="./">Home</a></li>
+          <?php if((empty($idT))){?>
+            <li class="breadcrumb-item"><a href="./">Home</a></li>
+          <?php } ?>
           <li class="breadcrumb-item active">
             <?PHP echo $breadcrumb_txt; ?>
           </li>

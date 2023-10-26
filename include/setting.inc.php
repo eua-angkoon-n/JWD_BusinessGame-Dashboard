@@ -62,7 +62,7 @@ class Setting
             "volt" => "Volt",
         ),
         "TeamTitle" => array(
-            "ETProd" => "ผลิตไฟฟ้าได้",
+            "ETProd" => "ผลิตโซลาร์ได้",
             "MXVolt" => "กำลังไฟสูงสุด",
             "tempCan" => "อุณหภูมิที่ทำได้",
             "MXHumi" => "ความชื้นสูงสุด/ต่ำสุด",
@@ -73,5 +73,12 @@ class Setting
             "temp" => "°C",
             "humi" => "%"
         )
+    );
+
+    public static $bcrypt = array(
+        "A" => "0ea7f0f9529085aba63e4745c6556bef3b1f0df4",
+        "B" => "53bef39b17fa4f7cab7c0de0a65f3035b779e1ef",
+        "C" => "6be820c13e494f33a8d5240596a8244152bd55ce",
+        "D" => "2853d1f1c7fbe524c961103ebc77cf9c8181a34c"
     );
 }

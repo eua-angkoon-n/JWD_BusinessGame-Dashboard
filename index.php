@@ -55,6 +55,13 @@ switch ($module) {
         $title_act = Setting::$title_act[$module];
         $breadcrumb_txt = Setting::$breadcrumb_txt[$module];
         break;
+    case "linkTable":
+        $include_module = __DIR__ . "/module/linktable.inc.php";
+        $module == "linkTable" ? $backgroundL = "cardBackground" : $backgroundL = "";
+        $title_site = Setting::$title_site[$module];
+        $title_act = Setting::$title_act[$module];
+        $breadcrumb_txt = Setting::$breadcrumb_txt[$module];
+        break;
     default:
         $include_module = __DIR__ . "/module/dashboard.inc.php";
         $txt = "Dashboard";
@@ -153,7 +160,7 @@ switch ($module) {
         </aside>
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper <?PHP echo  $backgroundL ?> ">
             <!-- Content Header (Page header) -->
             <div class="content-header p-1">
 

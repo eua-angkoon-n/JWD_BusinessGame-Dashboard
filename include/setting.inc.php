@@ -13,6 +13,7 @@ class Setting
     public static $title_site = array
     (
         "Dashboard" => "Dashboard",
+        "linkTable"=> "",
         "Score" => "Score", 
         "A" => "คลังสินค้า YENCHEIB",
         "B" => "คลังสินค้า JMT",
@@ -22,6 +23,7 @@ class Setting
     public static $title_act = array
     (
         "Dashboard" => "Dashboard",
+        "linkTable"=> "",
         "Score" => "Score", 
         "A" => "คลังสินค้า YENCHEIB",
         "B" => "คลังสินค้า JMT",
@@ -31,6 +33,7 @@ class Setting
     public static $breadcrumb_txt = array
     (
         "Dashboard" => "Dashboard",
+        "linkTable"=> "",
         "Score" => "Score", 
         "A" => "คลังสินค้า YENCHEIB",
         "B" => "คลังสินค้า JMT",

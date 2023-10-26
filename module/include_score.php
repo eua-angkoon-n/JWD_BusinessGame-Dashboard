@@ -286,9 +286,6 @@ div.dataTables_wrapper {
   background: linear-gradient(120deg, rgba(50, 150, 100, 0.2) , rgba(0, 0, 100, 0) );
 }
 
-.cardBackground {
-    background: linear-gradient(to bottom left, #6d7fae, #e6e7e8, #6d7fae,white);
-}
 
 .card-DB{
     border-top:3px solid #000043;

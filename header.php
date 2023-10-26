@@ -63,6 +63,9 @@
       font-style: normal;
       font-weight:500;
   }
+  .cardBackground {
+    background: linear-gradient(to bottom left, #6d7fae, #e6e7e8, #6d7fae,white);
+  }
 </style>
 
 <script type="text/javascript">

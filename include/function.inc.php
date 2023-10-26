@@ -803,4 +803,13 @@ function getLast1Day(){
     return $dateRange;
 }
 
+function findKeyByValue($value, $array) {
+    foreach ($array as $key => $arrayValue) {
+        if ($arrayValue === $value) {
+            return $key;
+        }
+    }
+    return null; // Return null if the value is not found in the array
+}
+
 ?>

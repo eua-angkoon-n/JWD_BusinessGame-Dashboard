@@ -14,7 +14,7 @@ $Time = new Processing;
 $start = $Time->Start_Time();
 
 isset($_REQUEST['module']) ? $module = $_REQUEST['module'] : $module = '';
-isset($_REQUEST['idT']) ? $idT = $_REQUEST['idT'] : $idT = '';
+isset($_REQUEST['uuid']) ? $uuid = $_REQUEST['uuid'] : $uuid = '';
 
 // switch ($idT) {
 //     case 'a889ca3ebe0fb1abf13d4e72a2de5d4a3afcf525':
@@ -30,36 +30,61 @@ isset($_REQUEST['idT']) ? $idT = $_REQUEST['idT'] : $idT = '';
 
 switch ($module) {
     case "A" :
+        if(!empty($uuid) && $uuid == Setting::$bcrypt['A']){
         $include_module = __DIR__ . "/module/team.inc.php";
         $TEAM = "A";
         $module == "A" ? $active_A = "active" : $active_A = ""; #ไฮไลท์เมนูด้านซ้าย
         $title_site = Setting::$title_site[$module];
         $title_act = Setting::$title_act[$module];
         $breadcrumb_txt = Setting::$breadcrumb_txt[$module];
+        } else {
+            $newModule = findKeyByValue($uuid, Setting::$bcrypt);
+            $web = Setting::$webLocation."?module=$newModule&uuid=$uuid";
+            header( "location: $web");
+        }
+
         break;
     case "B" :
-        $include_module = __DIR__ . "/module/team.inc.php";
-        $TEAM = "B";
-        $module == "B" ? $active_B = "active" : $active_B = ""; 
-        $title_site = Setting::$title_site[$module];
-        $title_act = Setting::$title_act[$module];
-        $breadcrumb_txt = Setting::$breadcrumb_txt[$module];
+        if(!empty($uuid) && $uuid == Setting::$bcrypt['B']){
+            $include_module = __DIR__ . "/module/team.inc.php";
+            $TEAM = "B";
+            $module == "B" ? $active_B = "active" : $active_B = ""; 
+            $title_site = Setting::$title_site[$module];
+            $title_act = Setting::$title_act[$module];
+            $breadcrumb_txt = Setting::$breadcrumb_txt[$module];
+        } else {
+            $newModule = findKeyByValue($uuid, Setting::$bcrypt);
+            $web = Setting::$webLocation."?module=$newModule&uuid=$uuid";
+            header( "location: $web");
+        }
         break;
     case "C" :
-        $include_module = __DIR__ . "/module/team.inc.php";
-        $TEAM = "C";
-        $module == "C" ? $active_C = "active" : $active_C = ""; 
-        $title_site = Setting::$title_site[$module];
-        $title_act = Setting::$title_act[$module];
-        $breadcrumb_txt = Setting::$breadcrumb_txt[$module];
+        if(!empty($uuid) && $uuid == Setting::$bcrypt['C']){
+            $include_module = __DIR__ . "/module/team.inc.php";
+            $TEAM = "C";
+            $module == "C" ? $active_C = "active" : $active_C = ""; 
+            $title_site = Setting::$title_site[$module];
+            $title_act = Setting::$title_act[$module];
+            $breadcrumb_txt = Setting::$breadcrumb_txt[$module];
+        } else {
+            $newModule = findKeyByValue($uuid, Setting::$bcrypt);
+            $web = Setting::$webLocation."?module=$newModule&uuid=$uuid";
+            header( "location: $web");
+        }
         break;
     case "D" :
-        $include_module = __DIR__ . "/module/team.inc.php";
-        $TEAM = "D";
-        $module == "D" ? $active_D = "active" : $active_D = "";
-        $title_site = Setting::$title_site[$module];
-        $title_act = Setting::$title_act[$module];
-        $breadcrumb_txt = Setting::$breadcrumb_txt[$module];
+        if(!empty($uuid) && $uuid == Setting::$bcrypt['D']){
+            $include_module = __DIR__ . "/module/team.inc.php";
+            $TEAM = "D";
+            $module == "D" ? $active_D = "active" : $active_D = "";
+            $title_site = Setting::$title_site[$module];
+            $title_act = Setting::$title_act[$module];
+            $breadcrumb_txt = Setting::$breadcrumb_txt[$module];
+        } else {
+            $newModule = findKeyByValue($uuid, Setting::$bcrypt);
+            $web = Setting::$webLocation."?module=$newModule&uuid=$uuid";
+            header( "location: $web");
+        }
         break;
     case "Score":
         $include_module = __DIR__ . "/module/score.inc.php";

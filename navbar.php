@@ -1,7 +1,7 @@
  <!-- Navbar -->
  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
-            <?php if(empty($idT)) {?>
+            <?php if(empty($uuid)) {?>
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" id="pushmenu" data-widget="pushmenu" href="#" role="button"><i

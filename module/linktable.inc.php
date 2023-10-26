@@ -21,6 +21,9 @@ include( __DIR__ . "/include.php" );
                 <th class="jWText">
                     <h3><strong>Dashboard</strong></h3>
                 </th>
+                <th class="jWText">
+                    <h3><strong>Gmail</strong></h3>
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -53,6 +56,9 @@ include( __DIR__ . "/include.php" );
                         </a>
                     </div>
                 </td>
+                <td>
+                    <h4><strong>coldchainyenchieb@gmail.com</strong></h4>    
+                </td>
             </tr>
             <tr class="text-center">
                 <td>
@@ -82,6 +88,9 @@ include( __DIR__ . "/include.php" );
                         </a>
                     </div>
                 </td>
+                <td>
+                    <h4><strong>coldchainjmt@gmail.com</strong></h4>    
+                </td>
             </tr>
             <tr class="text-center">
                 <td>
@@ -109,6 +118,9 @@ include( __DIR__ . "/include.php" );
                             <h4><u>&nbsp;Copy&nbsp;&nbsp;</u></h4>
                         </a>
                     </div>
+                </td>
+                <td>
+                    <h4><strong>coldchainfnc@gmail.com</strong></h4>    
                 </td>
             </tr>
             <tr class="text-center">
@@ -138,6 +150,9 @@ include( __DIR__ . "/include.php" );
                             <h4><u>&nbsp;Copy&nbsp;&nbsp;</u></h4>
                         </a>
                     </div>
+                </td>
+                <td>
+                    <h4><strong>coldchainidea@gmail.com</strong></h4>    
                 </td>
             </tr>
         </tbody>

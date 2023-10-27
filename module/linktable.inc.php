@@ -22,6 +22,9 @@ include( __DIR__ . "/include.php" );
                     <h3><strong>Dashboard</strong></h3>
                 </th>
                 <th class="jWText">
+                    <h3><strong>ลิงก์สำหรับผู้เล่น</strong></h3>
+                </th>
+                <th class="jWText">
                     <h3><strong>Gmail</strong></h3>
                 </th>
             </tr>
@@ -59,6 +62,18 @@ include( __DIR__ . "/include.php" );
                     </div>
                 </td>
                 <td>
+                    <div class="d-flex justify-content-center">
+                        <a href="https://ebooking.cc.pcs-plp.com/misbg2024/?uuid=0ea7f0f9529085aba63e4745c6556bef3b1f0df4"
+                            target="_blank" class="card-link">
+                            <h4><u>Open</u></h4>
+                        </a>
+                        <a class="copy-link-button card-link"
+                            data-clipboard="https://ebooking.cc.pcs-plp.com/misbg2024/?uuid=0ea7f0f9529085aba63e4745c6556bef3b1f0df4">
+                            <h4><u>&nbsp;Copy&nbsp;&nbsp;</u></h4>
+                        </a>
+                    </div>
+                </td>
+                <td>
                     <h4><strong>coldchainyenchieb@gmail.com</strong></h4>    
                 </td>
             </tr>
@@ -91,6 +106,18 @@ include( __DIR__ . "/include.php" );
                     </div>
                 </td>
                 <td>
+                    <div class="d-flex justify-content-center">
+                        <a href="https://ebooking.cc.pcs-plp.com/misbg2024/?uuid=53bef39b17fa4f7cab7c0de0a65f3035b779e1ef"
+                            target="_blank" class="card-link">
+                            <h4><u>Open</u></h4>
+                        </a>
+                        <a class="copy-link-button card-link"
+                            data-clipboard="https://ebooking.cc.pcs-plp.com/misbg2024/?uuid=53bef39b17fa4f7cab7c0de0a65f3035b779e1ef">
+                            <h4><u>&nbsp;Copy&nbsp;&nbsp;</u></h4>
+                        </a>
+                    </div>
+                </td>
+                <td>
                     <h4><strong>coldchainjmt@gmail.com</strong></h4>    
                 </td>
             </tr>
@@ -117,6 +144,18 @@ include( __DIR__ . "/include.php" );
                         </a>
                         <a class="copy-link-button card-link"
                             data-clipboard="https://lookerstudio.google.com/reporting/316a24f2-0ef9-4ccf-aeff-ed0bfd28de6b">
+                            <h4><u>&nbsp;Copy&nbsp;&nbsp;</u></h4>
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex justify-content-center">
+                        <a href="https://ebooking.cc.pcs-plp.com/misbg2024/?uuid=6be820c13e494f33a8d5240596a8244152bd55ce"
+                            target="_blank" class="card-link">
+                            <h4><u>Open</u></h4>
+                        </a>
+                        <a class="copy-link-button card-link"
+                            data-clipboard="https://ebooking.cc.pcs-plp.com/misbg2024/?uuid=6be820c13e494f33a8d5240596a8244152bd55ce">
                             <h4><u>&nbsp;Copy&nbsp;&nbsp;</u></h4>
                         </a>
                     </div>
@@ -154,6 +193,18 @@ include( __DIR__ . "/include.php" );
                     </div>
                 </td>
                 <td>
+                    <div class="d-flex justify-content-center">
+                        <a href="https://ebooking.cc.pcs-plp.com/misbg2024/?uuid=2853d1f1c7fbe524c961103ebc77cf9c8181a34c"
+                            target="_blank" class="card-link">
+                            <h4><u>Open</u></h4>
+                        </a>
+                        <a class="copy-link-button card-link"
+                            data-clipboard="https://ebooking.cc.pcs-plp.com/misbg2024/?uuid=2853d1f1c7fbe524c961103ebc77cf9c8181a34c">
+                            <h4><u>&nbsp;Copy&nbsp;&nbsp;</u></h4>
+                        </a>
+                    </div>
+                </td>
+                <td>
                     <h4><strong>coldchainidea@gmail.com</strong></h4>    
                 </td>
             </tr>
@@ -175,15 +226,18 @@ include( __DIR__ . "/include.php" );
                 </td>
                 <td>
                     <div class="d-flex justify-content-center">
-                        <a href="https://lookerstudio.google.com/reporting/9b47230c-6369-4735-a762-6f97eee006b4"
+                        <a href="https://lookerstudio.google.com/s/jUImkwwwP-o"
                             target="_blank" class="card-link">
                             <h4><u>Open</u></h4>
                         </a>
                         <a class="copy-link-button card-link"
-                            data-clipboard="https://lookerstudio.google.com/reporting/9b47230c-6369-4735-a762-6f97eee006b4">
+                            data-clipboard="https://lookerstudio.google.com/s/jUImkwwwP-o">
                             <h4><u>&nbsp;Copy&nbsp;&nbsp;</u></h4>
                         </a>
                     </div>
+                </td>
+                <td>
+                     -
                 </td>
                 <td>
                     <h4><strong>coldchainplp@gmail.com</strong></h4>    

@@ -48,8 +48,9 @@ include( __DIR__ . "/include.php" );
           <div class="col-md-12">
             <div class="card mb-1 ">
               <div class="card-header pt-1 pb-1 gradient" >
-                <div class="card-title prevent-overflow">
-                  <i class="fas fa-users mr-1 icon-team d-inline jWText"></i>
+                <div class="card-title prevent-overflow d-inline-flex " >
+                <img src="dist/img/yenteam.png" class="icon-team mr-2 mt-1" alt="YENCHIEB">
+                  <!-- <i class="fas fa-users mr-1 icon-team d-inline jWText"></i> -->
                   <h1 class="d-inline team-font jWText"><strong>
 
                     <?php echo Setting::$team["A"]?>
@@ -129,8 +130,9 @@ include( __DIR__ . "/include.php" );
           <div class="col-md-12">
             <div class="card mb-1">
               <div class="card-header pt-1 pb-1 gradient">
-                <div class="card-title prevent-overflow">
-                  <i class="fas fa-users mr-1 icon-team jWText"></i>
+              <div class="card-title prevent-overflow d-inline-flex " >
+                <img src="dist/img/jmtteam.png" class="icon-team mr-2 mt-1" alt="JMT">
+                  <!-- <i class="fas fa-users mr-1 icon-team jWText"></i> -->
                   <h1 class="d-inline team-font team2-font jWText"><strong>
 
                     <?php echo Setting::$team["B"]?>
@@ -212,8 +214,8 @@ include( __DIR__ . "/include.php" );
           <div class="col-md-12">
             <div class="card mb-1">
               <div class="card-header pt-1 pb-1 gradient">
-                <div class="card-title prevent-overflow">
-                  <i class="fas fa-users mr-1 icon-team jWText"></i>
+              <div class="card-title prevent-overflow d-inline-flex " >
+                <img src="dist/img/fncteam.jpg" class="icon-team mr-2 mt-1" alt="F&C">
                   <h1 class="d-inline team-font jWText"><strong>
 
                     <?php echo Setting::$team["C"]?>
@@ -291,8 +293,8 @@ include( __DIR__ . "/include.php" );
           <div class="col-md-12">
             <div class="card mb-1">
               <div class="card-header pt-1 pb-1 gradient">
-                <div class="card-title prevent-overflow">
-                  <i class="fas fa-users mr-1 icon-team jWText"></i>
+              <div class="card-title prevent-overflow d-inline-flex " >
+                <img src="dist/img/ideateam.png" class="icon-team mr-2 mt-1" alt="IDEA">
                   <h1 class="d-inline team-font jWText"><strong>
                     <?php echo Setting::$team["D"]?>
                   </strong>

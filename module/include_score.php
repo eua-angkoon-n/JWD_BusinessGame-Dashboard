@@ -133,6 +133,11 @@
       transition: border-color 0.4s ease;
       cursor: pointer;
   }
+  .icon-team {
+    border-radius: 8px;
+    height: 70px;
+}  
+
 
   .checkbox-menu li input {
       margin: 0px 5px;

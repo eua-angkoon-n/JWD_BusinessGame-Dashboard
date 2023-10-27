@@ -216,7 +216,8 @@
 }
 
 .icon-team {
-    font-size: 4em; 
+    border-radius: 8px;
+    height: 90px;
 }
 .thermometer {
     display: inline-block;
@@ -256,7 +257,8 @@
     line-height:1.2
     }
     .icon-team {
-    font-size: 3em; 
+    border-radius: 8px;
+    height: 80px;
     }
     .thermometer {
     display: inline-block;
@@ -286,6 +288,10 @@
     font-weight:250;
     line-height:1.2
     }
+    .icon-team {
+    border-radius: 8px;
+    height: 50px;
+    }
     .valuetext-team {
     font-size:2.5rem;
     font-weight:300;
@@ -311,11 +317,8 @@
     font-weight:250;
     line-height:1.2
     }
-    .icon-team {
-    font-size: 2em; 
-    }
-}
 
+}
 
 @media screen and (max-width: 575px) {
     .time-font {
@@ -331,7 +334,8 @@
     line-height:1.2
     }
     .icon-team {
-    font-size: 3em; 
+    border-radius: 8px;
+    height: 50px;
     }
     .valuetext-team {
     font-size:2rem;

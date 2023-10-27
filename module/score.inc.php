@@ -59,8 +59,9 @@ include( __DIR__ . "/include_score.php" );
                     <div class="col-md-12">
                         <div class="card mb-1 ">
                             <div class="card-header pt-1 pb-1 gradient">
-                                <div class="card-title">
-                                    <i class="fas fa-users mr-1 fa-3x d-inline jWText"></i>
+                                <div class="card-title d-inline-flex prevent-overflow">
+                                <img src="dist/img/yenteam.png" class="icon-team mr-2 mt-1" alt="YENCHIEB">
+                                    <!-- <i class="fas fa-users mr-1 fa-3x d-inline jWText"></i> -->
                                     <h2 class="d-inline display-4 jWText"><strong>
 
                                             <?php echo Setting::$team["A"]?>
@@ -155,8 +156,8 @@ include( __DIR__ . "/include_score.php" );
                     <div class="col-md-12">
                         <div class="card mb-1">
                             <div class="card-header pt-1 pb-1 gradient">
-                                <div class="card-title">
-                                    <i class="fas fa-users mr-1 fa-3x jWText"></i>
+                            <div class="card-title d-inline-flex prevent-overflow">
+                                <img src="dist/img/jmtteam.png" class="icon-team mr-2 mt-1" alt="JMT">
                                     <h1 class="d-inline display-4 jWText"><strong>
 
                                             <?php echo Setting::$team["B"]?>
@@ -254,9 +255,9 @@ include( __DIR__ . "/include_score.php" );
                     <div class="col-md-12">
                         <div class="card mb-1 ">
                             <div class="card-header pt-1 pb-1 gradient">
-                                <div class="card-title">
-                                    <i class="fas fa-users mr-1 fa-3x d-inline jWText" id="TeamName"></i>
-                                    <h1 class="d-inline display-4 jWText" id="TeamName"><strong>
+                            <div class="card-title d-inline-flex prevent-overflow">
+                                <img src="dist/img/fncteam.jpg" class="icon-team mr-2 mt-1" alt="F&C">
+                                    <h1 class="d-inline display-4 jWText"><strong>
 
                                             <?php echo Setting::$team["C"]?>
                                         </strong>
@@ -352,8 +353,8 @@ include( __DIR__ . "/include_score.php" );
                     <div class="col-md-12">
                         <div class="card mb-1">
                             <div class="card-header pt-1 pb-1 gradient">
-                                <div class="card-title">
-                                    <i class="fas fa-users mr-1 fa-3x jWText"></i>
+                                <div class="card-title d-inline-flex prevent-overflow">
+                                    <img src="dist/img/ideateam.png" class="icon-team mr-2 mt-1" alt="IDEA">
                                     <h1 class="d-inline display-4 jWText"><strong>
 
                                             <?php echo Setting::$team["D"]?>

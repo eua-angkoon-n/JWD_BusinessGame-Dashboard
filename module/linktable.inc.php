@@ -29,7 +29,9 @@ include( __DIR__ . "/include.php" );
         <tbody>
             <tr class="text-center">
                 <td>
+                <div class="d-flex justify-content-center">
                     <h3><strong>YENCHIEB</strong></h3>
+                </div>
                 </td>
                 <td>
                     <div class="d-flex justify-content-center">

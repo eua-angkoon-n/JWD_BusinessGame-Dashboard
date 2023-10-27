@@ -49,7 +49,7 @@ include( __DIR__ . "/include.php" );
             <div class="card mb-1 ">
               <div class="card-header pt-1 pb-1 gradient" >
                 <div class="card-title prevent-overflow d-inline-flex " >
-                <img src="dist/img/yenteam.png" class="icon-team mr-2 mt-1" alt="YENCHIEB">
+                <img src="dist/img/yenteams.png" class="icon-team mr-2 mt-1" alt="YENCHIEB">
                   <!-- <i class="fas fa-users mr-1 icon-team d-inline jWText"></i> -->
                   <h1 class="d-inline team-font jWText"><strong>
 
@@ -131,7 +131,7 @@ include( __DIR__ . "/include.php" );
             <div class="card mb-1">
               <div class="card-header pt-1 pb-1 gradient">
               <div class="card-title prevent-overflow d-inline-flex " >
-                <img src="dist/img/jmtteam.png" class="icon-team mr-2 mt-1" alt="JMT">
+                <img src="dist/img/jmtteams.png" class="icon-team mr-2 mt-1" alt="JMT">
                   <!-- <i class="fas fa-users mr-1 icon-team jWText"></i> -->
                   <h1 class="d-inline team-font team2-font jWText"><strong>
 
@@ -215,7 +215,7 @@ include( __DIR__ . "/include.php" );
             <div class="card mb-1">
               <div class="card-header pt-1 pb-1 gradient">
               <div class="card-title prevent-overflow d-inline-flex " >
-                <img src="dist/img/fncteam.jpg" class="icon-team mr-2 mt-1" alt="F&C">
+                <img src="dist/img/fncteam.png" class="icon-team mr-2 mt-1" alt="F&C">
                   <h1 class="d-inline team-font jWText"><strong>
 
                     <?php echo Setting::$team["C"]?>
@@ -294,7 +294,7 @@ include( __DIR__ . "/include.php" );
             <div class="card mb-1">
               <div class="card-header pt-1 pb-1 gradient">
               <div class="card-title prevent-overflow d-inline-flex " >
-                <img src="dist/img/ideateam.png" class="icon-team mr-2 mt-1" alt="IDEA">
+                <img src="dist/img/ideateams.png" class="icon-team mr-2 mt-1" alt="IDEA">
                   <h1 class="d-inline team-font jWText"><strong>
                     <?php echo Setting::$team["D"]?>
                   </strong>

@@ -60,7 +60,7 @@ include( __DIR__ . "/include_score.php" );
                         <div class="card mb-1 ">
                             <div class="card-header pt-1 pb-1 gradient">
                                 <div class="card-title d-inline-flex prevent-overflow">
-                                <img src="dist/img/yenteam.png" class="icon-team mr-2 mt-1" alt="YENCHIEB">
+                                <img src="dist/img/yenteams.png" class="icon-team mr-2 mt-1" alt="YENCHIEB">
                                     <!-- <i class="fas fa-users mr-1 fa-3x d-inline jWText"></i> -->
                                     <h2 class="d-inline display-4 jWText"><strong>
 
@@ -157,7 +157,7 @@ include( __DIR__ . "/include_score.php" );
                         <div class="card mb-1">
                             <div class="card-header pt-1 pb-1 gradient">
                             <div class="card-title d-inline-flex prevent-overflow">
-                                <img src="dist/img/jmtteam.png" class="icon-team mr-2 mt-1" alt="JMT">
+                                <img src="dist/img/jmtteams.png" class="icon-team mr-2 mt-1" alt="JMT">
                                     <h1 class="d-inline display-4 jWText"><strong>
 
                                             <?php echo Setting::$team["B"]?>
@@ -256,7 +256,7 @@ include( __DIR__ . "/include_score.php" );
                         <div class="card mb-1 ">
                             <div class="card-header pt-1 pb-1 gradient">
                             <div class="card-title d-inline-flex prevent-overflow">
-                                <img src="dist/img/fncteam.jpg" class="icon-team mr-2 mt-1" alt="F&C">
+                                <img src="dist/img/fncteam.png" class="icon-team mr-2 mt-1" alt="F&C">
                                     <h1 class="d-inline display-4 jWText"><strong>
 
                                             <?php echo Setting::$team["C"]?>
@@ -354,7 +354,7 @@ include( __DIR__ . "/include_score.php" );
                         <div class="card mb-1">
                             <div class="card-header pt-1 pb-1 gradient">
                                 <div class="card-title d-inline-flex prevent-overflow">
-                                    <img src="dist/img/ideateam.png" class="icon-team mr-2 mt-1" alt="IDEA">
+                                    <img src="dist/img/ideateams.png" class="icon-team mr-2 mt-1" alt="IDEA">
                                     <h1 class="d-inline display-4 jWText"><strong>
 
                                             <?php echo Setting::$team["D"]?>

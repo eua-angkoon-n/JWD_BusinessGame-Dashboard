@@ -11,7 +11,7 @@ include( __DIR__ . "/include_score.php" );
       
       <div class="card-tools">
         <ol class="breadcrumb float-sm-right pt-1 pb-1 m-0">
-          <?php if((empty($uuid))){?>
+          <?php if($uuid == Setting::$bcrypt['admin']) {?>
             <li class="breadcrumb-item"><a href="./">Home</a></li>
           <?php } ?>
           <li class="breadcrumb-item active">

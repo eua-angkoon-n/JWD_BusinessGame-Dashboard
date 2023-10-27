@@ -812,4 +812,12 @@ function findKeyByValue($value, $array) {
     return null; // Return null if the value is not found in the array
 }
 
+function chkModule($case,$uuid) {
+    if(($uuid != Setting::$bcrypt['admin'] && $uuid != Setting::$bcrypt[$case])) {
+        $newModule = findKeyByValue($uuid, Setting::$bcrypt);
+        $web = Setting::$webLocation."?module=$newModule&uuid=$uuid";
+        header( "location: $web");
+        exit;
+    }
+}
 ?>

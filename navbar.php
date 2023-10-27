@@ -1,17 +1,17 @@
  <!-- Navbar -->
  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
-            <?php if(empty($uuid)) {?>
+            <?php if($uuid == Setting::$bcrypt['admin']) {?>
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" id="pushmenu" data-widget="pushmenu" href="#" role="button"><i
                             class="fas fa-2x fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="./" class="nav-link">หน้าหลัก</a>
+                    <a href="./?uuid=<?php echo Setting::$bcrypt['admin']?>" class="nav-link">หน้าหลัก</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="?module=linkTable" class="nav-link">Link</a>
+                    <a href="?module=linkTable&uuid=<?php echo Setting::$bcrypt['admin']?>" class="nav-link">Link</a>
                 </li>
             </ul>
             <?php } ?>

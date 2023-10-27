@@ -10,81 +10,73 @@ require_once __DIR__ . '/include/timer.inc.php';
 
 header('Content-Type: text/html; charset=utf-8');
 date_default_timezone_set(Setting::$AppTimeZone);
-$Time = new Processing;
-$start = $Time->Start_Time();
 
 isset($_REQUEST['module']) ? $module = $_REQUEST['module'] : $module = '';
 isset($_REQUEST['uuid']) ? $uuid = $_REQUEST['uuid'] : $uuid = '';
 
-// switch ($idT) {
-//     case 'a889ca3ebe0fb1abf13d4e72a2de5d4a3afcf525':
-//         $include_module = __DIR__ . "/module/team.inc.php";
-//         $TEAM = "A";
-//         $module == "A" ? $active_A = "active" : $active_A = ""; #ไฮไลท์เมนูด้านซ้าย
-//         $title_site = Setting::$title_site[$module];
-//         $title_act = Setting::$title_act[$module];
-//         $breadcrumb_txt = Setting::$breadcrumb_txt[$module];
-//         break;
-    
-// }
+if( empty($_SESSION['sess_user']) 
+    && $uuid != Setting::$bcrypt['A'] 
+    && $uuid != Setting::$bcrypt['B'] 
+    && $uuid != Setting::$bcrypt['C'] 
+    && $uuid != Setting::$bcrypt['D'] 
+    && $uuid != Setting::$bcrypt['admin']
+) { 
+    $_SESSION = []; //empty array. 
+    session_destroy(); 
+    die(include('login.php')); 
+} else if (
+    empty($_SESSION['sess_user']) 
+    && $uuid == Setting::$bcrypt['admin']
+) {
+    $_SESSION = []; //empty array. 
+    session_destroy(); 
+    die(include('login.php')); 
+}
+
+$Time = new Processing;
+$start = $Time->Start_Time();
+
+
+
+chkModule($module, $uuid);
 
 switch ($module) {
     case "A" :
-        if(!empty($uuid) && $uuid == Setting::$bcrypt['A']){
+        // chkModule($module,$uuid);
         $include_module = __DIR__ . "/module/team.inc.php";
         $TEAM = "A";
         $module == "A" ? $active_A = "active" : $active_A = ""; #ไฮไลท์เมนูด้านซ้าย
         $title_site = Setting::$title_site[$module];
         $title_act = Setting::$title_act[$module];
         $breadcrumb_txt = Setting::$breadcrumb_txt[$module];
-        } else {
-            $newModule = findKeyByValue($uuid, Setting::$bcrypt);
-            $web = Setting::$webLocation."?module=$newModule&uuid=$uuid";
-            header( "location: $web");
-        }
 
         break;
     case "B" :
-        if(!empty($uuid) && $uuid == Setting::$bcrypt['B']){
-            $include_module = __DIR__ . "/module/team.inc.php";
-            $TEAM = "B";
-            $module == "B" ? $active_B = "active" : $active_B = ""; 
-            $title_site = Setting::$title_site[$module];
-            $title_act = Setting::$title_act[$module];
-            $breadcrumb_txt = Setting::$breadcrumb_txt[$module];
-        } else {
-            $newModule = findKeyByValue($uuid, Setting::$bcrypt);
-            $web = Setting::$webLocation."?module=$newModule&uuid=$uuid";
-            header( "location: $web");
-        }
+        // chkModule($module,$uuid);
+        $include_module = __DIR__ . "/module/team.inc.php";
+        $TEAM = "B";
+        $module == "B" ? $active_B = "active" : $active_B = ""; 
+        $title_site = Setting::$title_site[$module];
+        $title_act = Setting::$title_act[$module];
+        $breadcrumb_txt = Setting::$breadcrumb_txt[$module];
         break;
     case "C" :
-        if(!empty($uuid) && $uuid == Setting::$bcrypt['C']){
-            $include_module = __DIR__ . "/module/team.inc.php";
-            $TEAM = "C";
-            $module == "C" ? $active_C = "active" : $active_C = ""; 
-            $title_site = Setting::$title_site[$module];
-            $title_act = Setting::$title_act[$module];
-            $breadcrumb_txt = Setting::$breadcrumb_txt[$module];
-        } else {
-            $newModule = findKeyByValue($uuid, Setting::$bcrypt);
-            $web = Setting::$webLocation."?module=$newModule&uuid=$uuid";
-            header( "location: $web");
-        }
+        // chkModule($module,$uuid);
+        $include_module = __DIR__ . "/module/team.inc.php";
+        $TEAM = "C";
+        $module == "C" ? $active_C = "active" : $active_C = ""; 
+        $title_site = Setting::$title_site[$module];
+        $title_act = Setting::$title_act[$module];
+        $breadcrumb_txt = Setting::$breadcrumb_txt[$module];
         break;
     case "D" :
-        if(!empty($uuid) && $uuid == Setting::$bcrypt['D']){
-            $include_module = __DIR__ . "/module/team.inc.php";
-            $TEAM = "D";
-            $module == "D" ? $active_D = "active" : $active_D = "";
-            $title_site = Setting::$title_site[$module];
-            $title_act = Setting::$title_act[$module];
-            $breadcrumb_txt = Setting::$breadcrumb_txt[$module];
-        } else {
-            $newModule = findKeyByValue($uuid, Setting::$bcrypt);
-            $web = Setting::$webLocation."?module=$newModule&uuid=$uuid";
-            header( "location: $web");
-        }
+        // chkModule($module,$uuid);
+        $include_module = __DIR__ . "/module/team.inc.php";
+        $TEAM = "D";
+        $module == "D" ? $active_D = "active" : $active_D = "";
+        $title_site = Setting::$title_site[$module];
+        $title_act = Setting::$title_act[$module];
+        $breadcrumb_txt = Setting::$breadcrumb_txt[$module];
         break;
     case "Score":
         $include_module = __DIR__ . "/module/score.inc.php";
@@ -100,9 +92,13 @@ switch ($module) {
         $title_act = Setting::$title_act[$module];
         $breadcrumb_txt = Setting::$breadcrumb_txt[$module];
         break;
+    case 'logout':
+        include('logout.php');
+      break;
     default:
         $include_module = __DIR__ . "/module/dashboard.inc.php";
         $txt = "Dashboard";
+        $uuid = Setting::$bcrypt['admin'];
         $module == "dashboard" || $module == "" ? $active_Dashboard = "active" : $active_Dashboard = ""; #ไฮไลท์เมนูด้านซ้าย
         $title_site = Setting::$title_site[$txt];
         $title_act = Setting::$title_act[$txt];
@@ -133,7 +129,7 @@ switch ($module) {
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color:#000043;">
             <!-- Brand Logo -->
-            <a href="./" class="brand-link">
+            <a href="./?uuid=<?php echo Setting::$bcrypt['admin']?>" class="brand-link">
                 <img src="dist/img/SCGJWDLogo.png" alt="JWD Logo" class="w-100 p-0 m-0">
                 <span class="font-weight-bold p-1 mt-2 text-pcs-ct" style="background-color:#f15c22;color:white">
             </a>
@@ -146,13 +142,13 @@ switch ($module) {
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item">
-                            <a href="./" class="nav-link <?PHP echo $active_Dashboard; ?>">
+                            <a href="./?uuid=<?php echo Setting::$bcrypt['admin']?>" class="nav-link <?PHP echo $active_Dashboard; ?>">
                                 <i class="nav-icon fa fa-solid fa-chalkboard"></i>
                                 <p>Dashboard</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="?module=Score" class="nav-link <?PHP echo $active_Score; ?>">
+                            <a href="?module=Score&uuid=<?php echo Setting::$bcrypt['admin']?>" class="nav-link <?PHP echo $active_Score; ?>">
                                 <i class="nav-icon fa far fa-star"></i>
                                 <p>Score</p>
                             </a>
@@ -164,32 +160,37 @@ switch ($module) {
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item ml-2">
-                                    <a href="?module=A" class="nav-link <?PHP echo $active_A;?>">
+                                    <a href="?module=A&uuid=<?php echo Setting::$bcrypt['admin']?>" class="nav-link <?PHP echo $active_A;?>">
                                         <i class="fas fa-user-friends"></i>
                                         <p><?php echo Setting::$team['A']?></p>
                                     </a>
                                 </li>
                                 <li class="nav-item ml-2">
-                                    <a href="?module=B" class="nav-link <?PHP echo $active_B;?>">
+                                    <a href="?module=B&uuid=<?php echo Setting::$bcrypt['admin']?>" class="nav-link <?PHP echo $active_B;?>">
                                         <i class="fas fa-user-friends"></i>
                                         <p><?php echo Setting::$team['B']?></p>
                                     </a>
                                 </li>
                                 <li class="nav-item ml-2">
-                                    <a href="?module=C" class="nav-link <?PHP echo $active_C;?>">
+                                    <a href="?module=C&uuid=<?php echo Setting::$bcrypt['admin']?>" class="nav-link <?PHP echo $active_C;?>">
                                         <i class="fas fa-user-friends"></i>
                                         <p><?php echo Setting::$team['C']?></p>
                                     </a>
                                 </li>
                                 <li class="nav-item ml-2">
-                                    <a href="?module=D" class="nav-link <?PHP echo $active_D;?>">
+                                    <a href="?module=D&uuid=<?php echo Setting::$bcrypt['admin']?>" class="nav-link <?PHP echo $active_D;?>">
                                         <i class="fas fa-user-friends"></i>
                                         <p><?php echo Setting::$team['D']?></p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
-                        
+                        <li class="nav-item">
+                            <a href="?module=logout" class="nav-link">
+                                <i class="nav-icon fas fa-sign-out-alt"></i>
+                                <p>Logout</p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

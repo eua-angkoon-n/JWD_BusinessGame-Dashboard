@@ -79,8 +79,9 @@ class Setting
         "A" => "0ea7f0f9529085aba63e4745c6556bef3b1f0df4",
         "B" => "53bef39b17fa4f7cab7c0de0a65f3035b779e1ef",
         "C" => "6be820c13e494f33a8d5240596a8244152bd55ce",
-        "D" => "2853d1f1c7fbe524c961103ebc77cf9c8181a34c"
+        "D" => "2853d1f1c7fbe524c961103ebc77cf9c8181a34c",
+        "admin" => "d033e22ae348aeb5660fc2140aec35850c4da997",
     );
 
-    public static $webLocation = "http://localhost/BusinessGame_Dashboard/";
+    public static $webLocation = "https://ebooking.cc.pcs-plp.com/misbg2024/";
 }

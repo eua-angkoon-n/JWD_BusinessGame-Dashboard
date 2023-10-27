@@ -155,6 +155,38 @@ include( __DIR__ . "/include.php" );
                     <h4><strong>coldchainidea@gmail.com</strong></h4>    
                 </td>
             </tr>
+            <tr class="text-center">
+                <td>
+                    <h3><strong>PLP</strong></h3>
+                </td>
+                <td>
+                    <div class="d-flex justify-content-center">
+                        <a href="https://docs.google.com/spreadsheets/d/1-TN5BLhtkB2yvksFAhd2tvM3MAdkVmUIOJC2MmNrWWM/edit?usp=sharing"
+                            target="_blank" class="card-link">
+                            <h4><u>Open</u></h4>
+                        </a>
+                        <a class="copy-link-button card-link"
+                            data-clipboard="https://docs.google.com/spreadsheets/d/1-TN5BLhtkB2yvksFAhd2tvM3MAdkVmUIOJC2MmNrWWM/edit?usp=sharing">
+                            <h4><u>&nbsp;Copy&nbsp;&nbsp;</u></h4>
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    <div class="d-flex justify-content-center">
+                        <a href="https://lookerstudio.google.com/reporting/9b47230c-6369-4735-a762-6f97eee006b4"
+                            target="_blank" class="card-link">
+                            <h4><u>Open</u></h4>
+                        </a>
+                        <a class="copy-link-button card-link"
+                            data-clipboard="https://lookerstudio.google.com/reporting/9b47230c-6369-4735-a762-6f97eee006b4">
+                            <h4><u>&nbsp;Copy&nbsp;&nbsp;</u></h4>
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    <h4><strong>coldchainplp@gmail.com</strong></h4>    
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>

@@ -4,4 +4,4 @@
 https://github.com/eua-angkoon-n/BusinessGame_Dashboard
 
 **Preview**
-https://ebooking.cc.pcs-plp.com/misbg2023/
+https://ebooking.cc.pcs-plp.com/misbg2024/
